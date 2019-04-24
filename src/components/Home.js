@@ -87,17 +87,26 @@ export default class Home extends Component {
 
         <Segment>
           <Label as="a" color="blue" image>
-            <img src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
+            <img
+              src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg"
+              alt=""
+            />
             Veronika
             <Label.Detail>Friend</Label.Detail>
           </Label>
           <Label as="a" color="teal" image>
-            <img src="https://react.semantic-ui.com/images/avatar/small/jenny.jpg" />
+            <img
+              src="https://react.semantic-ui.com/images/avatar/small/jenny.jpg"
+              alt=""
+            />
             Veronika
             <Label.Detail>Friend</Label.Detail>
           </Label>
           <Label as="a" color="yellow" image>
-            <img src="https://react.semantic-ui.com/images/avatar/small/christian.jpg" />
+            <img
+              src="https://react.semantic-ui.com/images/avatar/small/christian.jpg"
+              alt=""
+            />
             Helen
             <Label.Detail>Co-worker</Label.Detail>
           </Label>
