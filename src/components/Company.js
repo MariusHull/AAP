@@ -1,27 +1,5 @@
 import React, { Component } from "react";
-import {
-  Accordion,
-  Button,
-  Divider,
-  Grid,
-  Image,
-  Modal,
-  Segment,
-  Dropdown,
-  Input,
-  Card,
-  Label,
-  Container,
-  Dimmer,
-  Loader,
-  Icon,
-  Step,
-  Table,
-  Comment,
-  Form,
-  Header,
-  Statistic
-} from "semantic-ui-react";
+import { Button, Card, Icon } from "semantic-ui-react";
 import ShowAnswers from "./ShowAnswers";
 import scss from "../global.scss";
 
@@ -39,7 +17,7 @@ export default class Company extends Component {
           <Card.Content extra>
             <ShowAnswers />
             <Button icon positive labelPosition="right">
-              Télécharger les réponses sous excel
+              Télécharger les réponses
               <Icon name="download" />
             </Button>
           </Card.Content>

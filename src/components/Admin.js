@@ -1,25 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Divider,
-  Grid,
-  Image,
-  Segment,
-  Dropdown,
-  Input,
-  Card,
-  Label,
-  Container,
-  Dimmer,
-  Loader,
-  Icon,
-  Step,
-  Table,
-  Comment,
-  Form,
-  Header,
-  Statistic
-} from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import Company from "./Company";
 import NavBar from "./NavBar";
 
