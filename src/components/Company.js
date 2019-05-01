@@ -1,27 +1,5 @@
 import React, { Component } from "react";
-import {
-  Accordion,
-  Button,
-  Divider,
-  Grid,
-  Image,
-  Modal,
-  Segment,
-  Dropdown,
-  Input,
-  Card,
-  Label,
-  Container,
-  Dimmer,
-  Loader,
-  Icon,
-  Step,
-  Table,
-  Comment,
-  Form,
-  Header,
-  Statistic
-} from "semantic-ui-react";
+import { Button, Card, Icon } from "semantic-ui-react";
 import ShowAnswers from "./ShowAnswers";
 import scss from "../global.scss";
 

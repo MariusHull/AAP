@@ -1,27 +1,12 @@
 import React, { Component } from "react";
 import {
-  Accordion,
   Button,
   Divider,
-  Grid,
   Image,
   Modal,
-  Segment,
-  Dropdown,
-  Input,
-  Card,
-  Label,
-  Container,
-  Dimmer,
-  Loader,
   Icon,
-  Step,
-  Table,
-  Comment,
-  Form,
   Tab,
-  Header,
-  Statistic
+  Header
 } from "semantic-ui-react";
 
 export default class ShowAnswers extends Component {
