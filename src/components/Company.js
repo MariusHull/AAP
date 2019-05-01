@@ -39,7 +39,7 @@ export default class Company extends Component {
           <Card.Content extra>
             <ShowAnswers />
             <Button icon positive labelPosition="right">
-              Télécharger les réponses sous excel
+              Télécharger les réponses
               <Icon name="download" />
             </Button>
           </Card.Content>

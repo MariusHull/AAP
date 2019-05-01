@@ -19,40 +19,61 @@ import {
   Table,
   Comment,
   Form,
+  Tab,
   Header,
   Statistic
 } from "semantic-ui-react";
 
-const inlineStyle = {
-  modal: {
-    margin: "0 auto!important",
-    top: "auto !important",
-    left: "auto !important",
-    transformOrigin: "center !important",
-    transition: "all ease .5s"
-  }
-};
-
 export default class ShowAnswers extends Component {
-  state = { activeIndex: 0 };
+  state = { modalOpen: false };
 
-  handleClick = (e, titleProps) => {
-    const { index } = titleProps;
-    const { activeIndex } = this.state;
-    const newIndex = activeIndex === index ? -1 : index;
+  handleOpen = () => this.setState({ modalOpen: true });
 
-    this.setState({ activeIndex: newIndex });
-  };
+  handleClose = () => this.setState({ modalOpen: false });
 
   render() {
-    const { activeIndex } = this.state;
+    const panes = [
+      {
+        menuItem: "Intensité de travail",
+        render: () => (
+          <Tab.Pane attached={false}>
+            {" "}
+            <Header as="h3">Les contraintes de rythme de travail</Header>
+            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+            <Divider section />
+            <Header as="h3">La précision des objectifs de travail</Header>
+            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: "Horaire de travail",
+        render: () => (
+          <Tab.Pane attached={false}>
+            <Header as="h3">Sous thème 1</Header>
+            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: "Exigeances émotionnelles",
+        render: () => (
+          <Tab.Pane attached={false}>
+            <Header as="h3">Encore un sous thème</Header>
+            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+          </Tab.Pane>
+        )
+      }
+    ];
 
     return (
       <>
         <Modal
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
           trigger={
-            <Button icon labelPosition="right">
-              Voir les réponses au questionnaire
+            <Button onClick={this.handleOpen} icon labelPosition="right">
+              Voir les réponses
               <Icon name="eye" />
             </Button>
           }
@@ -60,66 +81,11 @@ export default class ShowAnswers extends Component {
           <Modal.Header>Allianz</Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <Accordion styled>
-                <Accordion.Title
-                  active={activeIndex === 0}
-                  index={0}
-                  onClick={this.handleClick}
-                >
-                  <Icon name="dropdown" />
-                  Thème 1 : bla bla
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 0}>
-                  <p>
-                    A dog is a type of domesticated animal. Known for its
-                    loyalty and faithfulness, it can be found as a welcome guest
-                    in many households across the world.
-                  </p>
-                </Accordion.Content>
-
-                <Accordion.Title
-                  active={activeIndex === 1}
-                  index={1}
-                  onClick={this.handleClick}
-                >
-                  <Icon name="dropdown" />
-                  Thème 2 : bla bla
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 1}>
-                  <p>
-                    There are many breeds of dogs. Each breed varies in size and
-                    temperament. Owners often select a breed of dog that they
-                    find to be compatible with their own lifestyle and desires
-                    from a companion.
-                  </p>
-                </Accordion.Content>
-
-                <Accordion.Title
-                  active={activeIndex === 2}
-                  index={2}
-                  onClick={this.handleClick}
-                >
-                  <Icon name="dropdown" />
-                  Thème 3 : bla bla
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 2}>
-                  <p>
-                    Three common ways for a prospective owner to acquire a dog
-                    is from pet shops, private owners, or shelters.
-                  </p>
-                  <p>
-                    A pet shop may be the most convenient way to buy a dog.
-                    Buying a dog from a private owner allows you to assess the
-                    pedigree and upbringing of your dog before choosing to take
-                    it home. Lastly, finding your dog from a shelter, helps give
-                    a good home to a dog who may not find one so readily.
-                  </p>
-                </Accordion.Content>
-              </Accordion>
+              <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button primary>
+            <Button onClick={this.handleClose} primary>
               Revenir à la page principale <Icon name="right chevron" />
             </Button>
           </Modal.Actions>
