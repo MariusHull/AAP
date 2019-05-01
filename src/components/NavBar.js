@@ -8,7 +8,7 @@ export default class NavBar extends Component {
       <div
         style={{
           backgroundImage: `linear-gradient(to right, ${scss.blue}, ${
-            scss.blue_light
+            scss.blue
           })`
         }}
       >
