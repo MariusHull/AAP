@@ -30,7 +30,7 @@ export default class Cell extends Component {
     const subTopic = topics[i].subTopics[j]
 
     return (
-        <Container>
+        <Container style={{marginBottom:'10px'}}>
               <Form>
               <Form.Field
                   id='form-textarea-control-opinion'
@@ -41,7 +41,7 @@ export default class Cell extends Component {
                   name = 'situationsExamples'
                   onChange={this.handleChange}
                 />
-              <Form.Group inline>
+              <Form.Group inline widths='equal'>
                 <label>Presence</label>
                 {checkboxPresence.map((e, k) => (
                   <Form.Field
@@ -55,7 +55,7 @@ export default class Cell extends Component {
                   />
                 ))}
               </Form.Group>
-              <Form.Group inline>
+              <Form.Group inline widths='equal'>
                 <label>Intensité</label>
                 {checkboxIntesity.map((e, k) => (
                   <Form.Field
@@ -78,20 +78,21 @@ export default class Cell extends Component {
                   name='correctiveActions'
                   onChange={this.handleChange}
                 />
-              <Form.Group inline>
-                <label>Degré d'urgence de l'action</label>
-                {checkboxUrgencyLevel.map((e, k) => (
-                  <Form.Field
-                  key={e+String(i)+String(j)}
-                  control={Radio}
-                  label={e}
-                  value={k}
-                  name="urgencyLevel"
-                  checked={subTopic.data.urgencyLevel === k}
-                  onChange={this.handleChange}
-                  />
-                ))}
-              </Form.Group>
+                <Form.Group inline>
+                  <label>Degré d'urgence de l'action</label>
+                  {checkboxUrgencyLevel.map((e, k) => (
+                    <Form.Field
+                    style={{marginLeft:'3vw'}}
+                    key={e+String(i)+String(j)}
+                    control={Radio}
+                    label={e}
+                    value={k}
+                    name="urgencyLevel"
+                    checked={subTopic.data.urgencyLevel === k}
+                    onChange={this.handleChange}
+                    />
+                  ))}
+                </Form.Group>
               <Form.Group inline widths='equal'>
               <Form.Field
                   id='form-textarea-control-opinion'
@@ -140,11 +141,6 @@ export default class Cell extends Component {
                   name='comment'
                   placeholder='...'
                   onChange={this.handleChange}
-                />
-                <Form.Field right
-                  id='form-button-control-public'
-                  control={Button}
-                  content='Confirm'
                 />
               </Form>
         </Container>
