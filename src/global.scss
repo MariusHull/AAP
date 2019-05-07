@@ -1,0 +1,10 @@
+$margin-large: 20px;
+
+$blue: #2e4250;
+$blue-light: rgb(107, 186, 241);
+
+:export {
+  margin_large: $margin-large;
+  blue: $blue;
+  blue_light: $blue-light;
+}

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "../components/Home";
 import Survey from "../components/Survey";
+import Admin from "../components/Admin";
 
 class Routes extends Component {
   render() {
@@ -10,6 +11,7 @@ class Routes extends Component {
       <Router>
         <Route path="/" exact component={Home} />
         <Route path="/survey" exact component={Survey} />
+        <Route path="/admin" exact component={Admin} />
       </Router>
     );
   }
