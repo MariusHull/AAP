@@ -1,140 +1,115 @@
 import React, { Component } from 'react'
-import {Container, Form, Button, Radio, TextArea, FeedLabel} from 'semantic-ui-react'
+import {Container, Form, Button, Radio, TextArea} from 'semantic-ui-react'
 
-const value=0;
+const checkboxPresence= ["Jamais", "Parfois",	"Souvent", "Toujours"];
+const checkboxIntesity= ["Non concernée", "Faible", "Modérée", "Elevée"];
+const checkboxUrgencyLevel= ["Très peu urgente", "Peu urgente", "Urgente", "Très urgente"];
 
 export default class Cell extends Component {
 
-  handleChange = () => {
-    this.props.change()
+  constructor(props) {
+    super(props);
+    this.state = {
+      upToDate: true
+    }
+  }
+
+  handleChange = (e, {name, value}) => {
+    this.props.change(this.props.i, this.props.j, name, value)
+    this.setState({upToDate: false})
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({upToDate: true})
+    }
   }
 
   render() {
-    const { subject } = this.props
+    const { topics, i, j} = this.props
+    const subTopic = topics[i].subTopics[j]
 
     return (
         <Container>
-              <h3>{subject}</h3>
               <Form>
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Exemples de situation'
                   placeholder='Exemples'
-                  onChange={this.props.change}
+                  value={subTopic.data.situationsExamples}
+                  name = 'situationsExamples'
+                  onChange={this.handleChange}
                 />
               <Form.Group inline>
                 <label>Presence</label>
-                <Form.Field
+                {checkboxPresence.map((e, k) => (
+                  <Form.Field
+                  key={e+String(i)+String(j)}
                   control={Radio}
-                  label='Jamais'
-                  value='1'
-                  checked={value === '1'}
+                  label={e}
+                  value={k}
+                  name="presence"
+                  checked={subTopic.data.presence === k}
                   onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Parfois'
-                  value='2'
-                  checked={value === '2'}
-                  onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Souvent'
-                  value='3'
-                  checked={value === '3'}
-                  onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Toujours'
-                  value='3'
-                  checked={value === '3'}
-                  onChange={this.handleChange}
-                />
+                  />
+                ))}
               </Form.Group>
               <Form.Group inline>
                 <label>Intensité</label>
-                <Form.Field
+                {checkboxIntesity.map((e, k) => (
+                  <Form.Field
+                  key={e+String(i)+String(j)}
                   control={Radio}
-                  label='Non concernée'
-                  value='1'
-                  checked={value === '1'}
+                  label={e}
+                  value={k}
+                  name="intensity"
+                  checked={subTopic.data.intensity === k}
                   onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Faible'
-                  value='2'
-                  checked={value === '2'}
-                  onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Modérée'
-                  value='3'
-                  checked={value === '3'}
-                  onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Elevée'
-                  value='3'
-                  checked={value === '3'}
-                  onChange={this.handleChange}
-                />
+                  />
+                ))}
               </Form.Group>
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Actions correctives'
+                  value={subTopic.data.correctiveActions}
                   placeholder='Exemples'
-                  height='20px'
+                  name='correctiveActions'
+                  onChange={this.handleChange}
                 />
               <Form.Group inline>
                 <label>Degré d'urgence de l'action</label>
-                <Form.Field
+                {checkboxUrgencyLevel.map((e, k) => (
+                  <Form.Field
+                  key={e+String(i)+String(j)}
                   control={Radio}
-                  label='Très peu urgente'
-                  value='1'
-                  checked={value === '1'}
+                  label={e}
+                  value={k}
+                  name="urgencyLevel"
+                  checked={subTopic.data.urgencyLevel === k}
                   onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Peu urgente'
-                  value='2'
-                  checked={value === '2'}
-                  onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Urgente'
-                  value='3'
-                  checked={value === '3'}
-                  onChange={this.handleChange}
-                />
-                <Form.Field
-                  control={Radio}
-                  label='Très urgente'
-                  value='3'
-                  checked={value === '3'}
-                  onChange={this.handleChange}
-                />
+                  />
+                ))}
               </Form.Group>
               <Form.Group inline widths='equal'>
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Actions déjà existantes'
+                  value={subTopic.data.existingActions}
+                  name='existingActions'
                   placeholder='Actions...'
+                  onChange={this.handleChange}
                 />
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Actions retenues'
+                  value={subTopic.data.selectedActions}
+                  name='selectedActions'
                   placeholder='Actions...'
+                  onChange={this.handleChange}
                 />
               </Form.Group>
               <Form.Group inline widths='equal'>
@@ -142,20 +117,29 @@ export default class Cell extends Component {
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Délais de réalisation'
+                  value={subTopic.data.timeLimit}
+                  name='timeLimit'
                   placeholder=''
+                  onChange={this.handleChange}
                 />
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Personnes en charge'
+                  value={subTopic.data.inCharge}
+                  name='inCharge'
                   placeholder='...'
+                  onChange={this.handleChange}
                 />
               </Form.Group>
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Commentaires'
+                  value={subTopic.data.comment}
+                  name='comment'
                   placeholder='...'
+                  onChange={this.handleChange}
                 />
                 <Form.Field right
                   id='form-button-control-public'

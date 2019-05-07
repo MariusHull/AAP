@@ -4,19 +4,37 @@ import Cell from './Cell'
 
 export default class AccordionExampleFluid extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      upToDate: true
+    }
+  }
+
+  change = (i, j, name, value) => {
+    this.setState({upToDate: false})
+    this.props.change(i, j, name, value)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({upToDate: true})
+    }
+  }
+
   render() {
-    const { struct, index, ChangeState, AccordionStates} = this.props
+    const { topics, index, ChangeState, accordionStates} = this.props
 
     return (
       <Accordion fluid>
-        {struct[index].sub_themes.map((e, i) => (
-            <Container key={e}>
-                <Accordion.Title active={AccordionStates[index][i] === 1} onClick={(e) => ChangeState(index, i)}>
-                    <h3><Icon name='dropdown' />{e}</h3>
+        {topics[index].subTopics.map((e, i) => (
+            <Container key={e.name}>
+                <Accordion.Title active={accordionStates[index][i] === 1} onClick={(e) => ChangeState(index, i)}>
+                    <h3><Icon name='dropdown' />{e.name}</h3>
                 </Accordion.Title>
-                <Accordion.Content active={AccordionStates[index][i] === 1}>
+                <Accordion.Content active={accordionStates[index][i] === 1}>
                     <p>
-                        <Cell subject={struct[index][i]} change={this.props.change}></Cell>
+                        <Cell topics={topics} i={index} j={i} change={this.change}></Cell>
                     </p>
                 </Accordion.Content>
             </Container>
