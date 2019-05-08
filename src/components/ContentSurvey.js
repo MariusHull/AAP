@@ -5,8 +5,12 @@ import {
   Container,
   Icon,
   Menu,
-  Popup
+  Popup,
+  Message,
+  Transition
 } from "semantic-ui-react";
+
+import axios from 'axios';
 
 import { Link } from 'react-router-dom'
 
@@ -69,6 +73,8 @@ const struct = [
     }
     ]
 
+const id = "5cd27e6bf59bef1e6a20f33e"
+
 const initData = {situationsExamples:'', presence:-1, intensity:-1, correctiveActions:'', urgencyLevel:-1, existingActions:'', selectedActions:'', timeLimit:'', inCharge:'', comment:''}
 
 export default class ContentSurvey extends Component {
@@ -79,6 +85,8 @@ export default class ContentSurvey extends Component {
           activeItem: 0,
           accordionStates: [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0, 0], [0, 0], [0, 0]],
           saved: true,
+          justsaved: false,
+          displaySave: true,
           topics:[
             {
                 name: "Intensité et complexité du travail",
@@ -144,6 +152,12 @@ export default class ContentSurvey extends Component {
             ]
         };
       }
+
+      componentDidMount() {
+        axios.get(`http://localhost:3001/companies/${id}`).then((r) => {
+              this.setState({topics: r.data.topics})
+            })
+      }
     
       ChangeState = (i,j) => {
         var {accordionStates} = this.state;
@@ -162,7 +176,11 @@ export default class ContentSurvey extends Component {
       }
     
       save = () => {
-          this.setState({saved:true})
+        const lastUpdate = 0;
+        const {topics} = this.state;
+        axios.post(`http://localhost:3001/companies/save/${id}`, {topics, lastUpdate}).then((r) => {
+            this.setState({topics: r.data.topics, justsaved: true, saved:true, displaySave:false})
+          })
       }
     
       next = () => this.setState({activeItem: this.state.activeItem+1})
@@ -171,7 +189,7 @@ export default class ContentSurvey extends Component {
 
   render() {
 
-    const {activeItem, accordionStates, saved, topics} = this.state
+    const {activeItem, accordionStates, saved, topics, justsaved, displaySave} = this.state
 
     return (
       <Container style={{width:'70%', margin: '20px auto'}}>
@@ -188,27 +206,34 @@ export default class ContentSurvey extends Component {
         </Segment>
       </div>
       <div style={{display:'flex', justifyContent:'space-between'}}>
-        <Button icon labelPosition='left' style={{width:'15%', margin:'10px', textAlign:'center'}} disabled={activeItem===0} onClick={this.previous}>
+        <Button icon labelPosition='left' style={{height:'7vh', width:'15%', margin:'10px', textAlign:'center'}} disabled={activeItem===0} onClick={this.previous}>
           <Icon name='left arrow' />
           Précedent
         </Button>
+            <Popup content='Vos modifications sont déjà enregistrées.' disabled={!saved} trigger={
+                <Transition visible={displaySave} animation='scale' duration={500}>
+                <Button icon positive labelPosition='right' style={{height:'7vh', width:'15%', margin:'10px', textAlign:'center'}} onClick={this.save}>
+                    Enregistrer
+                    <Icon name='save outline' />
+                </Button>
+                </Transition>
+            } />
 
-        <Popup content='Vos modifications sont déjà enregistrées.' disabled={!saved} trigger={
-            <Button icon positive labelPosition='right' style={{width:'15%', margin:'10px', textAlign:'center'}} onClick={this.save}>
-                Enregistrer
-                <Icon name='save outline' />
-            </Button>
-        } />
+        <Transition visible={justsaved} animation='scale' duration={1000} onShow={() => this.setState({justsaved:false})} onHide={() => this.setState({displaySave:true})}>
+            <Message positive style={{height:'7vh', margin:'10px', textAlign:'center'}}>
+                <Message.Header>Vos modifications ont bien été enregistrées.</Message.Header>
+            </Message>
+        </Transition>
 
         {activeItem<struct.length-1 ? (
-        <Button icon labelPosition='right' style={{width:'15%', margin:'10px', textAlign:'center'}} onClick={this.next}>
+        <Button icon labelPosition='right' style={{height:'7vh', width:'15%', margin:'10px', textAlign:'center'}} onClick={this.next}>
           Suivant
           <Icon name='right arrow' />
         </Button>
       ) : (
-        <Link to="/thankyou" style={{width:'15%', margin:'10px', textAlign:'center'}}><Button icon labelPosition='right'>
+        <Link to="/thankyou" style={{height:'7vh', width:'15%', margin:'10px', textAlign:'center'}}><Button icon labelPosition='right'>
           Terminer
-          <Icon name='home' />
+          <Icon name='check' />
         </Button></Link>
       )}
       </div>
