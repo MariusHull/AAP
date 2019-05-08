@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Container, Form, Button, Radio, TextArea} from 'semantic-ui-react'
+import {Container, Form, Radio, TextArea} from 'semantic-ui-react'
 
 const checkboxPresence= ["Jamais", "Parfois",	"Souvent", "Toujours"];
 const checkboxIntesity= ["Non concernée", "Faible", "Modérée", "Elevée"];
