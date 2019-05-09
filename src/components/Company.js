@@ -9,7 +9,7 @@ export default class Company extends Component {
       <div>
         <Card fluid style={{ margin: `${scss.margin_large} 0px` }}>
           <Card.Content>
-            <Card.Header>Allianz</Card.Header>
+            <Card.Header> {this.props.name} </Card.Header>
             <Card.Meta>
               <span className="date">Dernière réponse le 01/05/2019</span>
             </Card.Meta>
