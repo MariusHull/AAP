@@ -176,9 +176,8 @@ export default class ContentSurvey extends Component {
       }
     
       save = () => {
-        const lastUpdate = 0;
         const {topics} = this.state;
-        axios.post(`http://localhost:3001/companies/save/${id}`, {topics, lastUpdate}).then((r) => {
+        axios.post(`http://localhost:3001/companies/save/${id}`, {topics}).then((r) => {
             this.setState({topics: r.data.topics, justsaved: true, saved:true, displaySave:false})
           })
       }
