@@ -25,7 +25,7 @@ export default class Admin extends Component {
         <NavBar />
         <Container>
           {this.state.companies.map(company => (
-            <Company name={company.name} key={company._id} />
+            <Company company={company} key={company._id} />
           ))}
         </Container>
       </>
