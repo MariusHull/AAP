@@ -4,22 +4,8 @@ import Cell from './Cell'
 
 export default class AccordionExampleFluid extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      upToDate: true
-    }
-  }
-
   change = (i, j, name, value) => {
-    this.setState({upToDate: false})
     this.props.change(i, j, name, value)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      this.setState({upToDate: true})
-    }
   }
 
   render() {

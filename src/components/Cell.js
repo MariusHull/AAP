@@ -7,22 +7,8 @@ const checkboxUrgencyLevel= ["TrÃ¨s peu urgente", "Peu urgente", "Urgente", "TrÃ
 
 export default class Cell extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      upToDate: true
-    }
-  }
-
   handleChange = (e, {name, value}) => {
     this.props.change(this.props.i, this.props.j, name, value)
-    this.setState({upToDate: false})
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      this.setState({upToDate: true})
-    }
   }
 
   render() {
