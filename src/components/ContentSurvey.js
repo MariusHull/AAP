@@ -154,7 +154,7 @@ export default class ContentSurvey extends Component {
       }
 
       componentDidMount() {
-        axios.get(`http://localhost:3001/companies/${id}`).then((r) => {
+        axios.get(`http://localhost:3001/companies/${this.props.id}`).then((r) => {
               this.setState({topics: r.data.topics})
             })
       }
@@ -177,7 +177,7 @@ export default class ContentSurvey extends Component {
     
       save = () => {
         const {topics} = this.state;
-        axios.post(`http://localhost:3001/companies/save/${id}`, {topics}).then((r) => {
+        axios.post(`http://localhost:3001/companies/save/${this.props.id}`, {topics}).then((r) => {
             this.setState({topics: r.data.topics, justsaved: true, saved:true, displaySave:false})
           })
       }
