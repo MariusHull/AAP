@@ -2,26 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import axios from "axios";
-import {
-  Button,
-  Divider,
-  Grid,
-  Image,
-  Segment,
-  Dropdown,
-  Input,
-  Label,
-  Container,
-  Dimmer,
-  Loader,
-  Icon,
-  Step,
-  Table,
-  Comment,
-  Form,
-  Header,
-  Statistic
-} from "semantic-ui-react";
+import { Divider, Grid, Segment, Container } from "semantic-ui-react";
+var jwtDecode = require("jwt-decode");
 
 // Basically, the page for login and register functions
 export default class Login extends Component {
@@ -49,16 +31,23 @@ export default class Login extends Component {
 
     axios
       .post(`http://localhost:3001/api/auth/login`, { username, password })
-      .then(result => {
-        localStorage.setItem("jwtToken", result.data.token);
-        this.setState({ message: "" });
-        this.props.history.push("/admin");
+      .then(res => {
+        if (res.data.success) {
+          var decoded = jwtDecode(res.data.token);
+          localStorage.setItem("User", decoded.username);
+          localStorage.setItem("Status", decoded.status);
+          console.log(decoded);
+          localStorage.setItem("jwtToken", res.data.token);
+          this.setState({ message: "" });
+          this.props.history.push("/survey");
+        } else {
+          this.setState({ message: res.data.msg });
+        }
       })
       .catch(error => {
         if (error.response.status === 401) {
           this.setState({
-            message:
-              "La connexion a échoué, veuillez réessayer en vérifiant vos identifiants."
+            message: "error.data.msg"
           });
         }
       });
@@ -75,18 +64,17 @@ export default class Login extends Component {
         username: usernameReg,
         password: passwordReg
       })
-      .then(result => {
-        if (!result.success) {
+      .then(res => {
+        console.log(res);
+        if (!res.data.success) {
           this.setState({
-            message:
-              "Une erreur est survenue en essayant de créer votre compte, veuillez réessayer."
+            message: res.data.msg
           });
         } else {
           this.setState({
             usernameReg: "",
             passwordReg: "",
-            message:
-              "Vous avez bien été inscrit, veuillez vous connecter maintenant!"
+            message: res.data.msg
           });
         }
       });
@@ -146,13 +134,21 @@ export default class Login extends Component {
                     onChange={this.onChange}
                     required
                   />
-                  <button
-                    className="btn btn-lg btn-primary btn-block"
-                    type="submit"
-                  >
+                  <br />
+                  <br />
+                  <button className="ui button" type="submit">
                     Me connecter !
                   </button>
                 </form>
+                <br />
+                <br />
+                <div
+                  class="ui button"
+                  data-tooltip="Envoyez un email à admin@aap.fr"
+                  data-position="top center"
+                >
+                  Mot de passe oublié ?
+                </div>
               </Grid.Column>
               <Grid.Column>
                 <h3>Nouveau ? Inscrivez-vous !</h3>
@@ -183,11 +179,10 @@ export default class Login extends Component {
                     onChange={this.onChange}
                     required
                   />
-                  <button
-                    className="btn btn-lg btn-primary btn-block"
-                    type="submit"
-                  >
-                    Register
+                  <br />
+                  <br />
+                  <button className="ui button" type="submit">
+                    M'inscrire
                   </button>
                 </form>
               </Grid.Column>
