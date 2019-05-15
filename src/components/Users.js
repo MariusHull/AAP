@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import { Container } from "semantic-ui-react";
-
-import Company from "./Company";
 import NavBar from "./NavBar";
 
 import axios from "axios";
 
-export default class Admin extends Component {
+export default class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companies: []
+      users: []
     };
   }
 
@@ -28,9 +26,9 @@ export default class Admin extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/companies/names`)
-      .then(companies => {
-        this.setState({ companies: companies.data });
+      .get(`http://localhost:3001/api/users`)
+      .then(users => {
+        this.setState({ users: users.data });
       })
       .catch(error => {
         if (error.response.status === 401) {
@@ -44,8 +42,8 @@ export default class Admin extends Component {
       <>
         <NavBar logout={this.logout} />
         <Container>
-          {this.state.companies.map(company => (
-            <Company company={company} key={company._id} />
+          {this.state.users.map(user => (
+            <div>{user.username} Et plus d'infos par la suite</div>
           ))}
         </Container>
       </>
