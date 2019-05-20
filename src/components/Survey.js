@@ -4,12 +4,21 @@ import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import ContentSurvey from "./ContentSurvey";
 
-const id = "5cd27e6bf59bef1e6a20f33e";
-
 export default class Survey extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: "",
+    }
+  }
+
   componentDidMount = () => {
     if (!localStorage.getItem("jwtToken")) {
       this.props.history.push("/login");
+    }
+    if (localStorage.getItem("id")){
+      this.setState({id: localStorage.getItem("id")})
     }
   };
 
@@ -17,7 +26,8 @@ export default class Survey extends Component {
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
-        <ContentSurvey id={id} />
+        <div>{localStorage.getItem("id")}</div>
+        <ContentSurvey id={this.state.id} />
       </Container>
     );
   }

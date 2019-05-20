@@ -221,9 +221,9 @@ export default class ContentSurvey extends Component {
 
   componentDidMount() {
     axios.defaults.headers.common["Authorization"] =
-      "JWT " + localStorage.getItem("jwtToken");
+    "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/companies/${this.props.id}`)
+      .get(`http://localhost:3001/api/companies/${localStorage.getItem('id')}`)
       .then(r => {
         this.setState({ topics: r.data.topics });
       });
@@ -257,6 +257,7 @@ export default class ContentSurvey extends Component {
         topics
       })
       .then(r => {
+        console.log(r.data);
         this.setState({
           topics: r.data.topics,
           justsaved: true,

@@ -14,7 +14,8 @@ export default class Login extends Component {
       password: "",
       usernameReg: "",
       passwordReg: "",
-      message: ""
+      message: "",
+      compName: ""
     };
   }
 
@@ -27,7 +28,7 @@ export default class Login extends Component {
   onSubmitLogin = e => {
     e.preventDefault();
 
-    const { username, password } = this.state;
+    const { username, password} = this.state;
 
     axios
       .post(`http://localhost:3001/api/auth/login`, { username, password })
@@ -38,6 +39,8 @@ export default class Login extends Component {
           localStorage.setItem("Status", decoded.status);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("compName", res.data.compName);
           this.setState({ message: "" });
           this.props.history.push("/survey");
         } else {
@@ -56,13 +59,14 @@ export default class Login extends Component {
   onSubmitRegister = e => {
     e.preventDefault();
 
-    const { usernameReg, passwordReg } = this.state;
+    const { usernameReg, passwordReg, compName} = this.state;
 
-    console.log({ usernameReg, passwordReg });
+    console.log({ usernameReg, passwordReg, compName });
     axios
       .post("http://localhost:3001/api/auth/register", {
         username: usernameReg,
-        password: passwordReg
+        password: passwordReg,
+        compName: compName
       })
       .then(res => {
         console.log(res);
@@ -86,7 +90,8 @@ export default class Login extends Component {
       password,
       message,
       passwordReg,
-      usernameReg
+      usernameReg,
+      compName
     } = this.state;
     return (
       <Container style={{ width: "100%" }}>
@@ -163,6 +168,19 @@ export default class Login extends Component {
                     placeholder="mail@example.fr"
                     name="usernameReg"
                     value={usernameReg}
+                    onChange={this.onChange}
+                    required
+                  />
+                  <br />
+                  <label for="inputPassword" className="sr-only">
+                    Entreprise :
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Entreprise"
+                    name="compName"
+                    value={compName}
                     onChange={this.onChange}
                     required
                   />
