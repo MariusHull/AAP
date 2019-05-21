@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { Divider, Grid, Segment, Container } from "semantic-ui-react";
+import "../global.scss";
 var jwtDecode = require("jwt-decode");
 
 // Basically, the page for login and register functions
@@ -16,6 +17,13 @@ export default class Login extends Component {
       passwordReg: "",
       message: ""
     };
+  }
+
+  componentWillMount() {
+    console.log(
+      `reg :${this.state.password}:, pass :${this.state.passwordReg}:`
+    );
+    this.setState({ password: "", passwordReg: "" });
   }
 
   onChange = e => {
@@ -88,12 +96,13 @@ export default class Login extends Component {
       passwordReg,
       usernameReg
     } = this.state;
+    console.log(`reg :${password}:, pass :${passwordReg}:`);
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
 
         <div className="container">
-          <h1>Bienvenue, merci de vous connecter : </h1>
+          <h1 className="title">Bienvenue, merci de vous connecter : </h1>
           <Segment className="container">
             <Grid columns={2} relaxed="very">
               <Grid.Column>
@@ -108,32 +117,36 @@ export default class Login extends Component {
                     <br />
                   </div>
                 )}
-                <form onSubmit={this.onSubmitLogin}>
+                <form onSubmit={this.onSubmitLogin} className="ui fluid form">
                   <label for="inputEmail" className="sr-only">
                     Adresse mail :
                   </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="mail@exemple.fr"
-                    name="username"
-                    value={username}
-                    onChange={this.onChange}
-                    required
-                  />
+                  <div class="form">
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="mail@exemple.fr"
+                      name="username"
+                      value={username}
+                      onChange={this.onChange}
+                      required
+                    />
+                  </div>
                   <br />
                   <label for="inputPassword" className="sr-only">
                     Mot de passe :
                   </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Mot de passe"
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                    required
-                  />
+                  <div class="form">
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Mot de passe"
+                      name="password"
+                      value={password}
+                      onChange={this.onChange}
+                      required
+                    />
+                  </div>
                   <br />
                   <br />
                   <button className="ui button" type="submit">
@@ -153,32 +166,39 @@ export default class Login extends Component {
               <Grid.Column>
                 <h3>Nouveau ? Inscrivez-vous !</h3>
                 <br />
-                <form className="form-signin" onSubmit={this.onSubmitRegister}>
+                <form
+                  className="form-signin ui fluid form"
+                  onSubmit={this.onSubmitRegister}
+                >
                   <label for="inputEmail" className="sr-only">
                     Adresse mail :
                   </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="mail@example.fr"
-                    name="usernameReg"
-                    value={usernameReg}
-                    onChange={this.onChange}
-                    required
-                  />
+                  <div class="form">
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="mail@example.fr"
+                      name="usernameReg"
+                      value={usernameReg}
+                      onChange={this.onChange}
+                      required
+                    />
+                  </div>
                   <br />
                   <label for="inputPassword" className="sr-only">
                     Mot de passe :
                   </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                    name="passwordReg"
-                    value={passwordReg}
-                    onChange={this.onChange}
-                    required
-                  />
+                  <div class="form">
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Password"
+                      name="passwordReg"
+                      value={passwordReg}
+                      onChange={this.onChange}
+                      required
+                    />
+                  </div>
                   <br />
                   <br />
                   <button className="ui button" type="submit">
@@ -188,7 +208,7 @@ export default class Login extends Component {
               </Grid.Column>
             </Grid>
 
-            <Divider vertical>Ou</Divider>
+            <div class="ui vertical divider">Ou </div>
           </Segment>
         </div>
       </Container>

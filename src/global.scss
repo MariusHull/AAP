@@ -8,3 +8,9 @@ $blue-light: rgb(107, 186, 241);
   blue: $blue;
   blue_light: $blue-light;
 }
+
+h1.title {
+  margin: 20px;
+  padding-top: 20px;
+  text-align: center;
+}

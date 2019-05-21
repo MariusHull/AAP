@@ -3,6 +3,7 @@ import scss from "../global.scss";
 import logo from "../assets/logo.png";
 import { Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import "../navbar.scss";
 
 const options = [
   { key: ".com", text: ".com", value: ".com" },
@@ -22,6 +23,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <div
+        className="navbar"
         style={{
           backgroundImage: `linear-gradient(to right, ${scss.blue}, ${
             scss.blue
@@ -39,12 +41,12 @@ export default class NavBar extends Component {
         {localStorage.getItem("jwtToken") &&
           localStorage.getItem("User") &&
           localStorage.getItem("Status") && (
-            <div>
+            <div className="navright">
               <div class="ui compact menu">
                 <div class="ui simple dropdown item">
                   {localStorage.getItem("User")}
                   <i class="dropdown icon" />
-                  <div class="menu">
+                  <div class="left menu">
                     {localStorage.getItem("Status") !== "Admin" && (
                       <Link class="item" to="/survey">
                         Questionnaire

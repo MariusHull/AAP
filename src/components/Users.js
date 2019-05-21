@@ -31,7 +31,7 @@ export default class Users extends Component {
         this.setState({ users: users.data });
       })
       .catch(error => {
-        if (error.response.status === 401) {
+        if (error) {
           this.props.history.push("/login");
         }
       });

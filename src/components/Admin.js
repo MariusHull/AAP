@@ -33,7 +33,7 @@ export default class Admin extends Component {
         this.setState({ companies: companies.data });
       })
       .catch(error => {
-        if (error.response.status === 401) {
+        if (error) {
           this.props.history.push("/login");
         }
       });
