@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import axios from "axios";
-import { Divider, Grid, Segment, Container } from "semantic-ui-react";
+import { Grid, Segment, Container } from "semantic-ui-react";
 import "../global.scss";
 var jwtDecode = require("jwt-decode");
 
@@ -46,6 +45,7 @@ export default class Login extends Component {
           localStorage.setItem("Status", decoded.status);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
+          localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
           this.props.history.push("/survey");
         } else {

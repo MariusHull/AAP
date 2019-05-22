@@ -77,8 +77,6 @@ const struct = [
   }
 ];
 
-const id = "5cd27e6bf59bef1e6a20f33e";
-
 const initData = {
   situationsExamples: "",
   presence: -1,
@@ -286,7 +284,7 @@ export default class ContentSurvey extends Component {
           <Menu attached="top" tabular>
             {topics.map((e, i) => (
               <Menu.Item
-                key={e.theme}
+                key={e.name}
                 active={activeItem === i}
                 onClick={e => this.handleItemClick(e, i)}
                 style={{ width: "14.28%", textAlign: "center" }}
