@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Button, Card, Icon } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import ShowAnswers from "./ShowAnswers";
 import scss from "../global.scss";
+import Export from "./Export";
 
 export default class Company extends Component {
   date = date => {
@@ -25,10 +26,7 @@ export default class Company extends Component {
           </Card.Content>
           <Card.Content extra>
             <ShowAnswers company={this.props.company} />
-            <Button icon positive labelPosition="right">
-              Télécharger les réponses
-              <Icon name="download" />
-            </Button>
+            <Export company={this.props.company} />
           </Card.Content>
         </Card>
       </div>
