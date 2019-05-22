@@ -28,6 +28,22 @@ export default class Users extends Component {
       .get(`http://localhost:3001/api/users`)
       .then(users => {
         this.setState({ users: users.data });
+        console.log(users);
+      })
+      .catch(error => {
+        if (error) {
+          this.props.history.push("/login");
+        }
+      });
+  };
+
+  supprUser = id => {
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios
+      .delete(`http://localhost:3001/api/users/${id}`)
+      .then(user => {
+        this.componentDidMount();
       })
       .catch(error => {
         if (error) {
@@ -47,10 +63,21 @@ export default class Users extends Component {
                 <Card.Header> {user.username} </Card.Header>
               </Card.Content>
               <Card.Content extra>
-                <Button icon color="red" labelPosition="right">
-                  Supprimer cet utilisateur
-                  <Icon name="delete" />
-                </Button>
+                {user.status === "Company" ? (
+                  <Button
+                    icon
+                    color="red"
+                    onClick={() => {
+                      this.supprUser(user._id);
+                    }}
+                    labelPosition="right"
+                  >
+                    Supprimer cet utilisateur
+                    <Icon name="delete" />
+                  </Button>
+                ) : (
+                  <Button>Vous ne pouvez supprimer un administrateur</Button>
+                )}
               </Card.Content>
             </Card>
           ))}

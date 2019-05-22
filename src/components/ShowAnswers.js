@@ -23,7 +23,7 @@ export default class ShowAnswers extends Component {
             </Button>
           }
         >
-          <Modal.Header>Allianz</Modal.Header>
+          <Modal.Header> {this.props.name} </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
               <ContentSurvey id={this.props.id} />
