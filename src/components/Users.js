@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import { Container } from "semantic-ui-react";
+import scss from "../global.scss";
+import { Container, Card, Button, Icon } from "semantic-ui-react";
 import NavBar from "./NavBar";
 
 import axios from "axios";
@@ -42,7 +42,17 @@ export default class Users extends Component {
         <NavBar logout={this.logout} />
         <Container>
           {this.state.users.map(user => (
-            <div>{user.username} Et plus d'infos par la suite</div>
+            <Card fluid style={{ margin: `${scss.margin_large} 0px` }}>
+              <Card.Content>
+                <Card.Header> {user.username} </Card.Header>
+              </Card.Content>
+              <Card.Content extra>
+                <Button icon color="red" labelPosition="right">
+                  Supprimer cet utilisateur
+                  <Icon name="delete" />
+                </Button>
+              </Card.Content>
+            </Card>
           ))}
         </Container>
       </>
