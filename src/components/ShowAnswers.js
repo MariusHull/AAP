@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Divider,
-  Image,
-  Modal,
-  Icon,
-  Tab,
-  Header
-} from "semantic-ui-react";
+import { Button, Modal, Icon } from "semantic-ui-react";
 
 import ContentSurvey from "./ContentSurvey";
 
@@ -19,40 +11,6 @@ export default class ShowAnswers extends Component {
   handleClose = () => this.setState({ modalOpen: false });
 
   render() {
-    const panes = [
-      {
-        menuItem: "Intensité de travail",
-        render: () => (
-          <Tab.Pane attached={false}>
-            {" "}
-            <Header as="h3">Les contraintes de rythme de travail</Header>
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-            <Divider section />
-            <Header as="h3">La précision des objectifs de travail</Header>
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Tab.Pane>
-        )
-      },
-      {
-        menuItem: "Horaire de travail",
-        render: () => (
-          <Tab.Pane attached={false}>
-            <Header as="h3">Sous thème 1</Header>
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Tab.Pane>
-        )
-      },
-      {
-        menuItem: "Exigeances émotionnelles",
-        render: () => (
-          <Tab.Pane attached={false}>
-            <Header as="h3">Encore un sous thème</Header>
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Tab.Pane>
-        )
-      }
-    ];
-
     return (
       <>
         <Modal
