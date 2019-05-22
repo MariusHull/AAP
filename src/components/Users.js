@@ -61,6 +61,11 @@ export default class Users extends Component {
             <Card fluid style={{ margin: `${scss.margin_large} 0px` }}>
               <Card.Content>
                 <Card.Header> {user.username} </Card.Header>
+                <Card.Meta>
+                  <span>
+                    {user.status === "Company" ? "" : "Administrateur"}
+                  </span>
+                </Card.Meta>
               </Card.Content>
               <Card.Content extra>
                 {user.status === "Company" ? (

@@ -23,10 +23,10 @@ export default class ShowAnswers extends Component {
             </Button>
           }
         >
-          <Modal.Header> {this.props.name} </Modal.Header>
+          <Modal.Header> {this.props.company.name} </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <ContentSurvey id={this.props.id} />
+              <ContentSurvey id={this.props.company._id} />
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
