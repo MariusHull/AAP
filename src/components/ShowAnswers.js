@@ -9,6 +9,8 @@ import {
   Header
 } from "semantic-ui-react";
 
+import ContentSurvey from "./ContentSurvey";
+
 export default class ShowAnswers extends Component {
   state = { modalOpen: false };
 
@@ -66,7 +68,7 @@ export default class ShowAnswers extends Component {
           <Modal.Header>Allianz</Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+              <ContentSurvey id={this.props.id} />
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>

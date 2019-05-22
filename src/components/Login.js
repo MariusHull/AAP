@@ -13,6 +13,7 @@ export default class Login extends Component {
       username: "",
       password: "",
       usernameReg: "",
+      companyName: "",
       passwordReg: "",
       message: ""
     };
@@ -47,9 +48,15 @@ export default class Login extends Component {
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
-          this.props.history.push("/survey");
+          if (res.data.status === "Admin") {
+            this.props.history.push("/admin");
+          } else if (res.data.status === "Company") {
+            this.props.history.push("/survey");
+          } else {
+            this.setState({ message: res.data.msg });
+          }
         } else {
-          this.setState({ message: res.data.msg });
+          this.setState({ message: "Cet utilisateur n'a pas de status." });
         }
       })
       .catch(error => {
@@ -64,13 +71,14 @@ export default class Login extends Component {
   onSubmitRegister = e => {
     e.preventDefault();
 
-    const { usernameReg, passwordReg } = this.state;
+    const { usernameReg, passwordReg, companyName } = this.state;
 
-    console.log({ usernameReg, passwordReg });
+    console.log({ usernameReg, passwordReg, companyName });
     axios
       .post("http://localhost:3001/api/auth/register", {
         username: usernameReg,
-        password: passwordReg
+        password: passwordReg,
+        name: companyName
       })
       .then(res => {
         console.log(res);
@@ -93,6 +101,7 @@ export default class Login extends Component {
       username,
       password,
       message,
+      companyName,
       passwordReg,
       usernameReg
     } = this.state;
@@ -170,6 +179,21 @@ export default class Login extends Component {
                   className="form-signin ui fluid form"
                   onSubmit={this.onSubmitRegister}
                 >
+                  <label for="inputName" className="sr-only">
+                    Nom de l'entreprise :
+                  </label>
+                  <div class="form">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Nom de l'entreprise"
+                      name="companyName"
+                      value={companyName}
+                      onChange={this.onChange}
+                      required
+                    />
+                  </div>
+                  <br />
                   <label for="inputEmail" className="sr-only">
                     Adresse mail :
                   </label>

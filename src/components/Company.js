@@ -24,7 +24,7 @@ export default class Company extends Component {
             </Card.Meta>
           </Card.Content>
           <Card.Content extra>
-            <ShowAnswers />
+            <ShowAnswers id={this.props.company._id} />
             <Button icon positive labelPosition="right">
               Télécharger les réponses
               <Icon name="download" />

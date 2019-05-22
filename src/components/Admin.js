@@ -29,6 +29,7 @@ export default class Admin extends Component {
     axios
       .get(`http://localhost:3001/api/companies/names`)
       .then(companies => {
+        console.log(companies);
         this.setState({ companies: companies.data });
       })
       .catch(error => {
