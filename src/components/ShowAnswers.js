@@ -16,6 +16,7 @@ export default class ShowAnswers extends Component {
         <Modal
           open={this.state.modalOpen}
           onClose={this.handleClose}
+          size={"large"}
           trigger={
             <Button onClick={this.handleOpen} icon labelPosition="right">
               Voir les réponses
@@ -26,7 +27,9 @@ export default class ShowAnswers extends Component {
           <Modal.Header> {this.props.company.name} </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <ContentSurvey id={this.props.company._id} />
+              <div style={{ width: "78vw" }}>
+                <ContentSurvey id={this.props.company._id} />
+              </div>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>

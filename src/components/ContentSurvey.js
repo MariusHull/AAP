@@ -279,7 +279,9 @@ export default class ContentSurvey extends Component {
     } = this.state;
 
     return (
-      <Container style={{ width: "70%", margin: "20px auto" }}>
+      <Container
+        style={{ width: "70%", minWidth: "900px", margin: "20px auto" }}
+      >
         <div>
           <Menu attached="top" tabular>
             {topics.map((e, i) => (
