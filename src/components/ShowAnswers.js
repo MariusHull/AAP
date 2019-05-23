@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Icon } from "semantic-ui-react";
+import { Button, Modal, Icon, Container } from "semantic-ui-react";
 
 import ContentSurvey from "./ContentSurvey";
 
@@ -24,7 +24,19 @@ export default class ShowAnswers extends Component {
             </Button>
           }
         >
-          <Modal.Header> {this.props.company.name} </Modal.Header>
+          <Modal.Header>
+            <Container>
+              <div>{this.props.company.name}</div>
+
+              <Button
+                onClick={this.handleClose}
+                primary
+                style={{ position: "absolute", right: "10px", top: "15px" }}
+              >
+                Revenir à la page principale <Icon name="right chevron" />
+              </Button>
+            </Container>
+          </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
               <div style={{ width: "78vw" }}>
@@ -32,11 +44,6 @@ export default class ShowAnswers extends Component {
               </div>
             </Modal.Description>
           </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={this.handleClose} primary>
-              Revenir à la page principale <Icon name="right chevron" />
-            </Button>
-          </Modal.Actions>
         </Modal>
       </>
     );

@@ -385,20 +385,40 @@ export default class ContentSurvey extends Component {
               <Icon name="right arrow" />
             </Button>
           ) : (
-            <Link
-              to="/thankyou"
-              style={{
-                height: "7vh",
-                width: "15%",
-                margin: "10px",
-                textAlign: "center"
-              }}
-            >
-              <Button icon labelPosition="right">
-                Terminer
-                <Icon name="check" />
-              </Button>
-            </Link>
+            <>
+              {localStorage.getItem("Status") !== "Admin" ? (
+                <Link
+                  to="/thankyou"
+                  style={{
+                    height: "7vh",
+                    width: "15%",
+                    margin: "10px",
+                    textAlign: "center"
+                  }}
+                >
+                  <Button icon labelPosition="right">
+                    Terminer
+                    <Icon name="check" />
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  icon
+                  disabled
+                  labelPosition="right"
+                  style={{
+                    height: "7vh",
+                    width: "15%",
+                    margin: "10px",
+                    textAlign: "center"
+                  }}
+                  onClick={this.next}
+                >
+                  Suivant
+                  <Icon name="right arrow" />
+                </Button>
+              )}
+            </>
           )}
         </div>
       </Container>
