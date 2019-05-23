@@ -56,7 +56,9 @@ export default class NavBar extends Component {
                         Compte administrateur
                       </Link>
                     )}
-                    <div className="ui divider" />
+                    {localStorage.getItem("Status") === "Admin" && (
+                      <div className="ui divider" />
+                    )}
                     {localStorage.getItem("Status") === "Admin" && (
                       <Link className="item" to="/users">
                         Gestion utilisateurs
