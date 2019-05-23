@@ -19,9 +19,7 @@ export default class AccordionExampleFluid extends Component {
                     <h3><Icon name='dropdown' />{e.name}</h3>
                 </Accordion.Title>
                 <Accordion.Content active={accordionStates[index][i] === 1}>
-                    <p>
                         <Cell topics={topics} i={index} j={i} change={this.change}></Cell>
-                    </p>
                 </Accordion.Content>
             </Container>
         ))}
