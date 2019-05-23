@@ -53,10 +53,13 @@ export default class Login extends Component {
           } else if (res.data.status === "Company") {
             this.props.history.push("/survey");
           } else {
-            this.setState({ message: res.data.msg });
+            this.setState({
+              message:
+                "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème."
+            });
           }
         } else {
-          this.setState({ message: "Cet utilisateur n'a pas de status." });
+          this.setState({ message: res.data.msg });
         }
       })
       .catch(error => {
