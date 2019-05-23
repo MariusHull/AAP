@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import scss from "../global.scss";
+import scss from "../../global.scss";
 import { Container, Card, Button, Icon } from "semantic-ui-react";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 
 import axios from "axios";
 

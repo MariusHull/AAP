@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
 import ShowAnswers from "./ShowAnswers";
-import scss from "../global.scss";
+import scss from "../../global.scss";
 import Export from "./Export";
 
 export default class Company extends Component {

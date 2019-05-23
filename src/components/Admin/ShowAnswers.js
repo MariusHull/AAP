@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, Icon, Container } from "semantic-ui-react";
 
-import ContentSurvey from "./ContentSurvey";
+import ContentSurvey from "../Company/ContentSurvey";
 
 export default class ShowAnswers extends Component {
   state = { modalOpen: false };

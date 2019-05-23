@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 
 import Company from "./Company";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 
 import axios from "axios";
 
