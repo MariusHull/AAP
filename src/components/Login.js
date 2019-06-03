@@ -44,6 +44,7 @@ export default class Login extends Component {
           var decoded = jwtDecode(res.data.token);
           localStorage.setItem("User", decoded.username);
           localStorage.setItem("level", decoded.level);
+          localStorage.setItem("id", decoded.id);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
@@ -101,23 +102,16 @@ export default class Login extends Component {
   };
 
   render() {
-    const {
-      username,
-      password,
-      message,
-      companyName,
-      passwordReg,
-      usernameReg
-    } = this.state;
+    const { username, password, message, passwordReg } = this.state;
     console.log(`reg :${password}:, pass :${passwordReg}:`);
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
 
         <div className="container">
-          <h1 className="title">Bienvenue, merci de vous connecter : </h1>
+          <h1 className="title">Bienvenue, merci de vous connecter </h1>
           <Segment className="container">
-            <Grid columns={2} relaxed="very">
+            <Grid columns={1} relaxed="very">
               <Grid.Column>
                 <h3>Déjà inscrit ? Connectez-vous !</h3>
                 <br />
@@ -176,67 +170,7 @@ export default class Login extends Component {
                   Mot de passe oublié ?
                 </div>
               </Grid.Column>
-              <Grid.Column>
-                <h3>Nouveau ? Inscrivez-vous !</h3>
-                <br />
-                <form
-                  className="form-signin ui fluid form"
-                  onSubmit={this.onSubmitRegister}
-                >
-                  <label for="inputName" className="sr-only">
-                    Nom de l'entreprise :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Nom de l'entreprise"
-                      name="companyName"
-                      value={companyName}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <label for="inputEmail" className="sr-only">
-                    Adresse mail :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="mail@example.fr"
-                      name="usernameReg"
-                      value={usernameReg}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <label for="inputPassword" className="sr-only">
-                    Mot de passe :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      name="passwordReg"
-                      value={passwordReg}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <br />
-                  <button className="ui button" type="submit">
-                    M'inscrire
-                  </button>
-                </form>
-              </Grid.Column>
             </Grid>
-
-            <div class="ui vertical divider">Ou </div>
           </Segment>
         </div>
       </Container>

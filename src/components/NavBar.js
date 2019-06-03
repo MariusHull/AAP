@@ -52,17 +52,15 @@ export default class NavBar extends Component {
                       </Link>
                     )}
                     {localStorage.getItem("level") >= 1 && (
-                      <Link className="item" to="/admin">
-                        Compte administrateur
-                      </Link>
-                    )}
-                    {localStorage.getItem("level") >= 1 && (
-                      <div className="ui divider" />
-                    )}
-                    {localStorage.getItem("level") >= 1 && (
-                      <Link className="item" to="/users">
-                        Gestion utilisateurs
-                      </Link>
+                      <>
+                        <Link className="item" to="/admin">
+                          Compte administrateur
+                        </Link>
+                        <div className="ui divider" />
+                        <Link className="item" to="/users">
+                          Gestion utilisateurs
+                        </Link>
+                      </>
                     )}
                     <div className="ui divider" />
                     <div className="item" onClick={this.logout}>
