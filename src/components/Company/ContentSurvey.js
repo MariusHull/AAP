@@ -386,7 +386,7 @@ export default class ContentSurvey extends Component {
             </Button>
           ) : (
             <>
-              {localStorage.getItem("Status") !== "Admin" ? (
+              {localStorage.getItem("level") === 0 ? (
                 <Link
                   to="/thankyou"
                   style={{

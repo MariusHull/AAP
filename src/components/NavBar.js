@@ -39,27 +39,27 @@ export default class NavBar extends Component {
 
         {localStorage.getItem("jwtToken") &&
           localStorage.getItem("User") &&
-          localStorage.getItem("Status") && (
+          localStorage.getItem("level") && (
             <div className="navright">
               <div className="ui compact menu">
                 <div className="ui simple dropdown item">
                   {localStorage.getItem("User")}
                   <i className="dropdown icon" />
                   <div className="left menu">
-                    {localStorage.getItem("Status") !== "Admin" && (
+                    {localStorage.getItem("level") === 0 && (
                       <Link className="item" to="/survey">
                         Questionnaire
                       </Link>
                     )}
-                    {localStorage.getItem("Status") === "Admin" && (
+                    {localStorage.getItem("level") >= 1 && (
                       <Link className="item" to="/admin">
                         Compte administrateur
                       </Link>
                     )}
-                    {localStorage.getItem("Status") === "Admin" && (
+                    {localStorage.getItem("level") >= 1 && (
                       <div className="ui divider" />
                     )}
-                    {localStorage.getItem("Status") === "Admin" && (
+                    {localStorage.getItem("level") >= 1 && (
                       <Link className="item" to="/users">
                         Gestion utilisateurs
                       </Link>

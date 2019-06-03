@@ -23,7 +23,7 @@ export default class Login extends Component {
     console.log(
       `reg :${this.state.password}:, pass :${this.state.passwordReg}:`
     );
-    this.setState({ password: "", passwordReg: "" });
+    this.setState({ password: "", passwordReg: "", companyName: "" });
   }
 
   onChange = e => {
@@ -43,19 +43,19 @@ export default class Login extends Component {
         if (res.data.success) {
           var decoded = jwtDecode(res.data.token);
           localStorage.setItem("User", decoded.username);
-          localStorage.setItem("Status", decoded.status);
+          localStorage.setItem("level", decoded.level);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
-          if (res.data.status === "Admin") {
+          if (res.data.level >= 1) {
             this.props.history.push("/admin");
-          } else if (res.data.status === "Company") {
+          } else if (res.data.level === 0) {
             this.props.history.push("/survey");
           } else {
             this.setState({
               message:
-                "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème."
+                "Cet utilisateur n'a pas de niveau. Merci de contacter l'administrateur en précisant ce problème."
             });
           }
         } else {
@@ -93,6 +93,7 @@ export default class Login extends Component {
           this.setState({
             usernameReg: "",
             passwordReg: "",
+            companyName: "",
             message: res.data.msg
           });
         }

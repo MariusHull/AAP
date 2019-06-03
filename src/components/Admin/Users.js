@@ -15,10 +15,7 @@ export default class Users extends Component {
 
   componentDidMount = () => {
     if (
-      !(
-        localStorage.getItem("jwtToken") &&
-        localStorage.getItem("Status") === "Admin"
-      )
+      !(localStorage.getItem("jwtToken") && localStorage.getItem("level") >= 1)
     ) {
       this.props.history.push("/login");
     }
@@ -62,13 +59,11 @@ export default class Users extends Component {
               <Card.Content>
                 <Card.Header> {user.username} </Card.Header>
                 <Card.Meta>
-                  <span>
-                    {user.status === "Company" ? "" : "Administrateur"}
-                  </span>
+                  <span>{user.level === 0 ? "" : "Administrateur"}</span>
                 </Card.Meta>
               </Card.Content>
               <Card.Content extra>
-                {user.status === "Company" ? (
+                {user.level === 0 ? (
                   <Button
                     icon
                     color="red"
