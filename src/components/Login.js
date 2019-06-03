@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { Grid, Segment, Container } from "semantic-ui-react";
 import "../global.scss";
 var jwtDecode = require("jwt-decode");
@@ -20,9 +21,6 @@ export default class Login extends Component {
   }
 
   componentWillMount() {
-    console.log(
-      `reg :${this.state.password}:, pass :${this.state.passwordReg}:`
-    );
     this.setState({ password: "", passwordReg: "" });
   }
 
@@ -44,7 +42,6 @@ export default class Login extends Component {
           var decoded = jwtDecode(res.data.token);
           localStorage.setItem("User", decoded.username);
           localStorage.setItem("Status", decoded.status);
-          console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
@@ -57,15 +54,26 @@ export default class Login extends Component {
               message:
                 "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème."
             });
+            toast.info(
+              "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème.",
+              {
+                position: "top-center",
+                autoClose: 10000
+              }
+            );
           }
         } else {
-          this.setState({ message: res.data.msg });
+          toast.error(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
+          });
         }
       })
       .catch(error => {
         if (error.response.status === 401) {
-          this.setState({
-            message: "error.data.msg"
+          toast.error("Unknonw Error code: 500", {
+            position: "top-center",
+            autoClose: 10000
           });
         }
       });
@@ -86,14 +94,19 @@ export default class Login extends Component {
       .then(res => {
         console.log(res);
         if (!res.data.success) {
-          this.setState({
-            message: res.data.msg
+          toast.error(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
           });
         } else {
           this.setState({
             usernameReg: "",
             passwordReg: "",
             message: res.data.msg
+          });
+          toast.success(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
           });
         }
       });
@@ -115,67 +128,58 @@ export default class Login extends Component {
 
         <div className="container">
           <h1 className="title">Bienvenue, merci de vous connecter : </h1>
-          <Segment className="container">
-            <Grid columns={2} relaxed="very">
-              <Grid.Column>
-                <h3>Déjà inscrit ? Connectez-vous !</h3>
-                <br />
-                {message !== "" && (
-                  <div
-                    className="alert alert-warning alert-dismissible"
-                    role="alert"
-                  >
-                    {message}
-                    <br />
-                  </div>
-                )}
-                <form onSubmit={this.onSubmitLogin} className="ui fluid form">
-                  <label for="inputEmail" className="sr-only">
-                    Adresse mail :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="mail@exemple.fr"
-                      name="username"
-                      value={username}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <label for="inputPassword" className="sr-only">
-                    Mot de passe :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Mot de passe"
-                      name="password"
-                      value={password}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <br />
-                  <button className="ui button" type="submit">
-                    Me connecter !
-                  </button>
-                </form>
-                <br />
-                <br />
-                <div
-                  class="ui button"
-                  data-tooltip="Envoyez un email à admin@aap.fr"
-                  data-position="top center"
-                >
-                  Mot de passe oublié ?
-                </div>
-              </Grid.Column>
-              <Grid.Column>
+          <Segment className="container" style={{ width: "50%" }}>
+            {/* <Grid columns={1} relaxed="very"> */}
+            {/* <Grid.Column> */}
+            <h3>Déjà inscrit ? Connectez-vous !</h3>
+            <br />
+            <form onSubmit={this.onSubmitLogin} className="ui fluid form">
+              <label for="inputEmail" className="sr-only">
+                Adresse mail :
+              </label>
+              <div class="form">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="mail@exemple.fr"
+                  name="username"
+                  value={username}
+                  onChange={this.onChange}
+                  required
+                />
+              </div>
+              <br />
+              <label for="inputPassword" className="sr-only">
+                Mot de passe :
+              </label>
+              <div class="form">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Mot de passe"
+                  name="password"
+                  value={password}
+                  onChange={this.onChange}
+                  required
+                />
+              </div>
+              <br />
+              <br />
+              <button className="ui button" type="submit">
+                Me connecter !
+              </button>
+            </form>
+            <br />
+            <br />
+            <div
+              class="ui button"
+              data-tooltip="Envoyez un email à admin@aap.fr"
+              data-position="top center"
+            >
+              Mot de passe oublié ?
+            </div>
+            {/*</Grid.Column>
+               <Grid.Column>
                 <h3>Nouveau ? Inscrivez-vous !</h3>
                 <br />
                 <form
@@ -232,12 +236,22 @@ export default class Login extends Component {
                     M'inscrire
                   </button>
                 </form>
-              </Grid.Column>
-            </Grid>
+              </Grid.Column> */}
+            {/* </Grid> */}
 
-            <div class="ui vertical divider">Ou </div>
+            {/* <div class="ui vertical divider">Ou </div> */}
           </Segment>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </Container>
     );
   }

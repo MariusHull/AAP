@@ -6,6 +6,7 @@ import Admin from "../components/Admin/Admin";
 import ThankYou from "../components/Company/ThankYou";
 import Login from "../components/Login";
 import Users from "../components/Admin/Users";
+import Settings from "../components/Settings";
 
 class Routes extends Component {
   render() {
@@ -17,6 +18,7 @@ class Routes extends Component {
         <Route path="/survey" exact component={Survey} />
         <Route path="/admin" exact component={Admin} />
         <Route path="/thankyou" exact component={ThankYou} />
+        <Route path="/settings" exact component={Settings} />
       </Router>
     );
   }

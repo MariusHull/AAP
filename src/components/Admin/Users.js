@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import scss from "../../global.scss";
+import { ToastContainer, toast } from "react-toastify";
 import { Container, Card, Button, Icon } from "semantic-ui-react";
 import NavBar from "../NavBar";
 
@@ -14,6 +15,10 @@ export default class Users extends Component {
   }
 
   componentDidMount = () => {
+    this.loadPage();
+  };
+
+  loadPage() {
     if (
       !(
         localStorage.getItem("jwtToken") &&
@@ -35,7 +40,7 @@ export default class Users extends Component {
           this.props.history.push("/login");
         }
       });
-  };
+  }
 
   supprUser = id => {
     axios.defaults.headers.common["Authorization"] =
@@ -43,12 +48,38 @@ export default class Users extends Component {
     axios
       .delete(`http://localhost:3001/api/users/${id}`)
       .then(user => {
-        this.componentDidMount();
+        this.loadPage();
       })
       .catch(error => {
         if (error) {
           this.props.history.push("/login");
         }
+      });
+  };
+
+  resetMP = id => {
+    if (
+      !window.confirm(
+        "Êtes-vous sûr.e de vouloir réinitialiser le mot de passe de cet utilisateur ? Cette action est irréversible."
+      )
+    ) {
+      return 0;
+    }
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios
+      .get(`http://localhost:3001/api/auth/reset/${id}`)
+      .then(res => {
+        toast.success(res.data.msg, {
+          position: "top-center",
+          autoClose: 10000
+        });
+      })
+      .catch(error => {
+        toast.error("Une erreur inconnue est survenue (code 500).", {
+          position: "top-center",
+          autoClose: 10000
+        });
       });
   };
 
@@ -82,10 +113,32 @@ export default class Users extends Component {
                   </Button>
                 ) : (
                   <Button>Vous ne pouvez supprimer un administrateur</Button>
-                )}
+                )}{" "}
+                &nbsp;{" "}
+                <Button
+                  icon
+                  color="blue"
+                  onClick={() => {
+                    this.resetMP(user._id);
+                  }}
+                  labelPosition="right"
+                >
+                  Réinitialiser le Mot de passe
+                  <Icon name="edit" />
+                </Button>
               </Card.Content>
             </Card>
           ))}
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover
+          />
         </Container>
       </>
     );

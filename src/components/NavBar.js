@@ -65,8 +65,11 @@ export default class NavBar extends Component {
                       </Link>
                     )}
                     <div className="ui divider" />
+                    <Link className="item" to="/settings">
+                      Réglages du compte
+                    </Link>
                     <div className="item" onClick={this.logout}>
-                      Logout
+                      Se Déconnecter
                     </div>
                   </div>
                 </div>
