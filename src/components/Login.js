@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { Grid, Segment, Container } from "semantic-ui-react";
 import "../global.scss";
 var jwtDecode = require("jwt-decode");
@@ -58,15 +59,26 @@ export default class Login extends Component {
               message:
                 "Cet utilisateur n'a pas de niveau. Merci de contacter l'administrateur en précisant ce problème."
             });
+            toast.info(
+              "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème.",
+              {
+                position: "top-center",
+                autoClose: 10000
+              }
+            );
           }
         } else {
-          this.setState({ message: res.data.msg });
+          toast.error(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
+          });
         }
       })
       .catch(error => {
         if (error.response.status === 401) {
-          this.setState({
-            message: "error.data.msg"
+          toast.error("Unknonw Error code: 500", {
+            position: "top-center",
+            autoClose: 10000
           });
         }
       });
@@ -87,8 +99,9 @@ export default class Login extends Component {
       .then(res => {
         console.log(res);
         if (!res.data.success) {
-          this.setState({
-            message: res.data.msg
+          toast.error(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
           });
         } else {
           this.setState({
@@ -96,6 +109,10 @@ export default class Login extends Component {
             passwordReg: "",
             companyName: "",
             message: res.data.msg
+          });
+          toast.success(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
           });
         }
       });
@@ -173,6 +190,16 @@ export default class Login extends Component {
             </Grid>
           </Segment>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </Container>
     );
   }

@@ -9,6 +9,7 @@ import {
   Button,
   Icon
 } from "semantic-ui-react";
+import { ToastContainer, toast } from "react-toastify";
 import NavBar from "../NavBar";
 
 import axios from "axios";
@@ -28,6 +29,10 @@ export default class Users extends Component {
   }
 
   componentDidMount = () => {
+    this.loadPage();
+  };
+
+  loadPage() {
     if (
       !(localStorage.getItem("jwtToken") && localStorage.getItem("level") >= 1)
     ) {
@@ -49,7 +54,7 @@ export default class Users extends Component {
           this.props.history.push("/login");
         }
       });
-  };
+  }
 
   initPassword = id => {
     axios.defaults.headers.common["Authorization"] =
@@ -110,6 +115,32 @@ export default class Users extends Component {
   };
 
   handleChange = (e, { value }) => this.setState({ adminCreated: value });
+
+  resetMP = id => {
+    if (
+      !window.confirm(
+        "Êtes-vous sûr.e de vouloir réinitialiser le mot de passe de cet utilisateur ? Cette action est irréversible."
+      )
+    ) {
+      return 0;
+    }
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios
+      .get(`http://localhost:3001/api/auth/reset/${id}`)
+      .then(res => {
+        toast.success(res.data.msg, {
+          position: "top-center",
+          autoClose: 10000
+        });
+      })
+      .catch(error => {
+        toast.error("Une erreur inconnue est survenue (code 500).", {
+          position: "top-center",
+          autoClose: 10000
+        });
+      });
+  };
 
   render() {
     const { companyName, adminCreated, usernameReg } = this.state;
@@ -233,6 +264,16 @@ export default class Users extends Component {
               </Card>
             ))}
           </Segment>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover
+          />
         </Container>
       </>
     );
