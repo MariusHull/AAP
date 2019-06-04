@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Grid, Segment, Container } from "semantic-ui-react";
+import { Button, Form, Grid, Segment, Container } from "semantic-ui-react";
 import "../global.scss";
+import Background from "../assets/background.jpg";
 var jwtDecode = require("jwt-decode");
 
 // Basically, the page for login and register functions
@@ -122,73 +123,105 @@ export default class Login extends Component {
     const { username, password, message, passwordReg } = this.state;
     console.log(`reg :${password}:, pass :${passwordReg}:`);
     return (
-      <Container style={{ width: "100%" }}>
-        <NavBar />
+      <Container
+        style={{
+          width: "100%",
+          height: "100vh",
+          backgroundImage: `url(${Background})`,
+          backgroundSize: "cover"
+        }}
+      >
+        {false && <NavBar />}
 
-        <div className="container">
-          <h1 className="title">Bienvenue, merci de vous connecter </h1>
-          <Segment className="container">
-            <Grid columns={1} relaxed="very">
-              <Grid.Column>
-                <h3>Déjà inscrit ? Connectez-vous !</h3>
-                <br />
-                {message !== "" && (
-                  <div
-                    className="alert alert-warning alert-dismissible"
-                    role="alert"
-                  >
-                    {message}
+        <div
+          className="container"
+          style={{
+            display: "flex",
+            height: "100vh",
+            flexDirection: "column",
+            justifyContent: "center"
+          }}
+        >
+          <Container
+            className="container"
+            style={{
+              width: "50vw",
+              background: "rgba(255,255,255,0.9)",
+              padding: "30px",
+              borderRadius: "3px"
+            }}
+          >
+            <Grid verticalAlign="middle" centered>
+              <Grid.Row centered>
+                <Grid.Column verticalAlign="middle" centered>
+                  <Form onSubmit={this.onSubmitLogin}>
+                    <h3 style={{ color: "#1677C2" }}>
+                      {" "}
+                      Bienvenue sur la plateforme Alter Alliance{" "}
+                    </h3>
                     <br />
-                  </div>
-                )}
-                <form onSubmit={this.onSubmitLogin} className="ui fluid form">
-                  <label for="inputEmail" className="sr-only">
-                    Adresse mail :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="mail@exemple.fr"
-                      name="username"
-                      value={username}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <label for="inputPassword" className="sr-only">
-                    Mot de passe :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Mot de passe"
-                      name="password"
-                      value={password}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <br />
-                  <button className="ui button" type="submit">
-                    Me connecter !
-                  </button>
-                </form>
-                <br />
-                <br />
-                <div
-                  class="ui button"
-                  data-tooltip="Envoyez un email à admin@aap.fr"
-                  data-position="top center"
-                >
-                  Mot de passe oublié ?
-                </div>
-              </Grid.Column>
+                    <br />
+                    {message !== "" && (
+                      <div
+                        className="alert alert-warning alert-dismissible"
+                        role="alert"
+                      >
+                        {message}
+                        <br />
+                      </div>
+                    )}
+                    <Form.Group widths="equal">
+                      <Form.Input
+                        fluid
+                        label="Adresse mail"
+                        type="email"
+                        className="form-control"
+                        placeholder="mail@exemple.fr"
+                        name="username"
+                        value={username}
+                        onChange={this.onChange}
+                        required
+                      />
+                      <Form.Input
+                        fluid
+                        label="Mot de passe"
+                        type="password"
+                        className="form-control"
+                        placeholder="Mot de passe"
+                        name="password"
+                        value={password}
+                        onChange={this.onChange}
+                        required
+                      />
+                    </Form.Group>
+                    <br />
+                    <Form.Group>
+                      <div style={{ margin: "auto" }}>
+                        <Button
+                          className="ui button"
+                          type="submit"
+                          basic
+                          color="blue"
+                        >
+                          {" "}
+                          Me connecter{" "}
+                        </Button>
+                        <Button
+                          class="ui button"
+                          data-tooltip="Envoyez un email à admin@aap.fr"
+                          data-position="top center"
+                          basic
+                        >
+                          {" "}
+                          Mot de passe oublié{" "}
+                        </Button>
+                      </div>
+                    </Form.Group>
+                  </Form>
+                </Grid.Column>
+              </Grid.Row>
             </Grid>
-          </Segment>
+          </Container>
         </div>
         <ToastContainer
           position="top-center"
