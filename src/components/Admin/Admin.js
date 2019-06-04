@@ -17,10 +17,7 @@ export default class Admin extends Component {
 
   componentDidMount = () => {
     if (
-      !(
-        localStorage.getItem("jwtToken") &&
-        localStorage.getItem("Status") === "Admin"
-      )
+      !(localStorage.getItem("jwtToken") && localStorage.getItem("level") >= 1)
     ) {
       this.props.history.push("/login");
     }

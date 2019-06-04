@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { Grid, Segment, Container } from "semantic-ui-react";
 import "../global.scss";
 var jwtDecode = require("jwt-decode");
@@ -23,7 +24,7 @@ export default class Login extends Component {
     console.log(
       `reg :${this.state.password}:, pass :${this.state.passwordReg}:`
     );
-    this.setState({ password: "", passwordReg: "" });
+    this.setState({ password: "", passwordReg: "", companyName: "" });
   }
 
   onChange = e => {
@@ -43,29 +44,41 @@ export default class Login extends Component {
         if (res.data.success) {
           var decoded = jwtDecode(res.data.token);
           localStorage.setItem("User", decoded.username);
-          localStorage.setItem("Status", decoded.status);
+          localStorage.setItem("level", decoded.level);
+          localStorage.setItem("id", decoded.id);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
-          if (res.data.status === "Admin") {
+          if (res.data.level >= 1) {
             this.props.history.push("/admin");
-          } else if (res.data.status === "Company") {
-            this.props.history.push("/home");
+          } else if (res.data.level === 0) {
+            this.props.history.push("/survey");
           } else {
             this.setState({
               message:
-                "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème."
+                "Cet utilisateur n'a pas de niveau. Merci de contacter l'administrateur en précisant ce problème."
             });
+            toast.info(
+              "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème.",
+              {
+                position: "top-center",
+                autoClose: 10000
+              }
+            );
           }
         } else {
-          this.setState({ message: res.data.msg });
+          toast.error(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
+          });
         }
       })
       .catch(error => {
         if (error.response.status === 401) {
-          this.setState({
-            message: "error.data.msg"
+          toast.error("Unknonw Error code: 500", {
+            position: "top-center",
+            autoClose: 10000
           });
         }
       });
@@ -86,37 +99,36 @@ export default class Login extends Component {
       .then(res => {
         console.log(res);
         if (!res.data.success) {
-          this.setState({
-            message: res.data.msg
+          toast.error(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
           });
         } else {
           this.setState({
             usernameReg: "",
             passwordReg: "",
+            companyName: "",
             message: res.data.msg
+          });
+          toast.success(res.data.msg, {
+            position: "top-center",
+            autoClose: 10000
           });
         }
       });
   };
 
   render() {
-    const {
-      username,
-      password,
-      message,
-      companyName,
-      passwordReg,
-      usernameReg
-    } = this.state;
+    const { username, password, message, passwordReg } = this.state;
     console.log(`reg :${password}:, pass :${passwordReg}:`);
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
 
         <div className="container">
-          <h1 className="title">Bienvenue, merci de vous connecter : </h1>
+          <h1 className="title">Bienvenue, merci de vous connecter </h1>
           <Segment className="container">
-            <Grid columns={2} relaxed="very">
+            <Grid columns={1} relaxed="very">
               <Grid.Column>
                 <h3>Déjà inscrit ? Connectez-vous !</h3>
                 <br />
@@ -175,69 +187,19 @@ export default class Login extends Component {
                   Mot de passe oublié ?
                 </div>
               </Grid.Column>
-              <Grid.Column>
-                <h3>Nouveau ? Inscrivez-vous !</h3>
-                <br />
-                <form
-                  className="form-signin ui fluid form"
-                  onSubmit={this.onSubmitRegister}
-                >
-                  <label for="inputName" className="sr-only">
-                    Nom de l'entreprise :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Nom de l'entreprise"
-                      name="companyName"
-                      value={companyName}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <label for="inputEmail" className="sr-only">
-                    Adresse mail :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="mail@example.fr"
-                      name="usernameReg"
-                      value={usernameReg}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <label for="inputPassword" className="sr-only">
-                    Mot de passe :
-                  </label>
-                  <div class="form">
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      name="passwordReg"
-                      value={passwordReg}
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <br />
-                  <br />
-                  <button className="ui button" type="submit">
-                    M'inscrire
-                  </button>
-                </form>
-              </Grid.Column>
             </Grid>
-
-            <div class="ui vertical divider">Ou </div>
           </Segment>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </Container>
     );
   }
