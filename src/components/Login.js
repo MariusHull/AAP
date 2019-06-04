@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Button, Form, Grid, Segment, Container } from "semantic-ui-react";
+import { Button, Form, Grid, Container } from "semantic-ui-react";
 import "../global.scss";
 import Background from "../assets/background.jpg";
 var jwtDecode = require("jwt-decode");
