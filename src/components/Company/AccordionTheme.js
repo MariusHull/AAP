@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, Container } from 'semantic-ui-react'
+import { Accordion, Icon, Container, Message } from 'semantic-ui-react'
 import Cell from './Cell'
 
 export default class AccordionExampleFluid extends Component {
@@ -9,7 +9,7 @@ export default class AccordionExampleFluid extends Component {
   }
 
   render() {
-    const { topics, index, ChangeState, accordionStates} = this.props
+    const { topics, index, ChangeState, accordionStates, form} = this.props
 
     return (
       <Accordion fluid>
@@ -19,7 +19,8 @@ export default class AccordionExampleFluid extends Component {
                     <h3><Icon name='dropdown' />{e.name}</h3>
                 </Accordion.Title>
                 <Accordion.Content active={accordionStates[index][i] === 1}>
-                        <Cell topics={topics} i={index} j={i} change={this.change}></Cell>
+                  <Message info header={form[index].subTopics[i].subTitle} content={form[index].subTopics[i].details}/>
+                  <Cell topics={topics} i={index} j={i} change={this.change}></Cell>
                 </Accordion.Content>
             </Container>
         ))}

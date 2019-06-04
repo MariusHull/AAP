@@ -51,7 +51,7 @@ export default class Login extends Component {
           if (res.data.status === "Admin") {
             this.props.history.push("/admin");
           } else if (res.data.status === "Company") {
-            this.props.history.push("/survey");
+            this.props.history.push("/home");
           } else {
             this.setState({
               message:
