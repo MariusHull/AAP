@@ -51,8 +51,10 @@ export default class Login extends Component {
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
-          if (res.data.level >= 1) {
+          if (res.data.level >= 2) {
             this.props.history.push("/admin");
+          } else if (res.data.level >= 1) {
+            this.props.history.push("/users");
           } else if (res.data.level === 0) {
             this.props.history.push("/survey");
           } else {

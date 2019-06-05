@@ -44,10 +44,9 @@ export default class Users extends Component {
       .get(`http://localhost:3001/api/users`)
       .then(users => {
         var id = localStorage.getItem("id");
-        console.log("id:", id);
-        console.log("level:", localStorage.getItem("level"));
+        var level = localStorage.getItem("level");
         this.setState({
-          users: users.data.filter(user => user.createdBy === id)
+          users: users.data.filter(user => user.createdBy === id || level >= 2)
         });
       })
       .catch(error => {

@@ -51,12 +51,16 @@ export default class NavBar extends Component {
                         Questionnaire
                       </Link>
                     )}
-                    {localStorage.getItem("level") >= 1 && (
+                    {localStorage.getItem("level") >= 2 && (
                       <>
                         <Link className="item" to="/admin">
                           Compte administrateur
                         </Link>
                         <div className="ui divider" />
+                      </>
+                    )}
+                    {localStorage.getItem("level") >= 1 && (
+                      <>
                         <Link className="item" to="/users">
                           Gestion utilisateurs
                         </Link>
