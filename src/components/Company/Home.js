@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Card, Icon, Form, Modal, Button, Header} from "semantic-ui-react";
+import { Container, Card, Icon, Form, Modal, Message, Header} from "semantic-ui-react";
 import im from "../../assets/writing.jpg";
 import axios from "axios";
 import { Link } from 'react-router-dom'
@@ -56,16 +56,17 @@ export default class Home extends Component {
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
+
+        <Message info style={{ width: "23%", margin:'10px auto'}} header={"Gestions de vos sites"} content={"Sur cette page vous pouvez consulter vos sites et en créer de nouveaux en cliquant sur '+'"}/>
+
         {this.state.sites.map((e, i) => (
-            <Link to={`/survey/${i}`}>
-                <Card centered>
+                <Card centered href={`/survey/${i}`}>
                     <Card.Content>
                     <Card.Header>
                     {e.name}
                     </Card.Header>
                     </Card.Content>
                 </Card>
-            </Link>
         ))}
         <Modal trigger={
             <Card onClick={this.handleOpen} centered>
