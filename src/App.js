@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import Routes from "./routes/routes";
 
