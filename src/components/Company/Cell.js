@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import {Container, Form, Radio, TextArea} from 'semantic-ui-react'
+import {Container, Form, Radio, TextArea, Button} from 'semantic-ui-react'
 
 const checkboxPresence= ["Jamais", "Parfois",	"Souvent", "Toujours"];
 const checkboxIntesity= ["Non concernée", "Faible", "Modérée", "Elevée"];
 const checkboxUrgencyLevel= ["Très peu urgente", "Peu urgente", "Urgente", "Très urgente"];
+const colors = ['green', 'yellow', 'orange', 'red']
+
 
 export default class Cell extends Component {
 
