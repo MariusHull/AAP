@@ -60,7 +60,8 @@ export default class Settings extends Component {
         if (res.data.success) {
           var decoded = jwtDecode(res.data.token);
           localStorage.setItem("User", decoded.username);
-          localStorage.setItem("Status", decoded.status);
+          localStorage.setItem("level", decoded.level);
+          localStorage.setItem("id", decoded._id);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);

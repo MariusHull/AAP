@@ -46,7 +46,7 @@ export default class Login extends Component {
           var decoded = jwtDecode(res.data.token);
           localStorage.setItem("User", decoded.username);
           localStorage.setItem("level", decoded.level);
-          localStorage.setItem("id", decoded.id);
+          localStorage.setItem("id", decoded._id);
           console.log(decoded);
           localStorage.setItem("jwtToken", res.data.token);
           localStorage.setItem("companyId", res.data.companyId);
