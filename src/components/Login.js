@@ -56,7 +56,7 @@ export default class Login extends Component {
           } else if (res.data.level >= 1) {
             this.props.history.push("/users");
           } else if (res.data.level === 0) {
-            this.props.history.push("/survey");
+            this.props.history.push("/home");
           } else {
             this.setState({
               message:
