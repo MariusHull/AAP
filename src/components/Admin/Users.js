@@ -5,6 +5,7 @@ import {
   Form,
   Grid,
   Container,
+  Label,
   Card,
   Button,
   Message,
@@ -207,11 +208,29 @@ export default class Users extends Component {
                   className="form-control"
                   accept="image/x-png"
                   name="file"
+                  hidden
                   onChange={e => {
                     this.setState({ file: e.target.files[0] });
                   }}
                   required
                 />
+
+                {/* <Label as="label" htmlFor="file" size="large">
+                  <Icon name="file" />
+                  Téléchargez le logo de l'entreprise en format .png
+                </Label>
+                <input
+                  id="file"
+                  className="form-control"
+                  accept="image/x-png"
+                  name="file"
+                  hidden
+                  type="file"
+                  onChange={e => {
+                    this.setState({ file: e.target.files[0] });
+                  }}
+                  required
+                /> */}
 
                 <Message info>
                   <Message.Header>Mot de passe</Message.Header>
