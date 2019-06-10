@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Grid, Segment, Container } from "semantic-ui-react";
+import { Segment, Container } from "semantic-ui-react";
 import "../global.scss";
 var jwtDecode = require("jwt-decode");
 
@@ -92,13 +92,7 @@ export default class Settings extends Component {
   };
 
   render() {
-    const {
-      oldPassword,
-      password,
-      passwordCopy,
-      message,
-      passwordReg
-    } = this.state;
+    const { oldPassword, password, passwordCopy, passwordReg } = this.state;
     console.log(`reg :${password}:, pass :${passwordReg}:`);
     return (
       <Container style={{ width: "100%" }}>

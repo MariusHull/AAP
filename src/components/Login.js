@@ -159,7 +159,7 @@ export default class Login extends Component {
                   <Form onSubmit={this.onSubmitLogin}>
                     <h3 style={{ color: "#1677C2" }}>
                       {" "}
-                      Bienvenue sur la plateforme Alter Alliance{" "}
+                      Bienvenue sur la plateforme AlterAlliance{" "}
                     </h3>
                     <br />
                     <br />
@@ -175,10 +175,10 @@ export default class Login extends Component {
                     <Form.Group widths="equal">
                       <Form.Input
                         fluid
-                        label="Adresse mail"
+                        label="Nom de l'entreprise"
                         type="email"
                         className="form-control"
-                        placeholder="mail@exemple.fr"
+                        placeholder="ex : AlterAlliance"
                         name="username"
                         value={username}
                         onChange={this.onChange}

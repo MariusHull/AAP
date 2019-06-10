@@ -11,7 +11,7 @@ export default class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companies: []
+      users: []
     };
   }
 
@@ -24,10 +24,14 @@ export default class Admin extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/companies/names`)
-      .then(companies => {
-        console.log(companies);
-        this.setState({ companies: companies.data });
+      .get(`http://localhost:3001/api/users`)
+      .then(users => {
+        var id = localStorage.getItem("id");
+        this.setState({
+          users: users.data.filter(
+            user => user.createdBy === id && user.level === 1
+          )
+        });
       })
       .catch(error => {
         if (error) {
@@ -41,8 +45,8 @@ export default class Admin extends Component {
       <>
         <NavBar logout={this.logout} />
         <Container>
-          {this.state.companies.map(company => (
-            <Company company={company} key={company._id} />
+          {this.state.users.map(user => (
+            <Company companyId={user.companyId} key={user._id} />
           ))}
         </Container>
       </>
