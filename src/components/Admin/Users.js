@@ -89,6 +89,20 @@ export default class Users extends Component {
 
     const { usernameReg, adminCreated } = this.state;
 
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    const formData = new FormData();
+    formData.append("file", this.state.file);
+
+    axios.post(
+      `http://localhost:3001/api/auth/upload/${usernameReg}`,
+      formData,
+      config
+    );
+
     axios
       .post("http://localhost:3001/api/auth/register", {
         username: usernameReg,
@@ -96,7 +110,7 @@ export default class Users extends Component {
         createdBy: localStorage.getItem("id")
       })
       .then(res => {
-        console.log(res);
+        console.log("user created", res);
         if (!res.data.success) {
           this.setState({
             message: res.data.msg
@@ -105,7 +119,8 @@ export default class Users extends Component {
           this.setState({
             usernameReg: "",
             adminCreated: false,
-            message: res.data.msg
+            message: res.data.msg,
+            file: null
           });
         }
       });
@@ -187,9 +202,10 @@ export default class Users extends Component {
                 />
                 <Form.Input
                   fluid
-                  label="Téléchargez le logo de l'entreprise"
+                  label="Téléchargez le logo de l'entreprise en format .png"
                   type="file"
                   className="form-control"
+                  accept="image/x-png"
                   name="file"
                   onChange={e => {
                     this.setState({ file: e.target.files[0] });
