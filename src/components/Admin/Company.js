@@ -15,24 +15,13 @@ export default class Company extends Component {
   }
 
   componentDidMount = () => {
-    if (
-      !(localStorage.getItem("jwtToken") && localStorage.getItem("level") >= 1)
-    ) {
-      this.props.history.push("/login");
-    }
-    axios.defaults.headers.common["Authorization"] =
-      "JWT " + localStorage.getItem("jwtToken");
     axios
       .get(`http://localhost:3001/api/companies/${this.props.companyId}`)
       .then(company => {
+        console.log("data", company.data);
         this.setState({
-          company: company.data[0]
+          company: company.data
         });
-      })
-      .catch(error => {
-        if (error) {
-          this.props.history.push("/login");
-        }
       });
   };
 

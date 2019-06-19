@@ -29,7 +29,7 @@ export default class Admin extends Component {
         var id = localStorage.getItem("id");
         this.setState({
           users: users.data.filter(
-            user => user.createdBy === id && user.level === 1
+            user => user.createdBy === id && user.level < 1
           )
         });
       })
