@@ -30,7 +30,7 @@ export default class Admin extends Component {
         console.log(users.data)
         this.setState({
           users: users.data.filter(
-            user => user.createdBy === id && user.level === 0
+            user => user.createdBy === id && user.level < 1
           )
         });
       })
