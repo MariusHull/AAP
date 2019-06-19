@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import NavBar from "../NavBar";
 
-export default class Home extends Component {
+export default class Sites extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,9 +58,9 @@ export default class Home extends Component {
         <NavBar />
 
         <Message info style={{ width: "23%", margin:'10px auto'}} header={"Gestions de vos sites"} content={"Sur cette page vous pouvez consulter vos sites et en créer de nouveaux en cliquant sur '+'"}/>
-
+        <Container>
         {this.state.sites.map((e, i) => (
-                <Card centered href={`/survey/${i}`}>
+                <Card centered href={`/population/${i}`}>
                     <Card.Content>
                     <Card.Header>
                     {e.name}
@@ -77,7 +77,7 @@ export default class Home extends Component {
             </Card.Content>
         </Card>
         } open={this.state.modalOpen}
-        onClose={this.handleClose} closeIcon>
+        onClose={this.handleClose} style={{width:'30%', marginTop:'5%'}}>
             <Header icon='edit' content='Nouveau Site' />
             <Modal.Content>
             <Form onSubmit={this.handleSubmit}>
@@ -88,6 +88,7 @@ export default class Home extends Component {
             </Form>
             </Modal.Content>
         </Modal>
+        </Container>
       </Container>
     );
   }
