@@ -27,14 +27,16 @@ export default class Admin extends Component {
       .get(`http://localhost:3001/api/users`)
       .then(users => {
         var id = localStorage.getItem("id");
+        console.log(users.data)
         this.setState({
           users: users.data.filter(
-            user => user.createdBy === id && user.level === 1
+            user => user.createdBy === id && user.level === 0
           )
         });
       })
       .catch(error => {
         if (error) {
+          console.log('error', error)
           this.props.history.push("/login");
         }
       });
