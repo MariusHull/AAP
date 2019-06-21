@@ -5,8 +5,10 @@ import {
   Form,
   Grid,
   Container,
+  Label,
   Card,
   Button,
+  Message,
   Icon
 } from "semantic-ui-react";
 import { ToastContainer, toast } from "react-toastify";
@@ -21,9 +23,9 @@ export default class Users extends Component {
     this.state = {
       username: "",
       password: "",
+      file: null,
       adminCreated: false,
       usernameReg: "",
-      companyName: "",
       message: "",
       users: []
     };
@@ -45,9 +47,8 @@ export default class Users extends Component {
       .get(`${url}/api/users`)
       .then(users => {
         var id = localStorage.getItem("id");
-        var level = localStorage.getItem("level");
         this.setState({
-          users: users.data.filter(user => user.createdBy === id || level >= 2)
+          users: users.data.filter(user => user.createdBy === id)
         });
       })
       .catch(error => {
@@ -76,7 +77,7 @@ export default class Users extends Component {
     console.log(
       `reg :${this.state.password}:, pass :${this.state.passwordReg}:`
     );
-    this.setState({ password: "", passwordReg: "", companyName: "" });
+    this.setState({ password: "", passwordReg: "" });
   }
 
   onChange = e => {
@@ -88,18 +89,30 @@ export default class Users extends Component {
   onSubmitRegister = e => {
     e.preventDefault();
 
-    const { usernameReg, companyName, adminCreated } = this.state;
+    const { usernameReg, adminCreated } = this.state;
 
-    console.log({ usernameReg, companyName, adminCreated });
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    const formData = new FormData();
+    formData.append("file", this.state.file);
+
+    axios.post(
+      `http://localhost:3001/api/auth/upload/${usernameReg}`,
+      formData,
+      config
+    );
+
     axios
       .post(`${url}/api/auth/register`, {
         username: usernameReg,
-        name: companyName,
         adminCreated: adminCreated,
         createdBy: localStorage.getItem("id")
       })
       .then(res => {
-        console.log(res);
+        console.log("user created", res);
         if (!res.data.success) {
           this.setState({
             message: res.data.msg
@@ -107,9 +120,9 @@ export default class Users extends Component {
         } else {
           this.setState({
             usernameReg: "",
-            companyName: "",
             adminCreated: false,
-            message: res.data.msg
+            message: res.data.msg,
+            file: null
           });
         }
       });
@@ -144,15 +157,16 @@ export default class Users extends Component {
   };
 
   render() {
-    const { companyName, adminCreated, usernameReg } = this.state;
+    const { adminCreated, usernameReg } = this.state;
 
     return (
       <>
         <NavBar logout={this.logout} />
+        <br />
         <Container>
           <Segment className="container">
             <Grid.Column>
-              <h3> Créez un nouvel utilisateur </h3>
+              <h2> Créez un nouvel utilisateur </h2>
               <br />
               <form
                 className="form-signin ui fluid form"
@@ -177,54 +191,56 @@ export default class Users extends Component {
                   </>
                 )}
 
-                <br />
-                {!adminCreated && (
-                  <>
-                    <label for="inputName" className="sr-only">
-                      Nom de l'entreprise :
-                    </label>
-                    <div class="form">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Nom de l'entreprise"
-                        name="companyName"
-                        value={companyName}
-                        onChange={this.onChange}
-                        required
-                      />
-                    </div>
-                    <br />
-                  </>
-                )}
+                <Form.Input
+                  fluid
+                  label="Nom de l'entreprise"
+                  type="text"
+                  className="form-control"
+                  placeholder="ex : AlterAlliance"
+                  name="usernameReg"
+                  value={usernameReg}
+                  onChange={this.onChange}
+                  required
+                />
+                <Form.Input
+                  fluid
+                  label="Téléchargez le logo de l'entreprise en format .png"
+                  type="file"
+                  className="form-control"
+                  accept="image/x-png"
+                  name="file"
+                  hidden
+                  onChange={e => {
+                    this.setState({ file: e.target.files[0] });
+                  }}
+                  required
+                />
 
-                <label for="inputEmail" className="sr-only">
-                  Adresse mail :
-                </label>
-                <div class="form">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="mail@example.fr"
-                    name="usernameReg"
-                    value={usernameReg}
-                    onChange={this.onChange}
-                    required
-                  />
-                </div>
-                <br />
-                <label for="inputPassword" className="sr-only">
-                  Mot de passe :
-                </label>
-                <div class="form">
-                  <input
-                    value={
-                      "Par défault, l'utilisateur aura comme mot de passe son adresse mail. N'oubliez pas de lui signaler qu'il est important de changer ce mot de passe."
-                    }
-                    disabled
-                  />
-                </div>
-                <br />
+                {/* <Label as="label" htmlFor="file" size="large">
+                  <Icon name="file" />
+                  Téléchargez le logo de l'entreprise en format .png
+                </Label>
+                <input
+                  id="file"
+                  className="form-control"
+                  accept="image/x-png"
+                  name="file"
+                  hidden
+                  type="file"
+                  onChange={e => {
+                    this.setState({ file: e.target.files[0] });
+                  }}
+                  required
+                /> */}
+
+                <Message info>
+                  <Message.Header>Mot de passe</Message.Header>
+                  <p>
+                    Par défaut, le mot de passe est le nom de l'entreprise.
+                    N'oubliez pas de signaler au client de le changer dès que
+                    possible !
+                  </p>
+                </Message>
                 <br />
                 <button className="ui button" type="submit">
                   Créer cet utilisateur
@@ -233,7 +249,7 @@ export default class Users extends Component {
             </Grid.Column>
           </Segment>
           <Segment className="container">
-            <h1> Mes utilisateurs </h1>
+            <h2> Mes utilisateurs </h2>
             {this.state.users.map(user => (
               <Card fluid style={{ margin: `${scss.margin_large} 0px` }}>
                 <Card.Content>
@@ -243,24 +259,17 @@ export default class Users extends Component {
                   </Card.Meta>
                 </Card.Content>
                 <Card.Content extra>
-                  {user.level === 0 ? (
-                    <Button
-                      icon
-                      color="red"
-                      onClick={() => {
-                        this.initPassword(user._id);
-                      }}
-                      labelPosition="right"
-                    >
-                      Réinitialiser son mot de passe
-                      <Icon name="redo" />
-                    </Button>
-                  ) : (
-                    <Button>
-                      Vous ne pouvez pas clear le mot de passe d'un
-                      administrateur
-                    </Button>
-                  )}
+                  <Button
+                    icon
+                    color="red"
+                    onClick={() => {
+                      this.resetMP(user._id);
+                    }}
+                    labelPosition="right"
+                  >
+                    Réinitialiser son mot de passe
+                    <Icon name="redo" />
+                  </Button>
                 </Card.Content>
               </Card>
             ))}

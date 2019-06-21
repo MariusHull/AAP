@@ -614,9 +614,18 @@ export default class ContentSurvey extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios.get(`${url}/api/companies/${this.props.id}`).then(r => {
+      console.log(
+        r.data.sites[this.props.siteIndex].populations[
+          this.props.populationIndex
+        ],
+        this.props.populationIndex
+      );
       this.setState({
         sites: r.data.sites,
-        topics: r.data.sites[this.props.siteIndex].topics
+        topics:
+          r.data.sites[this.props.siteIndex].populations[
+            this.props.populationIndex
+          ].topics
       });
       console.log(r.data);
     });
@@ -642,9 +651,11 @@ export default class ContentSurvey extends Component {
   };
 
   save = () => {
-    const siteIndex = this.props.siteIndex;
+    // const siteIndex = this.props.siteIndex
     const { sites, topics } = this.state;
-    sites[this.props.siteIndex].topics = topics;
+    sites[this.props.siteIndex].populations[
+      this.props.populationIndex
+    ].topics = topics;
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
@@ -653,7 +664,10 @@ export default class ContentSurvey extends Component {
       })
       .then(r => {
         this.setState({
-          topics: r.data.sites[this.props.siteIndex].topics,
+          topics:
+            r.data.sites[this.props.siteIndex].populations[
+              this.props.populationIndex
+            ].topics,
           justsaved: true,
           saved: true,
           displaySave: false

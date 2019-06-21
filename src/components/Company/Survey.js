@@ -15,7 +15,7 @@ export default class Survey extends Component {
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
-        <ContentSurvey id={localStorage.getItem("companyId")} siteIndex={this.props.match.params.index}/>
+        <ContentSurvey id={localStorage.getItem("companyId")} siteIndex={this.props.match.params.indexSite} populationIndex={this.props.match.params.indexPopulation}/>
       </Container>
     );
   }

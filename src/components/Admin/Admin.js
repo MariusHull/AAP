@@ -12,7 +12,7 @@ export default class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companies: []
+      users: []
     };
   }
 
@@ -25,13 +25,19 @@ export default class Admin extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`${url}/api/companies/names`)
-      .then(companies => {
-        console.log(companies);
-        this.setState({ companies: companies.data });
+      .get(`${url}/api/users`)
+      .then(users => {
+        var id = localStorage.getItem("id");
+        console.log(users.data);
+        this.setState({
+          users: users.data.filter(
+            user => user.createdBy === id && user.level < 1
+          )
+        });
       })
       .catch(error => {
         if (error) {
+          console.log("error", error);
           this.props.history.push("/login");
         }
       });
@@ -42,8 +48,8 @@ export default class Admin extends Component {
       <>
         <NavBar logout={this.logout} />
         <Container>
-          {this.state.companies.map(company => (
-            <Company company={company} key={company._id} />
+          {this.state.users.map(user => (
+            <Company companyId={user.companyId} key={user._id} />
           ))}
         </Container>
       </>

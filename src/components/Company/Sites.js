@@ -15,7 +15,7 @@ import { url } from "../../config";
 
 import NavBar from "../NavBar";
 
-export default class Home extends Component {
+export default class Sites extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,43 +75,42 @@ export default class Home extends Component {
             "Sur cette page vous pouvez consulter vos sites et en créer de nouveaux en cliquant sur '+'"
           }
         />
-
-        {this.state.sites.map((e, i) => (
-          <Card centered href={`/survey/${i}`}>
-            <Card.Content>
-              <Card.Header>{e.name}</Card.Header>
-            </Card.Content>
-          </Card>
-        ))}
-        <Modal
-          trigger={
-            <Card onClick={this.handleOpen} centered>
+        <Container>
+          {this.state.sites.map((e, i) => (
+            <Card centered href={`/population/${i}`}>
               <Card.Content>
-                <Card.Header textAlign="center">
-                  <Icon name="add" />
-                </Card.Header>
+                <Card.Header>{e.name}</Card.Header>
               </Card.Content>
             </Card>
-          }
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
-          closeIcon
-        >
-          <Header icon="edit" content="Nouveau Site" />
-          <Modal.Content>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Group>
-                <Form.Input
-                  placeholder="Name"
-                  name="siteName"
-                  value={siteName}
-                  onChange={this.handleChange}
-                />
-                <Form.Button content="Créer" />
-              </Form.Group>
-            </Form>
-          </Modal.Content>
-        </Modal>
+          ))}
+          <Modal
+            trigger={
+              <Card onClick={this.handleOpen} centered>
+                <Card.Content>
+                  <Card.Header>+</Card.Header>
+                </Card.Content>
+              </Card>
+            }
+            open={this.state.modalOpen}
+            onClose={this.handleClose}
+            style={{ width: "30%", marginTop: "5%" }}
+          >
+            <Header icon="edit" content="Nouveau Site" />
+            <Modal.Content>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Input
+                    placeholder="Name"
+                    name="siteName"
+                    value={siteName}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Button content="Créer" />
+                </Form.Group>
+              </Form>
+            </Modal.Content>
+          </Modal>
+        </Container>
       </Container>
     );
   }

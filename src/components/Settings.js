@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Grid, Segment, Container } from "semantic-ui-react";
+import { Segment, Container, Form, Button, Icon } from "semantic-ui-react";
 import "../global.scss";
 import { url } from "../config";
 var jwtDecode = require("jwt-decode");
@@ -93,76 +93,71 @@ export default class Settings extends Component {
   };
 
   render() {
-    const {
-      oldPassword,
-      password,
-      passwordCopy,
-      message,
-      passwordReg
-    } = this.state;
+    const { oldPassword, password, passwordCopy, passwordReg } = this.state;
     console.log(`reg :${password}:, pass :${passwordReg}:`);
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
 
         <div className="container">
-          <h1 className="title">Réglages du compte </h1>
+          <br />
           <Segment className="container" style={{ width: "50%" }}>
-            <h3>Votre identifiant : </h3>
-            <div>{localStorage.getItem("User")}</div>
-            <h3>Changement de mot de passe : </h3>
-            <br />
-            <form onSubmit={this.onSubmitPassword} className="ui fluid form">
-              <label for="inputEmail" className="sr-only">
-                Ancien mot de passe :
-              </label>
-              <div class="form">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Ancien Mot de passe"
-                  name="oldPassword"
-                  value={oldPassword}
-                  onChange={this.onChange}
-                  required
-                />
-              </div>
+            <h2 className="title">Réglages du compte </h2>
+            <Form>
+              <Form.Input
+                fluid
+                label="Votre identifiant"
+                type="text"
+                className="form-control"
+                value={localStorage.getItem("User")}
+                disabled
+              />
+              <h3> Changement de mot de passe </h3>
               <br />
-              <label for="inputPassword" className="sr-only">
-                Nouveau mot de passe :
-              </label>
-              <div class="form">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Mot de passe"
-                  name="password"
-                  value={password}
-                  onChange={this.onChange}
-                  required
-                />
-              </div>
-              <br />
-              <label for="inputPassword2" className="sr-only">
-                Confirmer le nouveau mot de passe :
-              </label>
-              <div class="form">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Mot de passe"
-                  name="passwordCopy"
-                  value={passwordCopy}
-                  onChange={this.onChange}
-                  required
-                />
-              </div>
-              <br />
-              <br />
-              <button className="ui button" type="submit">
-                Changer le mot de passe!
-              </button>
-            </form>
+              <Form.Input
+                fluid
+                label="Ancien mot de passe"
+                type="text"
+                className="form-control"
+                placeholder="Ancien mot de passe"
+                name="oldPassword"
+                value={oldPassword}
+                onChange={this.onChange}
+                required
+              />
+              <Form.Input
+                fluid
+                label="Nouveau mot de passe"
+                type="password"
+                className="form-control"
+                placeholder="Mot de passe"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                required
+              />
+
+              <Form.Input
+                fluid
+                label="Confirmer le nouveau mot de passe"
+                type="password"
+                className="form-control"
+                placeholder="Mot de passe"
+                name="passwordCopy"
+                value={passwordCopy}
+                onChange={this.onChange}
+                required
+              />
+              <Button
+                icon
+                color="blue"
+                onClick={this.onSubmitPassword}
+                labelPosition="right"
+              >
+                Changer le mot de passe !
+                <Icon name="redo" />
+              </Button>
+            </Form>
             <br />
           </Segment>
         </div>
