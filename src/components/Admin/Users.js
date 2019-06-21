@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import NavBar from "../NavBar";
 
 import axios from "axios";
+import { url } from "../../config";
 
 export default class Users extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class Users extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/users`)
+      .get(`${url}/api/users`)
       .then(users => {
         var id = localStorage.getItem("id");
         var level = localStorage.getItem("level");
@@ -60,7 +61,7 @@ export default class Users extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/auth/reset/${id}`)
+      .get(`${url}/api/auth/reset/${id}`)
       .then(() => {
         this.componentDidMount();
       })
@@ -91,7 +92,7 @@ export default class Users extends Component {
 
     console.log({ usernameReg, companyName, adminCreated });
     axios
-      .post("http://localhost:3001/api/auth/register", {
+      .post(`${url}/api/auth/register`, {
         username: usernameReg,
         name: companyName,
         adminCreated: adminCreated,
@@ -127,7 +128,7 @@ export default class Users extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/auth/reset/${id}`)
+      .get(`${url}/api/auth/reset/${id}`)
       .then(res => {
         toast.success(res.data.msg, {
           position: "top-center",

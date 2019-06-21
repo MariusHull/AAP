@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Grid, Segment, Container } from "semantic-ui-react";
 import "../global.scss";
+import { url } from "../config";
 var jwtDecode = require("jwt-decode");
 
 // Basically, the page for login and register functions
@@ -51,7 +52,7 @@ export default class Settings extends Component {
       return 0;
     }
     axios
-      .post(`http://localhost:3001/api/auth/changepass`, {
+      .post(`${url}/api/auth/changepass`, {
         password: oldPassword,
         newPassword: password,
         username: localStorage.getItem("User")

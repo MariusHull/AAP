@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Button, Form, Grid, Container } from "semantic-ui-react";
 import "../global.scss";
+import { url } from "../config";
 import Background from "../assets/background.jpg";
 var jwtDecode = require("jwt-decode");
 
@@ -40,7 +41,7 @@ export default class Login extends Component {
     const { username, password } = this.state;
 
     axios
-      .post(`http://localhost:3001/api/auth/login`, { username, password })
+      .post(`${url}/api/auth/login`, { username, password })
       .then(res => {
         if (res.data.success) {
           var decoded = jwtDecode(res.data.token);
@@ -94,7 +95,7 @@ export default class Login extends Component {
 
     console.log({ usernameReg, passwordReg, companyName });
     axios
-      .post("http://localhost:3001/api/auth/register", {
+      .post(`${url}/api/auth/register`, {
         username: usernameReg,
         password: passwordReg,
         name: companyName

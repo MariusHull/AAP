@@ -4,6 +4,7 @@ import { Container } from "semantic-ui-react";
 
 import Company from "./Company";
 import NavBar from "../NavBar";
+import { url } from "../../config";
 
 import axios from "axios";
 
@@ -24,7 +25,7 @@ export default class Admin extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(`http://localhost:3001/api/companies/names`)
+      .get(`${url}/api/companies/names`)
       .then(companies => {
         console.log(companies);
         this.setState({ companies: companies.data });
