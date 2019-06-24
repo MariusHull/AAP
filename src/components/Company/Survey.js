@@ -6,6 +6,11 @@ import ContentSurvey from "./ContentSurvey";
 
 export default class Survey extends Component {
   componentDidMount = () => {
+    if (
+      !(localStorage.getItem("jwtToken") && localStorage.getItem("level") < 1)
+    ) {
+      this.props.history.push("/login");
+    }
     if (!localStorage.getItem("jwtToken")) {
       this.props.history.push("/login");
     }
@@ -15,7 +20,11 @@ export default class Survey extends Component {
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
-        <ContentSurvey id={localStorage.getItem("companyId")} siteIndex={this.props.match.params.indexSite} populationIndex={this.props.match.params.indexPopulation}/>
+        <ContentSurvey
+          id={localStorage.getItem("companyId")}
+          siteIndex={this.props.match.params.indexSite}
+          populationIndex={this.props.match.params.indexPopulation}
+        />
       </Container>
     );
   }

@@ -50,6 +50,11 @@ export default class Sites extends Component {
   };
 
   componentDidMount() {
+    if (
+      !(localStorage.getItem("jwtToken") && localStorage.getItem("level") < 1)
+    ) {
+      this.props.history.push("/login");
+    }
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
@@ -57,6 +62,12 @@ export default class Sites extends Component {
       .then(r => {
         console.log(r.data.sites);
         this.setState({ sites: r.data.sites });
+      })
+      .catch(error => {
+        if (error) {
+          console.log("error", error);
+          this.props.history.push("/login");
+        }
       });
   }
 
