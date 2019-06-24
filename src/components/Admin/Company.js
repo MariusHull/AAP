@@ -10,19 +10,52 @@ export default class Company extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: { name: "", lastUpdate: new Date(), sites: [] }
+      company: { name: "", lastUpdate: new Date(), sites: [] },
+      selectedPopulation: null,
+      selectedSite: null,
+      site: null,
+      populations: null,
+      topics: null,
+      populationIndex: null,
+      siteIndex: null
     };
   }
+
+  getIndex = (array, name) => {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].name === name) {
+        return i;
+      }
+    }
+  };
 
   componentDidMount = () => {
     axios
       .get(`http://localhost:3001/api/companies/${this.props.companyId}`)
       .then(company => {
-        console.log("data", company.data);
         this.setState({
           company: company.data
         });
       });
+  };
+
+  handleChange = (e, { value }) => {
+    this.setState({ value });
+    var i = this.getIndex(this.state.company.sites, value);
+    this.setState({
+      populations: this.state.company.sites[i].populations,
+      siteIndex: i,
+      populationIndex: null
+    });
+  };
+
+  handleChangePop = (e, { value }) => {
+    this.setState({ value });
+    var i = this.getIndex(this.state.populations, value);
+    this.setState({
+      topics: this.state.populations[i].topics,
+      populationIndex: i
+    });
   };
 
   date = date => {
@@ -35,8 +68,18 @@ export default class Company extends Component {
   getSites = () => {
     var options = [];
     this.state.company.sites.forEach(site => {
-      options.push({ key: site.name, text: site.name, value: 1 });
+      options.push({ key: site.name, text: site.name, value: site.name });
     });
+    return options;
+  };
+
+  getPopulations = () => {
+    var options = [];
+    if (this.state.populations) {
+      this.state.populations.forEach(pop => {
+        options.push({ key: pop.name, text: pop.name, value: pop.name });
+      });
+    }
     return options;
   };
 
@@ -58,24 +101,28 @@ export default class Company extends Component {
                 <Form.Select
                   fluid
                   label="Site"
+                  name="selectedSite"
+                  onChange={this.handleChange}
                   options={this.getSites()}
                   placeholder="Site"
                 />
                 <Form.Select
                   fluid
                   label="Population"
-                  options={[
-                    { key: "1", text: "Population 1", value: 1 },
-                    { key: "2", text: "Population 2", value: 2 }
-                  ]}
+                  onChange={this.handleChangePop}
+                  options={this.getPopulations()}
                   placeholder="Population"
                 />
               </Form.Group>
             </Form>
           </Card.Content>
           <Card.Content extra>
-            <ShowAnswers company={this.state.company} />
-            <Export company={this.state.company} />
+            <ShowAnswers
+              company={this.state.company}
+              siteIndex={this.state.siteIndex}
+              populationIndex={this.state.populationIndex}
+            />
+            <Export company={this.state.company} topics={this.state.topics} />
           </Card.Content>
         </Card>
       </div>

@@ -14,15 +14,21 @@ class Routes extends Component {
   render() {
     return (
       <Router>
-        <Route path="/" exact component={Login} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/users" exact component={Users} />
-        <Route path="/survey/:indexSite,:indexPopulation" exact component={Survey} />
-        <Route path="/admin" exact component={Admin} />
-        <Route path="/thankyou" exact component={ThankYou} />
-        <Route path="/sites" exact component={Sites} />
-        <Route path="/population/:index" exact component={Populations} />
-        <Route path="/settings" exact component={Settings} />
+        <div style={{ marginBottom: "50px" }}>
+          <Route path="/" exact component={Login} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/users" exact component={Users} />
+          <Route
+            path="/survey/:indexSite,:indexPopulation"
+            exact
+            component={Survey}
+          />
+          <Route path="/admin" exact component={Admin} />
+          <Route path="/thankyou" exact component={ThankYou} />
+          <Route path="/sites" exact component={Sites} />
+          <Route path="/population/:index" exact component={Populations} />
+          <Route path="/settings" exact component={Settings} />
+        </div>
       </Router>
     );
   }

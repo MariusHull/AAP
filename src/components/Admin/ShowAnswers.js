@@ -18,7 +18,15 @@ export default class ShowAnswers extends Component {
           onClose={this.handleClose}
           size={"large"}
           trigger={
-            <Button onClick={this.handleOpen} icon labelPosition="right">
+            <Button
+              onClick={this.handleOpen}
+              icon
+              labelPosition="right"
+              disabled={
+                this.props.siteIndex === null ||
+                this.props.populationIndex === null
+              }
+            >
               Voir les réponses
               <Icon name="eye" />
             </Button>
@@ -40,7 +48,11 @@ export default class ShowAnswers extends Component {
           <Modal.Content image>
             <Modal.Description>
               <div style={{ width: "78vw" }}>
-                <ContentSurvey id={this.props.company._id} />
+                <ContentSurvey
+                  id={this.props.company._id}
+                  siteIndex={this.props.siteIndex}
+                  populationIndex={this.props.populationIndex}
+                />
               </div>
             </Modal.Description>
           </Modal.Content>
