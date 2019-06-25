@@ -345,15 +345,7 @@ export default class ContentSurvey extends Component {
     super(props);
     this.state = {
       activeItem: 0,
-      accordionStates: [
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0],
-        [0, 0]
-      ],
+      selected: undefined,
       saved: true,
       justsaved: false,
       displaySave: true,
@@ -632,9 +624,14 @@ export default class ContentSurvey extends Component {
   }
 
   ChangeState = (i, j) => {
-    var { accordionStates } = this.state;
-    accordionStates[i][j] = (accordionStates[i][j] + 1) % 2;
-    this.setState({ accordionStates });
+    console.log(i,j)
+    const { selected } = this.state;
+    if (selected && selected[0] === i && selected[1] === j){
+      this.setState({selected:undefined})
+    } else {
+      this.setState({selected: [i,j]})
+    }
+    console.log(this.state.selected)
   };
 
   handleItemClick = (e, i) => {
@@ -675,14 +672,24 @@ export default class ContentSurvey extends Component {
       });
   };
 
-  next = () => this.setState({ activeItem: this.state.activeItem + 1 });
+  next = () => {
+    const {selected, topics, activeItem} = this.state;
+    console.log(topics[selected[0]].subTopics.length, selected[1], selected[1] === topics[selected[0]].length-1)
+    console.log(typeof topics[selected[0]].subTopics.length, typeof selected[1])
+    if (selected[1] === topics[selected[0]].subTopics.length-1){
+      this.setState({selected: [selected[0]+1, 0], activeItem: activeItem+1})
+    } else {
+      this.setState({selected: [selected[0], selected[1]+1]})
+    }
+    console.log('post', this.state.selected, this.state.activeItem)
+  }
 
   previous = () => this.setState({ activeItem: this.state.activeItem - 1 });
 
   render() {
     const {
       activeItem,
-      accordionStates,
+      selected,
       saved,
       topics,
       justsaved,
@@ -714,7 +721,7 @@ export default class ContentSurvey extends Component {
               topics={topics}
               index={activeItem}
               ChangeState={this.ChangeState}
-              accordionStates={accordionStates}
+              selected={selected}
               change={this.change}
               form={form}
             />
@@ -781,7 +788,7 @@ export default class ContentSurvey extends Component {
             </Message>
           </Transition>
 
-          {activeItem < struct.length - 1 ? (
+          {(selected && (selected[0] < struct.length - 1 || selected[1] < struct[struct.length - 1].sub_themes.length - 1)) ? (
             <Button
               icon
               labelPosition="right"
@@ -798,7 +805,7 @@ export default class ContentSurvey extends Component {
             </Button>
           ) : (
             <>
-              {localStorage.getItem("level") === 0 ? (
+              {(localStorage.getItem("level") === '0') ? (
                 <Link
                   to="/thankyou"
                   style={{
