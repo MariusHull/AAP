@@ -55,7 +55,7 @@ export default class Sites extends Component {
     if (
       !(localStorage.getItem("jwtToken") && localStorage.getItem("level") < 1)
     ) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");

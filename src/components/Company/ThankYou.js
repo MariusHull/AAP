@@ -6,7 +6,7 @@ import NavBar from "../NavBar";
 export default class ThankYou extends Component {
   componentDidMount = () => {
     if (!localStorage.getItem("jwtToken")) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
   };
 

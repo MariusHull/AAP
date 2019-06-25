@@ -8,10 +8,10 @@ export default class Survey extends Component {
     if (
       !(localStorage.getItem("jwtToken") && localStorage.getItem("level") < 1)
     ) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
     if (!localStorage.getItem("jwtToken")) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
   };
 

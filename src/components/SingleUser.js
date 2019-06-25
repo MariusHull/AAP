@@ -21,7 +21,7 @@ export default class User extends Component {
         localStorage.getItem("Status") === "Admin"
       )
     ) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
@@ -33,7 +33,7 @@ export default class User extends Component {
       })
       .catch(error => {
         if (error) {
-          this.props.history.push("/login");
+          this.props.history.push("/");
         }
       });
   };
@@ -53,7 +53,7 @@ export default class User extends Component {
         })
         .catch(error => {
           if (error) {
-            this.props.history.push("/login");
+            this.props.history.push("/");
           }
         });
     }

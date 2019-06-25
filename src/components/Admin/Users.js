@@ -39,7 +39,7 @@ export default class Users extends Component {
     if (
       !(localStorage.getItem("jwtToken") && localStorage.getItem("level") >= 1)
     ) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
@@ -53,7 +53,7 @@ export default class Users extends Component {
       })
       .catch(error => {
         if (error) {
-          this.props.history.push("/login");
+          this.props.history.push("/");
         }
       });
   }
@@ -68,7 +68,7 @@ export default class Users extends Component {
       })
       .catch(error => {
         if (error) {
-          this.props.history.push("/login");
+          this.props.history.push("/");
         }
       });
   };
