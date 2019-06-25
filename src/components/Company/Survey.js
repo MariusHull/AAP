@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 
-import NavBar from "../NavBar";
 import ContentSurvey from "./ContentSurvey";
 
 export default class Survey extends Component {
@@ -18,8 +17,9 @@ export default class Survey extends Component {
 
   render() {
     return (
-      <Container style={{ width: "100%" }}>
-        <NavBar />
+      <Container
+        style={{ width: "100%", marginTop: "-30px", paddingTop: "20px" }}
+      >
         <ContentSurvey
           id={localStorage.getItem("companyId")}
           siteIndex={this.props.match.params.indexSite}

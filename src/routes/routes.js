@@ -9,6 +9,7 @@ import Populations from "../components/Company/Populations";
 import Login from "../components/Login";
 import Users from "../components/Admin/Users";
 import Settings from "../components/Settings";
+import UserRoutes from "./userRoutes";
 
 class Routes extends Component {
   render() {
@@ -21,12 +22,12 @@ class Routes extends Component {
           <Route
             path="/survey/:indexSite,:indexPopulation"
             exact
-            component={Survey}
+            component={UserRoutes}
           />
           <Route path="/admin" exact component={Admin} />
           <Route path="/thankyou" exact component={ThankYou} />
-          <Route path="/sites" exact component={Sites} />
-          <Route path="/population/:index" exact component={Populations} />
+          <Route path="/sites" exact component={UserRoutes} />
+          <Route path="/population/:index" exact component={UserRoutes} />
           <Route path="/settings" exact component={Settings} />
         </div>
       </Router>
