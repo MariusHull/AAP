@@ -6,7 +6,8 @@ import {
   Form,
   Modal,
   Message,
-  Header
+  Header,
+  Grid
 } from "semantic-ui-react";
 import im from "../../assets/writing.jpg";
 import axios from "axios";
@@ -20,20 +21,20 @@ export default class Sites extends Component {
     this.state = {
       sites: [],
       siteName: "",
-      modalOpen: false,
+      populationName: "",
+      modalOpenSite: false,
+      modalOpenPopulation: false,
       name: "",
-      logo: null
+      logo: null,
+      selectedSite: undefined,
     };
   }
 
-  handleOpen = () => this.setState({ modalOpen: true });
-
-  handleClose = () => this.setState({ modalOpen: false });
-
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  handleSubmit = () => {
-    const { siteName, sites } = this.state;
+  handleSubmit = (type) => {
+    if (type==="site"){
+      const { siteName, sites } = this.state;
     console.log(siteName);
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
@@ -47,7 +48,28 @@ export default class Sites extends Component {
         this.setState({ sites });
         console.log(this.state.sites);
       });
-    this.handleClose();
+      this.setState({modalOpenSite: false, siteName: ""});
+    } else {
+      const { populationName } = this.state;
+      const populations = this.state.sites[this.state.selectedSite].populations
+    console.log(populationName);
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios
+      .post(
+        `http://localhost:3001/api/companies/population/${localStorage.getItem(
+          "companyId"
+        )}`,
+        { populationName, siteId: this.state.selectedSite }
+      )
+      .then(r => {
+        console.log(r.data);
+        populations.push(r.data);
+        this.setState({ populations });
+        console.log(this.state.populations);
+      });
+      this.setState({modalOpenPopulation: false, populationName: ""});
+    }
   };
 
   componentDidMount() {
@@ -77,7 +99,7 @@ export default class Sites extends Component {
   }
 
   render() {
-    var { siteName } = this.state;
+    var { siteName, selectedSite, populationName } = this.state;
 
     return (
       <Container style={{ width: "100%" }}>
@@ -89,9 +111,13 @@ export default class Sites extends Component {
           style={{ margin: `10px`, height: "30px" }}
         />
 
+      <Grid divided='vertically'>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+            <Container style={{ width: "50%" }}>
         <Message
           info
-          style={{ width: "23%", margin: "10px auto" }}
+          style={{ width: "80%", margin: "10px auto" }}
           header={"Gestions de vos sites"}
           content={
             "Sur cette page vous pouvez consulter vos sites et en créer de nouveaux en cliquant sur '+'"
@@ -99,7 +125,7 @@ export default class Sites extends Component {
         />
         <Container>
           {this.state.sites.map((e, i) => (
-            <Card centered href={`/population/${i}`}>
+            <Card onClick={() => {this.setState({selectedSite: i}); console.log(i)}}>
               <Card.Content>
                 <Card.Header>{e.name}</Card.Header>
               </Card.Content>
@@ -107,19 +133,19 @@ export default class Sites extends Component {
           ))}
           <Modal
             trigger={
-              <Card onClick={this.handleOpen} centered>
+              <Card onClick={() => this.setState({modalOpenSite: true})} centered fluid>
                 <Card.Content>
                   <Card.Header>+</Card.Header>
                 </Card.Content>
               </Card>
             }
-            open={this.state.modalOpen}
-            onClose={this.handleClose}
+            open={this.state.modalOpenSite}
+            onClose={() => this.setState({modalOpenSite: false})}
             style={{ width: "30%", marginTop: "5%" }}
           >
             <Header icon="edit" content="Nouveau Site" />
             <Modal.Content>
-              <Form onSubmit={this.handleSubmit}>
+              <Form onSubmit={() => this.handleSubmit('site')}>
                 <Form.Group>
                   <Form.Input
                     placeholder="Name"
@@ -133,6 +159,74 @@ export default class Sites extends Component {
             </Modal.Content>
           </Modal>
         </Container>
+        </Container>
+            </Grid.Column>
+            <Grid.Column>
+              {(selectedSite!==undefined) ? (
+                <Container style={{ width: "50%" }}>
+        <Message
+          info
+          style={{ width: "23%", margin: "10px auto" }}
+          header={"Gestions de vos populations"}
+          content={
+            "Sur cette page vous pouvez consulter vos populations et en créer de nouveaux en cliquant sur '+'"
+          }
+        />
+        <Container>
+          {this.state.sites[selectedSite].populations.map((e, i) => (
+            <Card
+              centered
+              href={`/survey/${selectedSite},${i}`}
+            >
+              <Card.Content>
+                <Card.Header>{e.name}</Card.Header>
+              </Card.Content>
+            </Card>
+          ))}
+          <Modal
+            trigger={
+              <Card onClick={() => this.setState({modalOpenPopulation: true})} centered>
+                <Card.Content>
+                  <Card.Header textAlign="center">
+                    <Icon name="add" />
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+            }
+            open={this.state.modalOpenPopulation}
+            onClose={() => this.setState({modalOpenPopulation: false})}
+            style={{ width: "30%", marginTop: "5%" }}
+          >
+            <Header icon="edit" content="Nouvelle population" />
+            <Modal.Content>
+              <Form onSubmit={() => this.handleSubmit('population')}>
+                <Form.Group>
+                  <Form.Input
+                    placeholder="Name"
+                    name="populationName"
+                    value={populationName}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Button content="Créer" />
+                </Form.Group>
+              </Form>
+            </Modal.Content>
+          </Modal>
+        </Container>
+        </Container>
+              ):(
+                <Message
+          info
+          style={{ width: "80%", margin: "10px auto" }}
+          header={"Aucun site sélectionné"}
+          content={
+            "Veuillez sélectionner un site pour accéder à la population"
+          }
+        />
+              )}
+            </Grid.Column>
+          </Grid.Row>
+      </Grid>
       </Container>
     );
   }
