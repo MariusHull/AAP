@@ -12,7 +12,6 @@ import im from "../../assets/writing.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { url } from "../../config";
-
 import NavBar from "../NavBar";
 
 export default class Sites extends Component {
@@ -21,7 +20,9 @@ export default class Sites extends Component {
     this.state = {
       sites: [],
       siteName: "",
-      modalOpen: false
+      modalOpen: false,
+      name: "",
+      logo: null
     };
   }
 
@@ -61,7 +62,11 @@ export default class Sites extends Component {
       .get(`${url}/api/companies/${localStorage.getItem("companyId")}`)
       .then(r => {
         console.log(r.data.sites);
-        this.setState({ sites: r.data.sites });
+        this.setState({ sites: r.data.sites, name: r.data.name });
+        // axios.get(`${url}/api/companies/image/${r.data.name}`).then(img => {
+        //   this.setState({ logo: btoa(img.data) });
+        // });
+        console.log("../../../../back/public/" + this.state.name + ".png");
       })
       .catch(error => {
         if (error) {
@@ -77,6 +82,12 @@ export default class Sites extends Component {
     return (
       <Container style={{ width: "100%" }}>
         <NavBar />
+
+        <img
+          src={`${url}/api/companies/image/${this.state.name}`}
+          alt="Logo Entreprise"
+          style={{ margin: `10px`, height: "30px" }}
+        />
 
         <Message
           info
