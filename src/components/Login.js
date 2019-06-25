@@ -129,13 +129,11 @@ export default class Login extends Component {
       <Container
         style={{
           width: "100%",
-          height: "100vh",
+          height: "auto",
           backgroundImage: `url(${Background})`,
           backgroundSize: "cover"
         }}
       >
-        {false && <NavBar />}
-
         <div
           className="container"
           style={{
@@ -158,7 +156,7 @@ export default class Login extends Component {
               <Grid.Row centered>
                 <Grid.Column verticalAlign="middle" centered>
                   <Form onSubmit={this.onSubmitLogin}>
-                    <h3 style={{ color: "#1677C2" }}>
+                    <h3 style={{ color: "#A5673F" }}>
                       {" "}
                       Bienvenue sur la plateforme AlterAlliance{" "}
                     </h3>
@@ -204,7 +202,7 @@ export default class Login extends Component {
                           className="ui button"
                           type="submit"
                           basic
-                          color="blue"
+                          color="brown"
                         >
                           {" "}
                           Me connecter{" "}
