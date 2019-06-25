@@ -138,7 +138,7 @@ export default class Login extends Component {
           className="container"
           style={{
             display: "flex",
-            height: "100vh",
+            height: "calc(100vh - 40px)",
             flexDirection: "column",
             justifyContent: "center"
           }}

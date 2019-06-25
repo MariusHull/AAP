@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import { url } from "../../config";
 import NavBar from "../NavBar";
-import Background from "../../assets/writing.jpg";
+import Background from "../../assets/Bureau_38.jpg";
 
 export default class Sites extends Component {
   constructor(props) {
@@ -120,7 +120,7 @@ export default class Sites extends Component {
             className="container"
             style={{
               display: "flex",
-              height: "90vh",
+              height: "calc(100vh - 95px)",
               flexDirection: "column",
               justifyContent: "center"
             }}
