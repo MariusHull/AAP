@@ -7,6 +7,27 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 export default class Export extends React.Component {
+  componentDidMount() {
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios.get(`${url}/api/companies/${this.props.company._id}`).then(r => {
+      console.log(
+        r.data.sites[this.props.siteIndex].populations[
+          this.props.populationIndex
+        ],
+        this.props.populationIndex
+      );
+      this.setState({
+        sites: r.data.sites,
+        topics:
+          r.data.sites[this.props.siteIndex].populations[
+            this.props.populationIndex
+          ].topics
+      });
+      console.log(r.data);
+    });
+  }
+
   render() {
     const dataSet1 = [
       {
