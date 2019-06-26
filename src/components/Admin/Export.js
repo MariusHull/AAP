@@ -33,9 +33,8 @@ export default class Export extends React.Component {
     const now = new Date();
     const title = `${
       this.props.company.name
-    }_${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}@${
-      now.getHours
-    }:${now.getMinutes()}`;
+    }_${now.getDate()}/${now.getMonth() +
+      1}/${now.getFullYear()}@${now.getHours()}:${now.getMinutes()}`;
     return (
       <ExcelFile
         filename={title}
@@ -46,10 +45,11 @@ export default class Export extends React.Component {
           </Button>
         }
       >
-        <ExcelSheet data={dataSet1} name="Feuille 2">
+        <ExcelSheet data={dataSetPage1} name="Feuille 1" />
+        {/* <ExcelSheet data={dataSet1} name="Feuille 2">
           <ExcelColumn label="Name" value="name" />
           <ExcelColumn label="Id" value="id" />
-        </ExcelSheet>
+        </ExcelSheet> */}
       </ExcelFile>
     );
   }
