@@ -48,11 +48,11 @@ export default class Export extends React.Component {
           let line = [];
           line.push({ value: theme.name });
           line.push({ value: sousTheme.name });
-          line.push({ value: sousTheme.data.situationsExample });
-          line.push({ value: sousTheme.data.presence });
-          line.push({ value: sousTheme.data.intensity });
+          line.push({ value: sousTheme.data.situationsExamples });
+          line.push({ value: sousTheme.data.presence }); // TODO : handle colors
+          line.push({ value: sousTheme.data.intensity }); // TODO : handle colors
           line.push({ value: sousTheme.data.correctiveActions });
-          line.push({ value: sousTheme.data.urgencyLevel });
+          line.push({ value: sousTheme.data.urgencyLevel }); // TODO : handle colors
           line.push({ value: sousTheme.data.existingActions });
           line.push({ value: sousTheme.data.selectedActions });
           line.push({ value: sousTheme.data.timeLimit });
