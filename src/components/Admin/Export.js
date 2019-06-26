@@ -38,6 +38,18 @@ export default class Export extends React.Component {
               value: this.props.company.name,
               style: { font: { sz: "12", bold: true } }
             },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
+            { value: this.props.company._id },
             { value: this.props.company._id }
           ]
         ]
