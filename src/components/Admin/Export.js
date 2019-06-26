@@ -59,13 +59,14 @@ export default class Export extends React.Component {
           line.push({ value: sousTheme.inCharge });
           line.push({ value: sousTheme.comment });
 
-          dataSetPage1.data.push(line);
+          dataSetPage1[0].data.push(line);
         });
       });
       console.log("topics : ", topics, this.props.populationIndex);
       this.setState({
         sites: r.data.sites,
-        topics: topics
+        topics: topics,
+        dataSetPage1
       });
       //console.log(r.data);
     });
