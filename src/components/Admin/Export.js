@@ -9,24 +9,71 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 export default class Export extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSetPage1 = [
+        {
+          columns: [
+            { title: "Thèmes", width: { wch: 15 } },
+            { title: "Sous-thèmes", width: { wch: 15 } },
+            { title: "Exemples de situations", width: { wch: 22 } },
+            { title: "Présence du risque", width: { wch: 20 } },
+            { title: "Intensité du risque", width: { wch: 20 } },
+            { title: "Actions correctives", width: { wch: 20 } },
+            { title: "Degré d'urgence de l'action", width: { wch: 30 } },
+            { title: "Actions déjà existantes", width: { wch: 30 } },
+            { title: "Actions retenues", width: { wch: 20 } },
+            { title: "Délais de réalisation", width: { wch: 30 } },
+            { title: "Personne chargée du suivi", width: { wch: 28 } },
+            { title: "Commentaires", width: { wch: 15 } }
+          ],
+          data: [
+            
+          ]
+        }
+      ]
+    };
+  }
+
+  
+  
   componentDidMount() {
+    const { dataSetPage1 } = this.state;
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios.get(`${url}/api/companies/${this.props.company._id}`).then(r => {
+      let topics = r.data.sites[this.props.siteIndex].populations[
+        this.props.populationIndex
+      ].topics;
+      topics.forEach((theme) => {
+        theme.subTopics.forEach((sousTheme) => {
+          let line = [];
+          line.push({value: theme.name});
+          line.push({value: sousTheme.name});
+          line.push({value: sousTheme.situationsExample});
+          line.push({value: sousTheme.presence});
+          line.push({value: sousTheme.intensity});
+          line.push({value: sousTheme.correctiveActions});
+          line.push({value: sousTheme.urgencyLevel});
+          line.push({value: sousTheme.existingActions});
+          line.push({value: sousTheme.selectedActions});
+          line.push({value: sousTheme.timeLimit});
+          line.push({value: sousTheme.inCharge});
+          line.push({value: sousTheme.comment});
+
+          dataSetPage1.data.push(line)
+        });
+      });
       console.log(
-        r.data.sites[this.props.siteIndex].populations[
-          this.props.populationIndex
-        ],
+        "topics : ", topics,
         this.props.populationIndex
       );
       this.setState({
         sites: r.data.sites,
-        topics:
-          r.data.sites[this.props.siteIndex].populations[
-            this.props.populationIndex
-          ].topics
+        topics: topics
       });
-      console.log(r.data);
+      //console.log(r.data);
     });
   }
 
@@ -38,43 +85,9 @@ export default class Export extends React.Component {
       }
     ];
 
-    const dataSetPage1 = [
-      {
-        columns: [
-          { title: "Thèmes", width: { wch: 15 } },
-          { title: "Sous-thèmes", width: { wch: 15 } },
-          { title: "Exemples de situations", width: { wch: 22 } },
-          { title: "Présence du risque", width: { wch: 20 } },
-          { title: "Intensité du risque", width: { wch: 20 } },
-          { title: "Actions correctives", width: { wch: 20 } },
-          { title: "Degré d'urgence de l'action", width: { wch: 30 } },
-          { title: "Actions déjà existantes", width: { wch: 30 } },
-          { title: "Actions retenues", width: { wch: 20 } },
-          { title: "Délais de réalisation", width: { wch: 30 } },
-          { title: "Personne chargée du suivi", width: { wch: 28 } },
-          { title: "Commentaires", width: { wch: 15 } }
-        ],
-        data: [
-          [
-            {
-              value: this.props.company.name,
-              style: { font: { sz: "12", bold: true } }
-            },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id }
-          ]
-        ]
-      }
-    ];
+    const { dataSetPage1 } = this.state;
+
+    
 
     const now = new Date();
     const title = `${
