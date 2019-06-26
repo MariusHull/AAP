@@ -15,26 +15,6 @@ export default class Export extends React.Component {
       }
     ];
 
-    const survey = [
-      {
-        columns: [
-          { title: "Thèmes" },
-          { title: "Sous-thèmes" },
-          { title: "Thèmes" },
-          { title: "Exemples de situations" },
-          { title: "Présence du risque" },
-          { title: "Intensité du risque" },
-          { title: "Actions correctives" },
-          { title: "Degré d'urgence de l'action", width: { wch: 40 } },
-          { title: "Actions déjà existantes", width: { wch: 40 } },
-          { title: "Actions retenues" },
-          { title: "Délais de réalisation" },
-          { title: "Personne en charge du suivi" },
-          { title: "Commentaires" }
-        ]
-      }
-    ];
-
     const dataSetPage1 = [
       {
         columns: [
@@ -49,6 +29,25 @@ export default class Export extends React.Component {
             },
             { value: this.props.company._id }
           ]
+        ]
+      },
+      {
+        xSteps: 0, // Will start putting cell with 1 empty cell on left most
+        ySteps: 2,
+        columns: [
+          { title: "Thèmes" },
+          { title: "Sous-thèmes" },
+          { title: "Thèmes" },
+          { title: "Exemples de situations" },
+          { title: "Présence du risque" },
+          { title: "Intensité du risque" },
+          { title: "Actions correctives" },
+          { title: "Degré d'urgence de l'action", width: { wch: 40 } },
+          { title: "Actions déjà existantes", width: { wch: 40 } },
+          { title: "Actions retenues" },
+          { title: "Délais de réalisation" },
+          { title: "Personne en charge du suivi" },
+          { title: "Commentaires" }
         ]
       }
     ];

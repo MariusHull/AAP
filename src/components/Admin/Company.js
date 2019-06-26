@@ -121,7 +121,12 @@ export default class Company extends Component {
               siteIndex={this.state.siteIndex}
               populationIndex={this.state.populationIndex}
             />
-            <Export company={this.state.company} topics={this.state.topics} />
+            <Export
+              company={this.state.company}
+              topics={this.state.topics}
+              siteIndex={this.state.siteIndex}
+              populationIndex={this.state.populationIndex}
+            />
           </Card.Content>
         </Card>
       </div>
