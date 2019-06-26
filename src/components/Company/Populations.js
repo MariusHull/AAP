@@ -11,6 +11,7 @@ import {
 import im from "../../assets/writing.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { url } from "../../config";
 
 import NavBar from "../NavBar";
 
@@ -37,9 +38,7 @@ export default class Sites extends Component {
       "JWT " + localStorage.getItem("jwtToken");
     axios
       .post(
-        `http://localhost:3001/api/companies/population/${localStorage.getItem(
-          "companyId"
-        )}`,
+        `${url}/api/companies/population/${localStorage.getItem("companyId")}`,
         { populationName, siteId: this.props.match.params.index }
       )
       .then(r => {
@@ -60,11 +59,7 @@ export default class Sites extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios
-      .get(
-        `http://localhost:3001/api/companies/${localStorage.getItem(
-          "companyId"
-        )}`
-      )
+      .get(`${url}/api/companies/${localStorage.getItem("companyId")}`)
       .then(r => {
         console.log(r.data.sites[this.props.match.params.index].populations);
         this.setState({

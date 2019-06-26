@@ -3,6 +3,7 @@ import { Card, Form } from "semantic-ui-react";
 import ShowAnswers from "./ShowAnswers";
 import scss from "../../global.scss";
 import Export from "./Export";
+import { url } from "../../config";
 
 import axios from "axios";
 
@@ -30,13 +31,11 @@ export default class Company extends Component {
   };
 
   componentDidMount = () => {
-    axios
-      .get(`http://localhost:3001/api/companies/${this.props.companyId}`)
-      .then(company => {
-        this.setState({
-          company: company.data
-        });
+    axios.get(`${url}/api/companies/${this.props.companyId}`).then(company => {
+      this.setState({
+        company: company.data
       });
+    });
   };
 
   handleChange = (e, { value }) => {

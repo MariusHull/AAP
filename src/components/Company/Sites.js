@@ -61,7 +61,7 @@ export default class Sites extends Component {
         "JWT " + localStorage.getItem("jwtToken");
       axios
         .post(
-          `http://localhost:3001/api/companies/population/${localStorage.getItem(
+          `${url}/api/companies/population/${localStorage.getItem(
             "companyId"
           )}`,
           { populationName, siteId: this.state.selectedSite }

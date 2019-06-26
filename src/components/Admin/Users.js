@@ -99,11 +99,7 @@ export default class Users extends Component {
     const formData = new FormData();
     formData.append("file", this.state.file);
 
-    axios.post(
-      `http://localhost:3001/api/auth/upload/${usernameReg}`,
-      formData,
-      config
-    );
+    axios.post(`${url}/api/auth/upload/${usernameReg}`, formData, config);
 
     axios
       .post(`${url}/api/auth/register`, {
