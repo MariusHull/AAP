@@ -1,1 +1,1 @@
-export const url = "alteralliancesolutionduer.com/back"; //"http://localhost:3001/back";
+export const url = "back"; //"http://localhost:3001";
