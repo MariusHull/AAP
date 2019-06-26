@@ -18,57 +18,12 @@ export default class ExportContent extends React.Component {
   handleClose = () => this.setState({ modalOpen: false });
 
   render() {
-    const dataSet1 = [
-      {
-        name: this.props.company.name,
-        id: this.props.company._id
-      }
-    ];
-
-    const dataSetPage1 = [
-      {
-        columns: [
-          { title: "Thèmes", width: { wch: 15 } },
-          { title: "Sous-thèmes", width: { wch: 15 } },
-          { title: "Exemples de situations", width: { wch: 22 } },
-          { title: "Présence du risque", width: { wch: 20 } },
-          { title: "Intensité du risque", width: { wch: 20 } },
-          { title: "Actions correctives", width: { wch: 20 } },
-          { title: "Degré d'urgence de l'action", width: { wch: 30 } },
-          { title: "Actions déjà existantes", width: { wch: 30 } },
-          { title: "Actions retenues", width: { wch: 20 } },
-          { title: "Délais de réalisation", width: { wch: 30 } },
-          { title: "Personne chargée du suivi", width: { wch: 28 } },
-          { title: "Commentaires", width: { wch: 15 } }
-        ],
-        data: [
-          [
-            {
-              value: this.props.company.name,
-              style: { font: { sz: "12", bold: true } }
-            },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
-            { value: this.props.company._id }
-          ]
-        ]
-      }
-    ];
-
     return (
       <>
         <Modal
           open={this.state.modalOpen}
           onClose={this.handleClose}
-          size={"large"}
+          size={"mini"}
           trigger={
             <Button
               onClick={this.handleOpen}
