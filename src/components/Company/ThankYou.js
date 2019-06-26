@@ -13,15 +13,10 @@ export default class ThankYou extends Component {
   render() {
     return (
       <Container style={{ width: "100%" }}>
-        <NavBar />
         <h1
           style={{
-            position: "absolute",
-            top: "40vh",
-            left: "25vw",
-            margin: "auto",
-            textAlign: "center",
-            width: "50vw"
+            margin: "60px",
+            textAlign: "center"
           }}
         >
           Merci d'avoir complété ce questionnaire. Vous pouvez désormais fermer

@@ -24,3 +24,5 @@ yarn-error.log*
 
 # tests
 tests_nico.txt
+
+src/config.js
