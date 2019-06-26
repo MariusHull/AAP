@@ -46,7 +46,6 @@ export default class Export extends React.Component {
           </Button>
         }
       >
-        <ExcelSheet data={dataSetPage1} name="Feuille 1" />
         <ExcelSheet data={dataSet1} name="Feuille 2">
           <ExcelColumn label="Name" value="name" />
           <ExcelColumn label="Id" value="id" />
