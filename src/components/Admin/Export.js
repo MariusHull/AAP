@@ -18,19 +18,18 @@ export default class Export extends React.Component {
     const dataSetPage1 = [
       {
         columns: [
-          { title: "Thèmes" },
-          { title: "Sous-thèmes" },
-          { title: "Thèmes" },
-          { title: "Exemples de situations" },
-          { title: "Présence du risque" },
-          { title: "Intensité du risque" },
-          { title: "Actions correctives" },
-          { title: "Degré d'urgence de l'action", width: { wch: 40 } },
-          { title: "Actions déjà existantes", width: { wch: 40 } },
-          { title: "Actions retenues" },
-          { title: "Délais de réalisation" },
-          { title: "Personne en charge du suivi" },
-          { title: "Commentaires" }
+          { title: "Thèmes", width: { wch: 15 } },
+          { title: "Sous-thèmes", width: { wch: 15 } },
+          { title: "Exemples de situations", width: { wch: 22 } },
+          { title: "Présence du risque", width: { wch: 20 } },
+          { title: "Intensité du risque", width: { wch: 20 } },
+          { title: "Actions correctives", width: { wch: 20 } },
+          { title: "Degré d'urgence de l'action", width: { wch: 30 } },
+          { title: "Actions déjà existantes", width: { wch: 30 } },
+          { title: "Actions retenues", width: { wch: 20 } },
+          { title: "Délais de réalisation", width: { wch: 30 } },
+          { title: "Personne chargée du suivi", width: { wch: 28 } },
+          { title: "Commentaires", width: { wch: 15 } }
         ],
         data: [
           [
@@ -38,8 +37,6 @@ export default class Export extends React.Component {
               value: this.props.company.name,
               style: { font: { sz: "12", bold: true } }
             },
-            { value: this.props.company._id },
-            { value: this.props.company._id },
             { value: this.props.company._id },
             { value: this.props.company._id },
             { value: this.props.company._id },
