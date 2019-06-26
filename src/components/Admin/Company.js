@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card, Form } from "semantic-ui-react";
 import ShowAnswers from "./ShowAnswers";
 import scss from "../../global.scss";
-import Export from "./Export";
+import ExportContent from "./ExportContainer";
 import { url } from "../../config";
 
 import axios from "axios";
@@ -121,7 +121,7 @@ export default class Company extends Component {
               siteIndex={this.state.siteIndex}
               populationIndex={this.state.populationIndex}
             />
-            <Export
+            <ExportContent
               company={this.state.company}
               topics={this.state.topics}
               siteIndex={this.state.siteIndex}

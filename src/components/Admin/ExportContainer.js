@@ -3,32 +3,18 @@ import ReactExport from "react-data-export";
 import { Button, Icon } from "semantic-ui-react";
 import { url } from "../../config";
 import axios from "axios";
+import Export from "./Export";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
-export default class Export extends React.Component {
-  componentDidMount() {
-    axios.defaults.headers.common["Authorization"] =
-      "JWT " + localStorage.getItem("jwtToken");
-    axios.get(`${url}/api/companies/${this.props.company._id}`).then(r => {
-      console.log(
-        r.data.sites[this.props.siteIndex].populations[
-          this.props.populationIndex
-        ],
-        this.props.populationIndex
-      );
-      this.setState({
-        sites: r.data.sites,
-        topics:
-          r.data.sites[this.props.siteIndex].populations[
-            this.props.populationIndex
-          ].topics
-      });
-      console.log(r.data);
-    });
-  }
+export default class ExportContent extends React.Component {
+  state = { modalOpen: false };
+
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false });
 
   render() {
     const dataSet1 = [
@@ -76,27 +62,55 @@ export default class Export extends React.Component {
       }
     ];
 
-    const now = new Date();
-    const title = `${
-      this.props.company.name
-    }_${now.getDate()}/${now.getMonth() +
-      1}/${now.getFullYear()}@${now.getHours()}:${now.getMinutes()}`;
     return (
-      <ExcelFile
-        filename={title}
-        element={
-          <Button icon positive labelPosition="right">
-            Télécharger au format xslx
-            <Icon name="download" />
-          </Button>
-        }
-      >
-        <ExcelSheet dataSet={dataSetPage1} name="Feuille 1" />
-        <ExcelSheet data={dataSet1} name="Feuille 2">
-          <ExcelColumn label="Name" value="name" />
-          <ExcelColumn label="Id" value="id" />
-        </ExcelSheet>
-      </ExcelFile>
+      <>
+        <Modal
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          size={"large"}
+          trigger={
+            <Button
+              onClick={this.handleOpen}
+              icon
+              positive
+              labelPosition="right"
+              disabled={
+                this.props.siteIndex === null ||
+                this.props.populationIndex === null
+              }
+            >
+              Télécharger les réponses
+              <Icon name="download" />
+            </Button>
+          }
+        >
+          <Modal.Header>
+            <Container>
+              <div>Télécharger</div>
+
+              <Button
+                onClick={this.handleClose}
+                primary
+                style={{ position: "absolute", right: "10px", top: "15px" }}
+              >
+                <Icon name="x icon" />
+              </Button>
+            </Container>
+          </Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <div style={{ width: "8vw" }}>
+                <Export
+                  company={this.props.company}
+                  topics={this.state.topics}
+                  siteIndex={this.props.siteIndex}
+                  populationIndex={this.props.populationIndex}
+                />
+              </div>
+            </Modal.Description>
+          </Modal.Content>
+        </Modal>
+      </>
     );
   }
 }
