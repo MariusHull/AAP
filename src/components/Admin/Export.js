@@ -48,16 +48,16 @@ export default class Export extends React.Component {
           let line = [];
           line.push({ value: theme.name });
           line.push({ value: sousTheme.name });
-          line.push({ value: sousTheme.situationsExample });
-          line.push({ value: sousTheme.presence });
-          line.push({ value: sousTheme.intensity });
-          line.push({ value: sousTheme.correctiveActions });
-          line.push({ value: sousTheme.urgencyLevel });
-          line.push({ value: sousTheme.existingActions });
-          line.push({ value: sousTheme.selectedActions });
-          line.push({ value: sousTheme.timeLimit });
-          line.push({ value: sousTheme.inCharge });
-          line.push({ value: sousTheme.comment });
+          line.push({ value: sousTheme.data.situationsExample });
+          line.push({ value: sousTheme.data.presence });
+          line.push({ value: sousTheme.data.intensity });
+          line.push({ value: sousTheme.data.correctiveActions });
+          line.push({ value: sousTheme.data.urgencyLevel });
+          line.push({ value: sousTheme.data.existingActions });
+          line.push({ value: sousTheme.data.selectedActions });
+          line.push({ value: sousTheme.data.timeLimit });
+          line.push({ value: sousTheme.data.inCharge });
+          line.push({ value: sousTheme.data.comment });
 
           dataSetPage1[0].data.push(line);
         });
