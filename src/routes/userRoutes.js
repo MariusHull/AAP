@@ -6,6 +6,7 @@ import Sites from "../components/Company/Sites";
 import Populations from "../components/Company/Populations";
 import Background from "../assets/Bureau_38.jpg";
 import NavBar from "../components/NavBar";
+import ThankYou from "../components/Company/ThankYou";
 
 class Routes extends Component {
   render() {
@@ -39,6 +40,7 @@ class Routes extends Component {
             >
               <Router>
                 <div style={{ marginBottom: "50px" }}>
+                  <Route path="/" exact component={ThankYou} />
                   <Route
                     path="/survey/:indexSite,:indexPopulation"
                     exact
