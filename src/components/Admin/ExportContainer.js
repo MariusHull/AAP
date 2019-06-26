@@ -1,6 +1,7 @@
 import React from "react";
 import ReactExport from "react-data-export";
-import { Button, Icon } from "semantic-ui-react";
+
+import { Button, Modal, Icon, Container } from "semantic-ui-react";
 import { url } from "../../config";
 import axios from "axios";
 import Export from "./Export";
