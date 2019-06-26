@@ -32,8 +32,8 @@ export default class Export extends React.Component {
         ]
       },
       {
-        xSteps: 0, // Will start putting cell with 1 empty cell on left most
-        ySteps: 2,
+        xSteps: 2, // Will start putting cell with 1 empty cell on left most
+        ySteps: 0,
         columns: [
           { title: "Thèmes" },
           { title: "Sous-thèmes" },
