@@ -23,13 +23,14 @@ export default class ExportContent extends React.Component {
         <Modal
           open={this.state.modalOpen}
           onClose={this.handleClose}
-          size={"mini"}
+          size={"tiny"}
           trigger={
             <Button
               onClick={this.handleOpen}
               icon
               positive
               labelPosition="right"
+              style={{ padding: "auto" }}
               disabled={
                 this.props.siteIndex === null ||
                 this.props.populationIndex === null
@@ -42,7 +43,7 @@ export default class ExportContent extends React.Component {
         >
           <Modal.Header>
             <Container>
-              <div>Télécharger</div>
+              <div>Télécharger les résultats</div>
 
               <Button
                 onClick={this.handleClose}
