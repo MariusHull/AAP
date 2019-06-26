@@ -18,23 +18,6 @@ export default class Export extends React.Component {
     const dataSetPage1 = [
       {
         columns: [
-          { title: "Nom de l'entreprise", width: { wpx: 80 } },
-          { title: "Identifiant", width: { wpx: 80 } }
-        ],
-        data: [
-          [
-            {
-              value: this.props.company.name,
-              style: { font: { sz: "12", bold: true } }
-            },
-            { value: this.props.company._id }
-          ]
-        ]
-      },
-      {
-        xSteps: 2, // Will start putting cell with 1 empty cell on left most
-        ySteps: 0,
-        columns: [
           { title: "Thèmes" },
           { title: "Sous-thèmes" },
           { title: "Thèmes" },
