@@ -30,7 +30,10 @@ export default class ExportContent extends React.Component {
               icon
               positive
               labelPosition="right"
-              style={{ padding: "auto" }}
+              style={{
+                margin: "10px",
+                textAlign: "center"
+              }}
               disabled={
                 this.props.siteIndex === null ||
                 this.props.populationIndex === null
