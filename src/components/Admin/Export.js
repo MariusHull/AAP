@@ -12,7 +12,7 @@ export default class Export extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSetPage1 = [
+      dataSetPage1: [
         {
           columns: [
             { title: "Thèmes", width: { wch: 15 } },
@@ -28,47 +28,41 @@ export default class Export extends React.Component {
             { title: "Personne chargée du suivi", width: { wch: 28 } },
             { title: "Commentaires", width: { wch: 15 } }
           ],
-          data: [
-            
-          ]
+          data: []
         }
       ]
     };
   }
 
-  
-  
   componentDidMount() {
     const { dataSetPage1 } = this.state;
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios.get(`${url}/api/companies/${this.props.company._id}`).then(r => {
-      let topics = r.data.sites[this.props.siteIndex].populations[
-        this.props.populationIndex
-      ].topics;
-      topics.forEach((theme) => {
-        theme.subTopics.forEach((sousTheme) => {
+      let topics =
+        r.data.sites[this.props.siteIndex].populations[
+          this.props.populationIndex
+        ].topics;
+      topics.forEach(theme => {
+        theme.subTopics.forEach(sousTheme => {
           let line = [];
-          line.push({value: theme.name});
-          line.push({value: sousTheme.name});
-          line.push({value: sousTheme.situationsExample});
-          line.push({value: sousTheme.presence});
-          line.push({value: sousTheme.intensity});
-          line.push({value: sousTheme.correctiveActions});
-          line.push({value: sousTheme.urgencyLevel});
-          line.push({value: sousTheme.existingActions});
-          line.push({value: sousTheme.selectedActions});
-          line.push({value: sousTheme.timeLimit});
-          line.push({value: sousTheme.inCharge});
-          line.push({value: sousTheme.comment});
+          line.push({ value: theme.name });
+          line.push({ value: sousTheme.name });
+          line.push({ value: sousTheme.situationsExample });
+          line.push({ value: sousTheme.presence });
+          line.push({ value: sousTheme.intensity });
+          line.push({ value: sousTheme.correctiveActions });
+          line.push({ value: sousTheme.urgencyLevel });
+          line.push({ value: sousTheme.existingActions });
+          line.push({ value: sousTheme.selectedActions });
+          line.push({ value: sousTheme.timeLimit });
+          line.push({ value: sousTheme.inCharge });
+          line.push({ value: sousTheme.comment });
 
-          dataSetPage1.data.push(line)
+          dataSetPage1.data.push(line);
         });
       });
-      console.log(
-        "topics : ", topics,
-        this.props.populationIndex
-      );
+      console.log("topics : ", topics, this.props.populationIndex);
       this.setState({
         sites: r.data.sites,
         topics: topics
@@ -86,8 +80,6 @@ export default class Export extends React.Component {
     ];
 
     const { dataSetPage1 } = this.state;
-
-    
 
     const now = new Date();
     const title = `${
