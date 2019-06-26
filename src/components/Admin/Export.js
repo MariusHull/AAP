@@ -48,6 +48,15 @@ export default class Export extends React.Component {
           { title: "Délais de réalisation" },
           { title: "Personne en charge du suivi" },
           { title: "Commentaires" }
+        ],
+        data: [
+          [
+            {
+              value: this.props.company.name,
+              style: { font: { sz: "12", bold: true } }
+            },
+            { value: this.props.company._id }
+          ]
         ]
       }
     ];
