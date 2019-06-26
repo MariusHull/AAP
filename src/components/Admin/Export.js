@@ -22,14 +22,17 @@ export default class Export extends React.Component {
           { title: "Identifiant", width: { wpx: 80 } }
         ],
         data: [
-          {
-            value: this.props.company.name,
-            style: { font: { sz: "12", bold: true } }
-          },
-          this.props.company._id
+          [
+            {
+              value: this.props.company.name,
+              style: { font: { sz: "12", bold: true } }
+            },
+            { value: this.props.company._id }
+          ]
         ]
       }
     ];
+
     const now = new Date();
     const title = `${
       this.props.company.name
@@ -46,10 +49,10 @@ export default class Export extends React.Component {
         }
       >
         <ExcelSheet dataSet={dataSetPage1} name="Feuille 1" />
-        {/* <ExcelSheet data={dataSet1} name="Feuille 2">
+        <ExcelSheet data={dataSet1} name="Feuille 2">
           <ExcelColumn label="Name" value="name" />
           <ExcelColumn label="Id" value="id" />
-        </ExcelSheet> */}
+        </ExcelSheet>
       </ExcelFile>
     );
   }
