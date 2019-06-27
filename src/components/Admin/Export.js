@@ -15,17 +15,17 @@ export default class Export extends React.Component {
       dataSetPage1: [
         {
           columns: [
-            { title: "Thèmes", width: { wch: 30 } },
+            { title: "Thèmes", width: { wch: 15 } },
             { title: "Sous-thèmes", width: { wch: 25 } },
             { title: "Exemples de situations", width: { wch: 22 } },
             { title: "Présence du risque", width: { wch: 18 } },
             { title: "Intensité du risque", width: { wch: 18 } },
             { title: "Actions correctives", width: { wch: 20 } },
-            { title: "Degré d'urgence de l'action", width: { wch: 27 } },
+            { title: "Degré d'urgence de l'action", width: { wch: 25 } },
             { title: "Actions déjà existantes", width: { wch: 30 } },
             { title: "Actions retenues", width: { wch: 25 } },
             { title: "Délais de réalisation", width: { wch: 21 } },
-            { title: "Personne chargée du suivi", width: { wch: 28 } },
+            { title: "Personne chargée du suivi", width: { wch: 25 } },
             { title: "Commentaires", width: { wch: 15 } }
           ],
           data: []
@@ -63,7 +63,10 @@ export default class Export extends React.Component {
       topics.forEach(theme => {
         theme.subTopics.forEach(sousTheme => {
           let line = [];
-          line.push({ value: theme.name });
+          line.push({
+            value: theme.name,
+            style: { alignment: { wrapText: true } }
+          });
           line.push({ value: sousTheme.name });
           line.push({ value: sousTheme.data.situationsExamples });
           line.push({
@@ -89,7 +92,7 @@ export default class Export extends React.Component {
             value: "",
             style: {
               fill: {
-                patternType: "none",
+                patternType: "solid",
                 fgColor: { rgb: this.color(sousTheme.data.urgencyLevel) }
               }
             }
