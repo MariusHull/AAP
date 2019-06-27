@@ -37,7 +37,7 @@ export default class Export extends React.Component {
   color = value => {
     switch (value) {
       case -1:
-        return "FF737373";
+        return "FFDCDCDC";
       case 0:
         return "FF1E7242";
       case 1:
