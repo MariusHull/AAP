@@ -16,6 +16,7 @@ export default class ThankYou extends Component {
         <h1
           style={{
             margin: "60px",
+            padding: "60px",
             textAlign: "center"
           }}
         >

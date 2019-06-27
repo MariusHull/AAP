@@ -121,7 +121,7 @@ export default class Sites extends Component {
           </Grid.Row>
           <Grid.Row columns={1} centered>
             <Step.Group>
-              <Step>
+              <Step style={{ width: "400px" }}>
                 <Icon name="map marker alternate" />
                 <Step.Content>
                   <Step.Title>Choix du site</Step.Title>
@@ -131,7 +131,7 @@ export default class Sites extends Component {
                 </Step.Content>
               </Step>
 
-              <Step>
+              <Step style={{ width: "400px" }}>
                 <Icon name="users" />
                 <Step.Content>
                   <Step.Title>Choix de la population</Step.Title>
@@ -142,7 +142,15 @@ export default class Sites extends Component {
               </Step>
             </Step.Group>
           </Grid.Row>
-          <Grid.Row columns={4} centered>
+          <Grid.Row
+            columns={4}
+            centered
+            style={{
+              maxHeight: "calc(100vh - 327px)",
+              overflow: "scroll",
+              overflowX: "hidden"
+            }}
+          >
             <Grid.Column>
               <Container style={{ width: "500px" }}>
                 {this.state.sites.map((e, i) => (

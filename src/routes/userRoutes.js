@@ -16,46 +16,40 @@ class Routes extends Component {
         <Container
           style={{
             width: "100%",
-            height: "auto",
+            height: "calc(100vh - 95px)",
+            position: "absolute",
+            top: "53px",
             backgroundImage: `url(${Background})`,
             backgroundSize: "cover"
           }}
         >
-          <div
+          <Container
             className="container"
             style={{
-              display: "flex",
-              height: "calc(100vh - 95px)",
-              flexDirection: "column",
-              justifyContent: "center"
+              width: "80vw",
+              marginTop: "30px",
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: "3px"
             }}
           >
-            <Container
-              className="container"
-              style={{
-                width: "80vw",
-                background: "rgba(255,255,255,0.9)",
-                borderRadius: "3px"
-              }}
-            >
-              <Router>
-                <div style={{ marginBottom: "50px" }}>
-                  <Route path="/" exact component={ThankYou} />
-                  <Route
-                    path="/survey/:indexSite,:indexPopulation"
-                    exact
-                    component={Survey}
-                  />
-                  <Route path="/sites" exact component={Sites} />
-                  <Route
-                    path="/population/:index"
-                    exact
-                    component={Populations}
-                  />
-                </div>
-              </Router>
-            </Container>
-          </div>
+            <Router>
+              <div style={{ marginBottom: "50px" }}>
+                <Route path="/" exact component={ThankYou} />
+                <Route path="/thankyou" exact component={ThankYou} />
+                <Route
+                  path="/survey/:indexSite,:indexPopulation"
+                  exact
+                  component={Survey}
+                />
+                <Route path="/sites" exact component={Sites} />
+                <Route
+                  path="/population/:index"
+                  exact
+                  component={Populations}
+                />
+              </div>
+            </Router>
+          </Container>
         </Container>
       </Container>
     );
