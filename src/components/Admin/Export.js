@@ -34,6 +34,23 @@ export default class Export extends React.Component {
     };
   }
 
+  color = value => {
+    switch (value) {
+      case -1:
+        return "FF737373";
+      case 0:
+        return "FF1E7242";
+      case 1:
+        return "FFFFEC21";
+      case 2:
+        return "FFD3852F";
+      case 3:
+        return "FFD32F2F";
+      default:
+        break;
+    }
+  };
+
   componentDidMount() {
     const { dataSetPage1 } = this.state;
     axios.defaults.headers.common["Authorization"] =
@@ -49,10 +66,34 @@ export default class Export extends React.Component {
           line.push({ value: theme.name });
           line.push({ value: sousTheme.name });
           line.push({ value: sousTheme.data.situationsExamples });
-          line.push({ value: sousTheme.data.presence }); // TODO : handle colors
-          line.push({ value: sousTheme.data.intensity }); // TODO : handle colors
+          line.push({
+            value: "",
+            style: {
+              fill: {
+                patternType: "solid",
+                fgColor: { rgb: this.color(sousTheme.data.presence) }
+              }
+            }
+          }); // TODO : handle colors
+          line.push({
+            value: "",
+            style: {
+              fill: {
+                patternType: "solid",
+                fgColor: { rgb: this.color(sousTheme.data.intensity) }
+              }
+            }
+          }); // TODO : handle colors
           line.push({ value: sousTheme.data.correctiveActions });
-          line.push({ value: sousTheme.data.urgencyLevel }); // TODO : handle colors
+          line.push({
+            value: "",
+            style: {
+              fill: {
+                patternType: "solid",
+                fgColor: { rgb: this.color(sousTheme.data.urgencyLevel) }
+              }
+            }
+          }); // TODO : handle colors
           line.push({ value: sousTheme.data.existingActions });
           line.push({ value: sousTheme.data.selectedActions });
           line.push({ value: sousTheme.data.timeLimit });
