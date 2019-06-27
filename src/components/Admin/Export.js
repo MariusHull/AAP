@@ -15,18 +15,18 @@ export default class Export extends React.Component {
       dataSetPage1: [
         {
           columns: [
-            { title: "Thèmes", width: { wch: 15 } },
-            { title: "Sous-thèmes", width: { wch: 25 } },
+            { title: "Thèmes", width: { wch: 30 } },
+            { title: "Sous-thèmes", width: { wch: 30 } },
             { title: "Exemples de situations", width: { wch: 22 } },
-            { title: "Présence du risque", width: { wch: 18 } },
-            { title: "Intensité du risque", width: { wch: 18 } },
+            { title: "Présence du risque", width: { wch: 17 } },
+            { title: "Intensité du risque", width: { wch: 17 } },
             { title: "Actions correctives", width: { wch: 20 } },
-            { title: "Degré d'urgence de l'action", width: { wch: 25 } },
+            { title: "Degré d'urgence de l'action", width: { wch: 24 } },
             { title: "Actions déjà existantes", width: { wch: 30 } },
             { title: "Actions retenues", width: { wch: 25 } },
             { title: "Délais de réalisation", width: { wch: 21 } },
             { title: "Personne chargée du suivi", width: { wch: 25 } },
-            { title: "Commentaires", width: { wch: 15 } }
+            { title: "Commentaires", width: { wch: 25 } }
           ],
           data: []
         }
@@ -67,8 +67,14 @@ export default class Export extends React.Component {
             value: theme.name,
             style: { alignment: { wrapText: true } }
           });
-          line.push({ value: sousTheme.name });
-          line.push({ value: sousTheme.data.situationsExamples });
+          line.push({
+            value: sousTheme.name,
+            style: { alignment: { wrapText: true } }
+          });
+          line.push({
+            value: sousTheme.data.situationsExamples,
+            style: { alignment: { wrapText: true } }
+          });
           line.push({
             value: "",
             style: {
@@ -97,11 +103,23 @@ export default class Export extends React.Component {
               }
             }
           }); // TODO : handle colors
-          line.push({ value: sousTheme.data.existingActions });
-          line.push({ value: sousTheme.data.selectedActions });
+          line.push({
+            value: sousTheme.data.existingActions,
+            style: { alignment: { wrapText: true } }
+          });
+          line.push({
+            value: sousTheme.data.selectedActions,
+            style: { alignment: { wrapText: true } }
+          });
           line.push({ value: sousTheme.data.timeLimit });
-          line.push({ value: sousTheme.data.inCharge });
-          line.push({ value: sousTheme.data.comment });
+          line.push({
+            value: sousTheme.data.inCharge,
+            style: { alignment: { wrapText: true } }
+          });
+          line.push({
+            value: sousTheme.data.comment,
+            style: { alignment: { wrapText: true } }
+          });
 
           dataSetPage1[0].data.push(line);
         });
