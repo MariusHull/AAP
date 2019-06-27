@@ -15,16 +15,16 @@ export default class Export extends React.Component {
       dataSetPage1: [
         {
           columns: [
-            { title: "Thèmes", width: { wch: 15 } },
-            { title: "Sous-thèmes", width: { wch: 15 } },
+            { title: "Thèmes", width: { wch: 30 } },
+            { title: "Sous-thèmes", width: { wch: 25 } },
             { title: "Exemples de situations", width: { wch: 22 } },
-            { title: "Présence du risque", width: { wch: 20 } },
-            { title: "Intensité du risque", width: { wch: 20 } },
+            { title: "Présence du risque", width: { wch: 18 } },
+            { title: "Intensité du risque", width: { wch: 18 } },
             { title: "Actions correctives", width: { wch: 20 } },
-            { title: "Degré d'urgence de l'action", width: { wch: 30 } },
+            { title: "Degré d'urgence de l'action", width: { wch: 27 } },
             { title: "Actions déjà existantes", width: { wch: 30 } },
-            { title: "Actions retenues", width: { wch: 20 } },
-            { title: "Délais de réalisation", width: { wch: 30 } },
+            { title: "Actions retenues", width: { wch: 25 } },
+            { title: "Délais de réalisation", width: { wch: 21 } },
             { title: "Personne chargée du suivi", width: { wch: 28 } },
             { title: "Commentaires", width: { wch: 15 } }
           ],
@@ -37,15 +37,15 @@ export default class Export extends React.Component {
   color = value => {
     switch (value) {
       case -1:
-        return "FFDCDCDC";
+        return "FFFFFFFF";
       case 0:
-        return "FF1E7242";
+        return "FF84E296";
       case 1:
-        return "FFFFEC21";
+        return "FFFCF068";
       case 2:
-        return "FFD3852F";
+        return "FFF4BD40";
       case 3:
-        return "FFD32F2F";
+        return "FFEB614B";
       default:
         break;
     }
@@ -89,7 +89,7 @@ export default class Export extends React.Component {
             value: "",
             style: {
               fill: {
-                patternType: "solid",
+                patternType: "none",
                 fgColor: { rgb: this.color(sousTheme.data.urgencyLevel) }
               }
             }
