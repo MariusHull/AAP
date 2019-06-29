@@ -34,19 +34,13 @@ class Routes extends Component {
           >
             <Router>
               <div style={{ marginBottom: "50px" }}>
-                <Route path="/" exact component={ThankYou} />
-                <Route path="/thankyou" exact component={ThankYou} />
+                <Route path="/user/sites" exact component={Sites} />
                 <Route
-                  path="/survey/:indexSite,:indexPopulation"
-                  exact
+                  path="/user/survey/:indexSite,:indexPopulation"
                   component={Survey}
                 />
-                <Route path="/sites" exact component={Sites} />
-                <Route
-                  path="/population/:index"
-                  exact
-                  component={Populations}
-                />
+                <Route path="/user/thankyou" component={ThankYou} />
+                <Route path="/" exact component={ThankYou} />
               </div>
             </Router>
           </Container>

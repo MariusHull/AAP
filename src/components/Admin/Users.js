@@ -120,6 +120,10 @@ export default class Users extends Component {
             message: res.data.msg,
             file: null
           });
+          toast.success("Vous avez crée un nouvel utilisateur !", {
+            position: "top-center",
+            autoClose: 10000
+          });
         }
       });
   };
