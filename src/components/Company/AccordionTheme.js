@@ -9,7 +9,7 @@ export default class AccordionExampleFluid extends Component {
   }
 
   render() {
-    const { topics, index, ChangeState, selected, form} = this.props
+    const { topics, index, ChangeState, selected, form, newAction, changeAction, change} = this.props
 
     return (
       <Accordion fluid>
@@ -20,7 +20,7 @@ export default class AccordionExampleFluid extends Component {
                 </Accordion.Title>
                 <Accordion.Content active={selected && selected[0] === index && selected[1] === i}>
                   <Message info header={form[index].subTopics[i].subTitle} content={form[index].subTopics[i].details}/>
-                  <Cell topics={topics} i={index} j={i} change={this.change}></Cell>
+                  <Cell topics={topics} i={index} j={i} change={change} changeAction={changeAction} newAction = {newAction}></Cell>
                 </Accordion.Content>
             </Container>
         ))}
