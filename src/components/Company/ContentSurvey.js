@@ -647,6 +647,16 @@ export default class ContentSurvey extends Component {
     this.setState({ saved: false, topics });
   };
 
+  changeAction = (i, j, name, value, k) => {
+    console.log(name, value)
+    var { topics } = this.state;
+    topics[i].subTopics[j].data.actions[k] = {
+      ...topics[i].subTopics[j].data.actions[k],
+      [name]: value
+    };
+    this.setState({ saved: false, topics });
+  };
+
   save = () => {
     // const siteIndex = this.props.siteIndex
     const { sites, topics } = this.state;
@@ -692,6 +702,7 @@ export default class ContentSurvey extends Component {
       this.setState({ selected: [selected[0], selected[1] + 1] });
     }
     console.log("post", this.state.selected, this.state.activeItem);
+    this.save();
   };
 
   previous = () => {
@@ -707,7 +718,24 @@ export default class ContentSurvey extends Component {
     } else {
       this.setState({ selected: [selected[0], selected[1] - 1] });
     }
+    this.save();
   };
+
+  newAction = (i, j) => {
+    const topics = this.state.topics
+    console.log(topics[i].subTopics[j].data)
+    topics[i].subTopics[j].data.actions.push({
+      name: "",
+      alreadyExisting: "",
+      new: "",
+      emergency: -1,
+      timeLimit: "",
+      inCharge: "",
+    })
+    this.setState({topics})
+    this.save()
+    console.log(this.state.topics[i].subTopics[j].data.actions)
+  }
 
   render() {
     const {
@@ -746,7 +774,9 @@ export default class ContentSurvey extends Component {
               ChangeState={this.ChangeState}
               selected={selected}
               change={this.change}
+              changeAction={this.changeAction}
               form={form}
+              newAction={this.newAction}
             />
           </Segment>
         </div>

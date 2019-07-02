@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Container, Form, Radio, TextArea, Button} from 'semantic-ui-react'
+import {Container, Form, Radio, TextArea, Icon, Popup, Button, Card, Input} from 'semantic-ui-react'
+import scss from "../../global.scss";
 
 const checkboxPresence= ["Jamais", "Parfois",	"Souvent", "Toujours"];
 const checkboxIntesity= ["Non concernée", "Faible", "Modérée", "Elevée"];
@@ -13,6 +14,10 @@ export default class Cell extends Component {
     this.props.change(this.props.i, this.props.j, name, value)
   }
 
+  handleChangeAction = (e, {name, value}, k) => {
+    this.props.changeAction(this.props.i, this.props.j, name, value, k)
+  }
+
   render() {
     const { topics, i, j} = this.props
     const subTopic = topics[i].subTopics[j]
@@ -23,7 +28,7 @@ export default class Cell extends Component {
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
-                  label='Exemples de situation'
+                  label='Vos situations concrètes'
                   placeholder='Exemples'
                   value={subTopic.data.situationsExamples}
                   name = 'situationsExamples'
@@ -31,6 +36,7 @@ export default class Cell extends Component {
                 />
               <Form.Group inline widths='equal'>
                 <label>Presence</label>
+                <Popup content="Présence du risque dans l'activité." trigger={<Icon name ='question circle outline' size='large' style={{margin: '0 30px 0 0'}}></Icon>}/>
                 {checkboxPresence.map((e, k) => (
                   <Form.Field
                   key={e+String(i)+String(j)}
@@ -45,6 +51,7 @@ export default class Cell extends Component {
               </Form.Group>
               <Form.Group inline widths='equal'>
                 <label>Intensité</label>
+                <Popup content="Gravité du facteur de risque dans l'activité." trigger={<Icon name ='question circle outline' size='large' style={{margin: '0 30px 0 0'}}></Icon>}/>
                 {checkboxIntesity.map((e, k) => (
                   <Form.Field
                   key={e+String(i)+String(j)}
@@ -57,16 +64,28 @@ export default class Cell extends Component {
                   />
                 ))}
               </Form.Group>
-              <Form.Field
+              <Form.Group inline widths='equal'>
+                <label>Actions</label>
+                <Popup content="Ajoutez vos actions et complétez leurs caractéristiques." trigger={<Icon name ='question circle outline' size='large' style={{margin: '0 30px 0 0'}}></Icon>}/>
+              </Form.Group>
+              {subTopic.data.actions && subTopic.data.actions.map((action, l) => (
+                <Card style={{width:'100%'}}>
+                  <Card.Content>
+                    <Card.Meta>
+                  <Form.Group inline>
+                  <label>{`Action ${l+1}: `}</label>
+                  <Form.Field
+                  control={TextArea} 
                   id='form-textarea-control-opinion'
-                  control={TextArea}
-                  label='Actions correctives'
-                  value={subTopic.data.correctiveActions}
-                  placeholder='Exemples'
-                  name='correctiveActions'
-                  onChange={this.handleChange}
+                  value={action.name}
+                  placeholder="Libellé de l'action"
+                  name='name'
+                  onChange={(e, d) => this.handleChangeAction(e, d, l)}
+                  style={{height:'41px'}}
+                  width={14}
                 />
-                <Form.Group inline>
+                  </Form.Group>
+                  <Form.Group inline>
                   <label>Degré d'urgence de l'action</label>
                   {checkboxUrgencyLevel.map((e, k) => (
                     <Form.Field
@@ -75,9 +94,9 @@ export default class Cell extends Component {
                     control={Radio}
                     label={e}
                     value={k}
-                    name="urgencyLevel"
-                    checked={subTopic.data.urgencyLevel === k}
-                    onChange={this.handleChange}
+                    name="emergency"
+                    checked={action.emergency === k}
+                    onChange={(e, d) => this.handleChangeAction(e, d, l)}
                     />
                   ))}
                 </Form.Group>
@@ -85,41 +104,59 @@ export default class Cell extends Component {
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
-                  label='Actions déjà existantes'
-                  value={subTopic.data.existingActions}
-                  name='existingActions'
-                  placeholder='Actions...'
-                  onChange={this.handleChange}
+                  label='Action déjà existante'
+                  value={action.alreadyExisting}
+                  name='alreadyExisting'
+                  placeholder='Description'
+                  onChange={(e, d) => this.handleChangeAction(e, d, l)}
+                  style={{height:'41px'}}
                 />
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
-                  label='Actions retenues'
-                  value={subTopic.data.selectedActions}
-                  name='selectedActions'
-                  placeholder='Actions...'
-                  onChange={this.handleChange}
+                  label='Action retenue'
+                  value={action.new}
+                  name='new'
+                  placeholder='Description'
+                  onChange={(e, d) => this.handleChangeAction(e, d, l)}
+                  style={{height:'41px'}}
                 />
-              </Form.Group>
-              <Form.Group inline widths='equal'>
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Délais de réalisation'
-                  value={subTopic.data.timeLimit}
+                  value={action.timeLimit}
                   name='timeLimit'
-                  placeholder=''
-                  onChange={this.handleChange}
+                  placeholder='...'
+                  onChange={(e, d) => this.handleChangeAction(e, d, l)}
+                  style={{height:'41px'}}
                 />
               <Form.Field
                   id='form-textarea-control-opinion'
                   control={TextArea}
                   label='Personnes en charge'
-                  value={subTopic.data.inCharge}
+                  value={action.inCharge}
                   name='inCharge'
                   placeholder='...'
-                  onChange={this.handleChange}
+                  onChange={(e, d) => this.handleChangeAction(e, d, l)}
+                  style={{height:'41px'}}
                 />
+              </Form.Group>
+                  </Card.Meta>
+                </Card.Content>
+              </Card>
+              ))}
+              <Form.Group>
+              <Button
+                        primary
+                        icon
+                        fluid
+                        onClick={() =>
+                          this.props.newAction(i, j)
+                        }
+                      >
+                        Ajouter une action
+                      </Button>
               </Form.Group>
               <Form.Field
                   id='form-textarea-control-opinion'
