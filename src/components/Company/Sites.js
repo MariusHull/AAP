@@ -7,11 +7,14 @@ import {
   Modal,
   Button,
   Message,
+  Segment,
   Header,
   Step,
   Grid
 } from "semantic-ui-react";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { url } from "../../config";
 import NavBar from "../NavBar";
 import Background from "../../assets/Bureau_38.jpg";
@@ -87,12 +90,19 @@ export default class Sites extends Component {
     axios
       .get(`${url}/api/companies/${localStorage.getItem("companyId")}`)
       .then(r => {
-        console.log(r.data.sites);
         this.setState({ sites: r.data.sites, name: r.data.name });
-        // axios.get(`${url}/api/companies/image/${r.data.name}`).then(img => {
-        //   this.setState({ logo: btoa(img.data) });
-        // });
-        console.log("../../../../back/public/" + this.state.name + ".png");
+        var now = new Date();
+        var then = new Date(r.data.lastPasswordUpdate);
+        var milliseconds = now.getTime() - then.getTime();
+        if (milliseconds > 61 * 24 * 60 * 60 * 1000) {
+          toast.info(
+            "Vous n'avez pas changé votre mot de passe depuis deux mois. Pour plus de sécurité, il est conseillé de le mettre à jour (via l'onglet Réglage du compte dans le menu).",
+            {
+              position: "top-center",
+              autoClose: 10000
+            }
+          );
+        }
       })
       .catch(error => {
         if (error) {
@@ -154,17 +164,17 @@ export default class Sites extends Component {
             <Grid.Column>
               <Container style={{ width: "500px" }}>
                 {this.state.sites.map((e, i) => (
-                  <Card
+                  <Segment
+                    inverted={i === selectedSite}
+                    fluid
                     color={i === selectedSite && "blue"}
                     onClick={() => {
                       this.setState({ selectedSite: i });
                       console.log(i);
                     }}
                   >
-                    <Card.Content>
-                      <Card.Header>{e.name}</Card.Header>
-                    </Card.Content>
-                  </Card>
+                    {e.name}
+                  </Segment>
                 ))}
                 <Modal
                   trigger={
@@ -202,11 +212,13 @@ export default class Sites extends Component {
               {selectedSite !== undefined ? (
                 <Container style={{ width: "500px" }}>
                   {this.state.sites[selectedSite].populations.map((e, i) => (
-                    <Card centered href={`/survey/${selectedSite},${i}`}>
-                      <Card.Content>
-                        <Card.Header>{e.name}</Card.Header>
-                      </Card.Content>
-                    </Card>
+                    <Segment fluid centered>
+                      <Link to={`/user/survey/${selectedSite},${i}`}>
+                        <Container style={{ color: "#000" }}>
+                          {e.name}
+                        </Container>
+                      </Link>
+                    </Segment>
                   ))}
                   <Modal
                     trigger={
@@ -255,6 +267,16 @@ export default class Sites extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </>
     );
   }

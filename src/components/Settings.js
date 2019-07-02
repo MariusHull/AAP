@@ -22,7 +22,7 @@ export default class Settings extends Component {
 
   componentDidMount() {
     if (!localStorage.getItem("jwtToken")) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
     this.setState({ password: "", passwordReg: "" });
   }
@@ -76,6 +76,13 @@ export default class Settings extends Component {
             position: "top-center",
             autoClose: 10000
           });
+          if (res.data.companyId) {
+            axios
+              .post(`${url}/api/companies/updatePassDate/${res.data.companyId}`)
+              .then(() => {
+                console.log("change date success");
+              });
+          }
         } else {
           toast.error(res.data.msg, {
             position: "top-center",

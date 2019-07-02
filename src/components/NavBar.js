@@ -47,7 +47,7 @@ export default class NavBar extends Component {
                   <i className="dropdown icon" />
                   <div className="left menu">
                     {localStorage.getItem("level") === "0" && (
-                      <Link className="item" to="/sites">
+                      <Link className="item" to="/user/sites">
                         Choix du site
                       </Link>
                     )}

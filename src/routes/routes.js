@@ -8,6 +8,8 @@ import Users from "../components/Admin/Users";
 import Settings from "../components/Settings";
 import UserRoutes from "./userRoutes";
 
+import { withRouter } from "react-router";
+
 class Routes extends Component {
   render() {
     return (
@@ -15,15 +17,8 @@ class Routes extends Component {
         <div style={{ marginBottom: "50px" }}>
           <Route path="/" exact component={Login} />
           <Route path="/users" exact component={Users} />
-          <Route
-            path="/survey/:indexSite,:indexPopulation"
-            exact
-            component={UserRoutes}
-          />
+          <Route path="/user" render={props => <UserRoutes {...props} />} />
           <Route path="/admin" exact component={Admin} />
-          <Route path="/thankyou" exact component={ThankYou} />
-          <Route path="/sites" exact component={UserRoutes} />
-          <Route path="/population/:index" exact component={UserRoutes} />
           <Route path="/settings" exact component={Settings} />
         </div>
       </Router>

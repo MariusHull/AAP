@@ -709,7 +709,10 @@ export default class ContentSurvey extends Component {
     const { selected, topics, activeItem } = this.state;
     if (selected[1] === 0) {
       this.setState({
-        selected: [selected[0] - 1, topics[selected[0]-1].subTopics.length -1 ],
+        selected: [
+          selected[0] - 1,
+          topics[selected[0] - 1].subTopics.length - 1
+        ],
         activeItem: activeItem - 1
       });
     } else {
@@ -859,7 +862,7 @@ export default class ContentSurvey extends Component {
             <>
               {localStorage.getItem("level") === "0" ? (
                 <Link
-                  to="/thankyou"
+                  to="/user/thankyou"
                   style={{
                     height: "7vh",
                     width: "15%",
