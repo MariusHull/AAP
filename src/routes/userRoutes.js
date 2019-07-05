@@ -7,6 +7,7 @@ import Populations from "../components/Company/Populations";
 import Background from "../assets/Bureau_38.jpg";
 import NavBar from "../components/NavBar";
 import ThankYou from "../components/Company/ThankYou";
+import Settings from "../components/Settings";
 
 class UserRoutes extends Component {
   render() {
@@ -42,6 +43,7 @@ class UserRoutes extends Component {
                 <Route path="/user/thankyou" exact component={ThankYou} />
                 <Route path="/user/sites" exact component={Sites} />
                 <Route path="/" exact component={ThankYou} />
+                <Route path="/settings" exact component={Settings} />
               </div>
             </Container>
           </Container>
