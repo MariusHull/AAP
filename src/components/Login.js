@@ -79,8 +79,13 @@ export default class Login extends Component {
         }
       })
       .catch(error => {
-        if (error.response.status === 401) {
-          toast.error("Unknonw Error code: 500", {
+        if (error.response && error.response.status === 401) {
+          toast.error("Erreur inconnue, veuillez réessayer", {
+            position: "top-center",
+            autoClose: 10000
+          });
+        } else {
+          toast.error("Erreur inconnue, veuillez réessayer", {
             position: "top-center",
             autoClose: 10000
           });

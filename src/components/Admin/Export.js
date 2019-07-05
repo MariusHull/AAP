@@ -1,5 +1,5 @@
 import React from "react";
-import ReactExport from "react-data-export";
+import ReactExport from "../../react-data-export";
 import { Button, Icon } from "semantic-ui-react";
 import { url } from "../../config";
 import axios from "axios";
@@ -15,18 +15,29 @@ export default class Export extends React.Component {
       dataSetPage1: [
         {
           columns: [
+            {
+              title:
+                "Document généré automatiquement par le site alteralliancesolutionduer.com"
+            }
+          ],
+          data: [[{ value: " " }]]
+        },
+        {
+          xSteps: 0, // Will start putting cell with 1 empty cell on left most
+          ySteps: 1, //will put space of 5 rows,
+          columns: [
             { title: "Thèmes", width: { wch: 30 } },
             { title: "Sous-thèmes", width: { wch: 30 } },
             { title: "Exemples de situations", width: { wch: 22 } },
             { title: "Présence du risque", width: { wch: 17 } },
             { title: "Intensité du risque", width: { wch: 17 } },
-            { title: "Actions correctives", width: { wch: 20 } },
+            { title: "Commentaires", width: { wch: 25 } },
+            { title: "Action corrective", width: { wch: 20 } },
             { title: "Degré d'urgence de l'action", width: { wch: 24 } },
             { title: "Actions déjà existantes", width: { wch: 30 } },
             { title: "Actions retenues", width: { wch: 25 } },
             { title: "Délais de réalisation", width: { wch: 21 } },
-            { title: "Personne chargée du suivi", width: { wch: 25 } },
-            { title: "Commentaires", width: { wch: 25 } }
+            { title: "Personne chargée du suivi", width: { wch: 25 } }
           ],
           data: []
         }
@@ -62,66 +73,122 @@ export default class Export extends React.Component {
         ].topics;
       topics.forEach(theme => {
         theme.subTopics.forEach(sousTheme => {
-          let line = [];
-          line.push({
-            value: theme.name,
-            style: { alignment: { wrapText: true } }
-          });
-          line.push({
-            value: sousTheme.name,
-            style: { alignment: { wrapText: true } }
-          });
-          line.push({
-            value: sousTheme.data.situationsExamples,
-            style: { alignment: { wrapText: true } }
-          });
-          line.push({
-            value: "",
-            style: {
-              fill: {
-                patternType: "solid",
-                fgColor: { rgb: this.color(sousTheme.data.presence) }
+          if (sousTheme.data.actions.length > 0) {
+            sousTheme.data.actions.forEach((action, index) => {
+              let line = [];
+              if (index === 0) {
+                line.push({
+                  value: theme.name,
+                  style: { alignment: { wrapText: true } }
+                });
+                line.push({
+                  value: sousTheme.name,
+                  style: { alignment: { wrapText: true } }
+                });
+                line.push({
+                  value: sousTheme.data.situationsExamples,
+                  style: { alignment: { wrapText: true } }
+                });
+                line.push({
+                  value: "",
+                  style: {
+                    fill: {
+                      patternType: "solid",
+                      fgColor: { rgb: this.color(sousTheme.data.presence) }
+                    }
+                  }
+                }); // TODO : handle colors
+                line.push({
+                  value: "",
+                  style: {
+                    fill: {
+                      patternType: "solid",
+                      fgColor: { rgb: this.color(sousTheme.data.intensity) }
+                    }
+                  }
+                });
+                line.push({
+                  value: sousTheme.data.comment,
+                  style: { alignment: { wrapText: true } }
+                });
+              } else {
+                line.push({ value: " " });
+                line.push({ value: " " });
+                line.push({ value: " " });
+                line.push({ value: " " });
+                line.push({ value: " " });
+                line.push({ value: " " });
               }
-            }
-          }); // TODO : handle colors
-          line.push({
-            value: "",
-            style: {
-              fill: {
-                patternType: "solid",
-                fgColor: { rgb: this.color(sousTheme.data.intensity) }
-              }
-            }
-          }); // TODO : handle colors
-          line.push({ value: sousTheme.data.correctiveActions });
-          line.push({
-            value: "",
-            style: {
-              fill: {
-                patternType: "solid",
-                fgColor: { rgb: this.color(sousTheme.data.urgencyLevel) }
-              }
-            }
-          }); // TODO : handle colors
-          line.push({
-            value: sousTheme.data.existingActions,
-            style: { alignment: { wrapText: true } }
-          });
-          line.push({
-            value: sousTheme.data.selectedActions,
-            style: { alignment: { wrapText: true } }
-          });
-          line.push({ value: sousTheme.data.timeLimit });
-          line.push({
-            value: sousTheme.data.inCharge,
-            style: { alignment: { wrapText: true } }
-          });
-          line.push({
-            value: sousTheme.data.comment,
-            style: { alignment: { wrapText: true } }
-          });
+              line.push({
+                value: action.name,
+                style: { alignment: { wrapText: true } }
+              });
+              line.push({
+                value: "",
+                style: {
+                  fill: {
+                    patternType: "solid",
+                    fgColor: { rgb: this.color(action.emergency) }
+                  }
+                }
+              });
+              line.push({
+                value: action.alreadyExisting,
+                style: { alignment: { wrapText: true } }
+              });
+              line.push({
+                value: action.new,
+                style: { alignment: { wrapText: true } }
+              });
+              line.push({
+                value: action.timeLimit,
+                style: { alignment: { wrapText: true } }
+              });
+              line.push({
+                value: action.inCharge,
+                style: { alignment: { wrapText: true } }
+              });
 
-          dataSetPage1[0].data.push(line);
+              dataSetPage1[0].data.push(line);
+            });
+          } else {
+            let line = [];
+            line.push({
+              value: theme.name,
+              style: { alignment: { wrapText: true } }
+            });
+            line.push({
+              value: sousTheme.name,
+              style: { alignment: { wrapText: true } }
+            });
+            line.push({
+              value: sousTheme.data.situationsExamples,
+              style: { alignment: { wrapText: true } }
+            });
+            line.push({
+              value: "",
+              style: {
+                fill: {
+                  patternType: "solid",
+                  fgColor: { rgb: this.color(sousTheme.data.presence) }
+                }
+              }
+            }); // TODO : handle colors
+            line.push({
+              value: "",
+              style: {
+                fill: {
+                  patternType: "solid",
+                  fgColor: { rgb: this.color(sousTheme.data.intensity) }
+                }
+              }
+            });
+            line.push({
+              value: sousTheme.data.comment,
+              style: { alignment: { wrapText: true } }
+            });
+            dataSetPage1[0].data.push(line);
+          }
         });
       });
       console.log("topics : ", topics, this.props.populationIndex);
@@ -160,10 +227,6 @@ export default class Export extends React.Component {
         }
       >
         <ExcelSheet dataSet={dataSetPage1} name="Feuille 1" />
-        <ExcelSheet data={dataSet1} name="Feuille 2">
-          <ExcelColumn label="Name" value="name" />
-          <ExcelColumn label="Id" value="id" />
-        </ExcelSheet>
       </ExcelFile>
     );
   }

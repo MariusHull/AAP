@@ -7,7 +7,6 @@
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
-    "react-data-export": "^0.5.0",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
@@ -15,6 +14,7 @@
     "sass": "^1.20.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
+    "tempa-xlsx": "0.0.1",
     "typeface-roboto": "0.0.54",
     "xlsx": "^0.14.3"
   },
