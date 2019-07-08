@@ -39,7 +39,7 @@ export default class ExportContent extends React.Component {
                 this.props.populationIndex === null
               }
             >
-              Télécharger les réponses
+              Télécharger les résultats
               <Icon name="download" />
             </Button>
           }
