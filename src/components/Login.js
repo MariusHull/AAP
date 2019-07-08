@@ -214,7 +214,7 @@ export default class Login extends Component {
                         </Button>
                         <Button
                           class="ui button"
-                          data-tooltip="Envoyez un email à admin@aap.fr"
+                          data-tooltip="Envoyez un email à vanessa.boissard@alteralliance.com"
                           data-position="top center"
                           basic
                         >
