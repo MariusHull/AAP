@@ -149,7 +149,7 @@ export default class Export extends React.Component {
                 style: { alignment: { wrapText: true } }
               });
 
-              dataSetPage1[0].data.push(line);
+              dataSetPage1[1].data.push(line);
             });
           } else {
             let line = [];
@@ -187,7 +187,7 @@ export default class Export extends React.Component {
               value: sousTheme.data.comment,
               style: { alignment: { wrapText: true } }
             });
-            dataSetPage1[0].data.push(line);
+            dataSetPage1[1].data.push(line);
           }
         });
       });
