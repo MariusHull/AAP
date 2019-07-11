@@ -19,7 +19,8 @@ export default class Footer extends Component {
       >
         <p style={{ color: "#888", margin: "0px" }}>
           {" "}
-          RGPD compliant | D’après le modèle de Document Unique proposé par l'{" "}
+          RGPD compliant | D’après le modèle de Document Unique des risques
+          psychosociaux (RPS) proposé par l'{" "}
           <a href="http://www.inrs.fr/"> INRS </a>{" "}
         </p>
         <img
@@ -27,6 +28,10 @@ export default class Footer extends Component {
           alt="Logo INRS"
           style={{ margin: "0px 10px", height: "25px" }}
         />
+        <p style={{ color: "#888", margin: "0px" }}>
+          | Réalisé en partenariat avec la junior entreprise de{" "}
+          <a href="https://www.juniorcs.fr/"> CentraleSupélec </a>{" "}
+        </p>
       </div>
     );
   }
