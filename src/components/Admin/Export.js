@@ -48,15 +48,35 @@ export default class Export extends React.Component {
   color = value => {
     switch (value) {
       case -1:
-        return "FFFFFFFF";
+        return {};
       case 0:
-        return "FF84E296";
+        return {
+          fill: {
+            patternType: "solid",
+            fgColor: { rgb: "FFC7D6A0" }
+          }
+        };
       case 1:
-        return "FFFCF068";
+        return {
+          fill: {
+            patternType: "solid",
+            fgColor: { rgb: "FFF1EF7D" }
+          }
+        };
       case 2:
-        return "FFF4BD40";
+        return {
+          fill: {
+            patternType: "solid",
+            fgColor: { rgb: "FFF1C295" }
+          }
+        };
       case 3:
-        return "FFEB614B";
+        return {
+          fill: {
+            patternType: "solid",
+            fgColor: { rgb: "FFD09996" }
+          }
+        };
       default:
         break;
     }
@@ -91,21 +111,11 @@ export default class Export extends React.Component {
                 });
                 line.push({
                   value: "",
-                  style: {
-                    fill: {
-                      patternType: "solid",
-                      fgColor: { rgb: this.color(sousTheme.data.presence) }
-                    }
-                  }
+                  style: this.color(sousTheme.data.presence)
                 }); // TODO : handle colors
                 line.push({
                   value: "",
-                  style: {
-                    fill: {
-                      patternType: "solid",
-                      fgColor: { rgb: this.color(sousTheme.data.intensity) }
-                    }
-                  }
+                  style: this.color(sousTheme.data.intensity)
                 });
                 line.push({
                   value: sousTheme.data.comment,
@@ -125,12 +135,7 @@ export default class Export extends React.Component {
               });
               line.push({
                 value: "",
-                style: {
-                  fill: {
-                    patternType: "solid",
-                    fgColor: { rgb: this.color(action.emergency) }
-                  }
-                }
+                style: this.color(action.emergency)
               });
               line.push({
                 value: action.alreadyExisting,
@@ -167,21 +172,11 @@ export default class Export extends React.Component {
             });
             line.push({
               value: "",
-              style: {
-                fill: {
-                  patternType: "solid",
-                  fgColor: { rgb: this.color(sousTheme.data.presence) }
-                }
-              }
+              style: this.color(sousTheme.data.presence)
             }); // TODO : handle colors
             line.push({
               value: "",
-              style: {
-                fill: {
-                  patternType: "solid",
-                  fgColor: { rgb: this.color(sousTheme.data.intensity) }
-                }
-              }
+              style: this.color(sousTheme.data.intensity)
             });
             line.push({
               value: sousTheme.data.comment,

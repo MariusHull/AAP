@@ -22,59 +22,59 @@ const struct = [
   {
     theme: "Intensité et complexité du travail",
     sub_themes: [
-      "Les contraintes de rythmes de travail",
-      "La précision des objectifs de travail",
-      "L'adéquation des objectifs de travail avec les moyens alloués et les responsabilités exercées",
-      "La compatibilité des instructions de travail entre elles",
-      "La modalité d'organisation de la polyvalence",
-      "Les interruptions perturbatrices au cours du travail",
-      "Les niveaux d'attention et de vigilance requis dans le travail"
+      "Contraintes de rythmes",
+      "Précision des objectifs",
+      "Adéquation des objectifs avec les moyens et les responsabilités de chacun",
+      "La compatibilité des instructions entre elles",
+      "Modalités d'organisation de la polyvalence",
+      "Interruptions perturbatrices",
+      "Niveaux d'attention et de vigilance requis"
     ]
   },
   {
-    theme: "Horaires de travail",
+    theme: "Temps de travail",
     sub_themes: [
-      "La durée hebdomadaire du travail",
-      "Le travail en horaires atypiques",
-      "L'extension de la disponibilité en dehors des horaires de travail",
-      "La prévisibilité des horaires de travail et anticipation de leur changement",
-      "La conciliation entre vie professionnelle et vie personnelle"
+      "Durée hebdomadaire du travail",
+      "Travail en horaires atypiques",
+      "Extension de la disponibilité en dehors des horaires de travail",
+      "Prévisibilité des horaires de travail et anticipation de leur changement",
+      "Conciliation entre vie professionnelle et vie personnelle"
     ]
   },
   {
     theme: "Exigences émotionnelles",
     sub_themes: [
-      "Les tensions avec le public",
-      "La confrontation à la souffrance d'autrui",
-      "La maitrise des émotions (faire bonne figure)"
+      "Tensions avec le public",
+      "Confrontation à la souffrance d'autrui",
+      "Maitrise des émotions"
     ]
   },
   {
     theme: "Autonomie au travail",
     sub_themes: [
-      "L'autonomie dans la tâche",
-      "L'autonomie temporelle",
-      "L'utilisation et le développement des compétences"
+      "Autonomie dans la tâche",
+      "Autonomie temporelle",
+      "Utilisation et développement des compétences"
     ]
   },
   {
     theme: "Rapports sociaux au travail",
     sub_themes: [
-      "Le soutien de la part des collègues",
-      "Le soutien de la part des supérieurs hiérarchiques",
-      "Les violences internes au travail",
-      "La reconnaissance dans le travail"
+      "Soutien de la part des collègues",
+      "Soutien de la part de la hiérarchie",
+      "Violences internes au travail",
+      "Reconnaissance du travail"
     ]
   },
   {
     theme: "Conflits de valeurs",
-    sub_themes: ["La qualité empêchée", "L'utilité du travail"]
+    sub_themes: ["Qualité empêchée", "Utilité du travail"]
   },
   {
     theme: "Insécurité de l'emploi et du travail",
     sub_themes: [
-      "L'insécurité/la sécurité socio-économique",
-      "La conduite du changement"
+      "Insécuritéde la situation de travail",
+      "Conduite du changement"
     ]
   }
 ];
@@ -97,107 +97,108 @@ const form = [
     name: "Intensité et complexité du travail",
     subTopics: [
       {
-        name: "Les contraintes de rythmes de travail",
+        name: "Contraintes de rythmes",
         data: initData,
         subTitle:
-          "Les salariés sont-ils soumis à des contraintes de rythmes élevés ?",
+          "Les salariés sont-ils soumis à des contraintes de rythme élevées ?",
         details:
-          "Le rythme de travail peut être imposé par des contraintes internes à l’entreprise (cadence d’une machine, normes de production, dépendance vis-à-vis du travail de collègues en amont ou en aval...) ou externes (demande des clients nécessitant une réponse immédiate...). Ces contraintes de rythmes, lorsqu’elles sont élevées, exigent des salariés une réactivité et une disponibilité quasi-permanente qui sont sources de stress."
+          "Le rythme de travail peut être imposé par des contraintes internes à l’organisation (normes de performance, exigences des interlocuteurs en interne…) ou externes (demande des clients nécessitant une réponse immédiate…)."
       },
       {
-        name: "La précision des objectifs de travail",
+        name: "Précision des objectifs ",
         data: initData,
-        subTitle: "Les objectifs des salariés sont-ils clairement définis ?",
+        subTitle: "Les objectifs des salariés sont-ils clairement déﬁnis ?",
         details:
-          "Les objectifs de travail fixés par l’entreprise guident les salariés dans la réalisation de leurs tâches. Ils peuvent être quantitatifs (par exemple, le nombre de ventes à réaliser dans le mois) ou qualitatifs (par exemple, donner des réponses satisfaisantes aux demandes des clients). Lorsque ces objectifs sont imprécis, flous, voire inexistants, les salariés manquent de repères sur ce qu’on attend réellement de leur travail. Dès lors, des décalages peuvent se créer entre les objectifs que les salariés peuvent eux-mêmes se fixer et les objectifs de l’entreprise."
+          "Les objectifs fixés doivent être clairs et réalistes pour permettre aux salariés de disposer de critères d’atteinte, mesurables quantitativement et qualitativement (par opposition avec des objectifs ﬂous, irréalistes, voire inexistants).  "
       },
       {
         name:
-          "L'adéquation des objectifs de travail avec les moyens alloués et les responsabilités exercées",
+          "Adéquation des objectifs avec les moyens et les responsabilités de chacun",
         data: initData,
         subTitle:
-          "Les objectifs fixés sont-ils compatibles avec les moyens et responsabilités alloués aux salariés pour les atteindre?",
-        details:
-          "Les objectifs de travail peuvent être clairement définis sans toutefois s’avérer réalistes au regard des exigences du travail et des ressources mises à disposition des salariés (moyens humains, techniques, responsabilités effectives...). Lorsque les objectifs ne sont pas en adéquation avec les moyens, les risques sont plus élevés de voir les salariés en difficulté (fatigue, saturation, débordement, baisse de performance) et insatisfaits."
+          "Les objectifs ﬁxés sont-ils compatibles avec les moyens et responsabilités alloués aux salariés pour les atteindre ?",
+        details: `Il s’agit ici d’évaluer si les objectifs définis sont compatibles avec les marges de manœuvre dont disposent les salariés et la réalité quotidienne du travail. 
+          Les objectifs peuvent être clairement déﬁnis mais irréalistes au regard des exigences du travail et des ressources matérielles, techniques et humaines mises à disposition des salariés. 
+          `
       },
       {
-        name: "La compatibilité des instructions de travail entre elles",
+        name: "La compatibilité des instructions entre elles",
         data: initData,
         subTitle:
-          "Les salariés reçoivent-ils des instructions, des ordres ou demandes qui peuvent être contradictoires entre eux ?",
+          "Les salariés reçoivent-ils des instructions ou demandes contradictoires ?",
         details:
-          "Les contradictions peuvent provenir de consignes différentes données par les uns et les autres (encadrement/fonctionnel, direction de l’entreprise/ clientèle...). Elles peuvent également être dues à des instructions, ordres, demandes antagonistes : par exemple, faire de la qualité rapidement, satisfaire les attentes personnalisées des clients dans un temps préétabli... La nécessité d’arbitrer entre ces contradictions complique le travail et constitue une charge mentale supplémentaire pour les salariés."
+          "Les demandes contradictoires peuvent provenir de sollicitations antagonistes émanant des différents acteurs (hiérarchique/fonctionnel, direction/clientèle…), par exemple : combiner qualité sans défaut et rapidité d’exécution. "
       },
       {
-        name: "La modalité d'organisation de la polyvalence",
+        name: "Modalités d’organisation de la polyvalence",
         data: initData,
         subTitle:
-          "Les salariés sont-ils amenés à changer de tâches, de postes ou de fonctions à l’improviste pour répondre aux contraintes du moment ?",
-        details:
-          "La polyvalence est une forme d’organisation du travail qui consiste à affecter plusieurs activités différentes à un salarié. Elle peut devenir problématique lorsqu’elle est subie, c’est-à-dire quand les remplacements se font au « pied levé », dans l’urgence et sans préparation. Elle est d’autant plus pénalisante quand les salariés ne sont pas formés pour exercer ces différentes activités. Au-delà des risques d’erreur ou d’accident, la polyvalence subie peut être considérée comme dévalorisante par les salariés et constituer une perte de sens du métier."
+          "Les salariés sont-ils amenés à changer de tâches, de postes ou de fonctions à l’improviste pour répondre aux contraintes du moment ?",
+        details: `La polyvalence est une forme d’organisation du travail qui consiste à affecter plusieurs activités différentes à un salarié. 
+          Elle peut devenir problématique lorsqu’elle est subie, c’est-à-dire quand sa nécessité n’est pas comprise/accompagnée ou s’exerce au détriment de la qualité.
+          `
       },
       {
-        name: "Les interruptions perturbatrices au cours du travail",
+        name: "Interruptions perturbatrices",
         data: initData,
         subTitle:
-          "Les salariés sont-ils fréquemment interrompus au cours de leur travail par des tâches non prévues ?",
+          "Les salariés sont-ils fréquemment interrompus par des tâches non prévues ?",
         details:
-          "Les interruptions inopinées obligent les salariés à mettre entre parenthèses leur tâche principale pour en traiter d’autre(s). Elles « morcèlent » le travail, perturbent son bon déroulement et sont source de charge mentale. Elles peuvent générer des erreurs mais aussi être mal vécues dans la mesure où les salariés ont l’impression de faire un travail de mauvaise qualité et de ne jamais pouvoir terminer ce qu’ils ont entrepris."
+          "Les interruptions imprévues conduisent les salariés à suspendre régulièrement leur travail en cours, les obligeant ensuite à se reconcentrer sur leur tâche de départ. "
       },
       {
-        name: "Les niveaux d'attention et de vigilance requis dans le travail",
+        name: "Niveaux d’attention et de vigilance requis",
         data: initData,
         subTitle:
-          "Les salariés exercent-ils des activités qui nécessitent une attention soutenue ou une vigilance permanente ?",
+          "Les salariés exercent-ils des activités qui nécessitent une attention soutenue ou une vigilance permanente ?",
         details:
-          "Maintenir un niveau élevé d’attention ou rester vigilant pendant de longues périodes est particulièrement difficile pour l’organisme. Selon les tâches, par exemple de surveillance ou de contrôle, cela peut occasionner chez les salariés de la fatigue, des baisses d’attention, mais aussi la crainte de commettre des erreurs ou des oublis dans leur travail."
+          "Un niveau élevé d’attention ou de vigilance maintenu pendant de longues périodes peut s’avérer d’autant plus difﬁcile (risque de fatigue mentale pouvant conduire à des erreurs) lorsqu’il est impossible d’organiser des temps de pause. "
       }
     ]
   },
   {
-    name: "Horaires de travail",
+    name: "Temps de travail",
     subTopics: [
       {
-        name: "La durée hebdomadaire du travail",
+        name: "Durée hebdomadaire du travail",
         data: initData,
         subTitle:
-          "Arrive-t-il que les salariés travaillent plus de 45 heures par semaine ?",
+          "Les salariés travaillent-ils de manière excessive sans période de moindre charge ?",
         details:
-          "Au-delà d’une certaine limite, la durée hebdomadaire du travail s’avère dommageable pour la santé, quelle que soit la satisfaction qu’éprouve le salarié dans son travail. D’après les connaissances scientifiques actuelles, il serait raisonnable de ne pas dépasser 45 heures de travail par semaine."
+          "Les horaires de travail peuvent être excessifs de manière continue."
       },
       {
-        name: "Le travail en horaires atypiques",
+        name: "Travail en horaires atypiques",
         data: initData,
         subTitle:
-          "Les salariés sont-ils soumis à des horaires de nuit, alternants ou décalés ?",
+          "Les salariés sont-ils soumis à des horaires de nuit, alternants ou décalés ?",
         details:
-          "Certains types d’horaires de travail ont des répercussions sur la santé physique et mentale des salariés. C’est par exemple les cas du travail de nuit ou du travail en horaires alternants (3x8, 2x12...), des horaires décalés (particulièrement le soir et le week-end), des horaires fractionnés (11h-15h puis 18h-21h, par exemple) ou du travail sur appel (absence d’horaire pré-établi)."
+          "Il s’agit par exemple du travail le soir, le week-end, de nuit ou encore du travail posté."
+      },
+      {
+        name: "Extension de la disponibilité en dehors des horaires de travail",
+        data: initData,
+        subTitle:
+          "Les salariés sont-ils sollicités en dehors des horaires de travail pour des raisons professionnelles ?",
+        details:
+          "La disponibilité attendue des salariés peut s’étendre au-delà de leurs horaires habituels de travail (soirs, week-end ou congés…)."
       },
       {
         name:
-          "L'extension de la disponibilité en dehors des horaires de travail",
+          "Prévisibilité des horaires de travail et l’anticipation de leur changement",
         data: initData,
         subTitle:
-          "Les salariés sont-ils contactés en dehors des horaires de travail pour des raisons professionnelles ?",
+          "Les salariés peuvent-ils anticiper sufﬁsamment à l’avance leurs horaires de travail ?",
         details:
-          "La disponibilité demandée aux salariés peut s’étendre au-delà de leurs horaires de travail (week-end, congés...). Elle limite les possibilités de récupération physique et mentale. De plus, elle empiète sur la vie personnelle des salariés."
+          "L’incertitude sur les horaires de travail à effectuer complique l’organisation du travail et de la vie personnelle."
       },
       {
-        name:
-          "La prévisibilité des horaires de travail et anticipation de leur changement",
+        name: "Conciliation entre vie professionnelle et vie personnelle",
         data: initData,
         subTitle:
-          "Les salariés connaissent-ils suffisamment à l’avance leurs horaires de travail ou les changements éventuels de leur planning de travail ?",
+          "L’organisation du travail permet-elle aux salariés de concilier vie professionnelle et vie personnelle ?",
         details:
-          "L’incertitude envers les horaires de travail à effectuer, le caractère inopiné des changements dans les plannings horaires... ne facilitent pas l’organisation de la vie personnelle. Ils rendent difficile toute prévision des activités extraprofessionnelles et obligent à des adaptations souvent coûteuses pour les salariés, par exemple s’ils ont à charge de jeunes enfants."
-      },
-      {
-        name: "La conciliation entre vie professionnelle et vie personnelle",
-        data: initData,
-        subTitle:
-          "L’entreprise permet-elle aux salariés de concilier vie professionnelle et vie personnelle ?",
-        details:
-          "La conciliation peut être facilitée dans l’entreprise par la négociation d’accords, par exemple en matière d’aménagement des horaires de travail, ou par la possibilité d’arrangements informels accordés selon les besoins des salariés. Ces commodités peuvent les aider à remplir des obligations extraprofessionnelles (familiales, médicales, administratives...)."
+          "L’équilibre des temps de vie peut être facilité par la négociation d’accords individuels (aménagements des horaires, possibilité d’arrangements informels) et collectifs (charte d’utilisation des outils numériques, droit à la déconnexion)."
       }
     ]
   },
@@ -205,28 +206,28 @@ const form = [
     name: "Exigences émotionnelles",
     subTopics: [
       {
-        name: "Les tensions avec le public",
+        name: "Tensions avec le public",
         data: initData,
         subTitle:
-          "Les salariés sont-ils confrontés à des situations de tension (avec des clients, usagers, patients...) dont ils se plaignent ?",
+          "Les salariés sont-ils confrontés à des situations de tension avec des tiers dont ils se plaignent ?",
         details:
-          "La mauvaise qualité de service, des délais d’attente jugés trop longs... peuvent susciter le mécontentement du public et créer des tensions avec les salariés (altercations verbales et/ou physiques...). Ces heurts sont susceptibles d’avoir des répercussions sur le travail des salariés (interruption ponctuelle de l’activité, augmentation des erreurs, démobilisation professionnelle, dégradation du climat de travail, des relations professionnelles...)."
+          "La perception d’une mauvaise qualité de service, peut susciter le mécontentement du public, des usagers, des clients, des patients… et exposer les salariés à des tensions (violences verbales et/ou physiques…)."
       },
       {
-        name: "La confrontation à la souffrance d'autrui",
+        name: "Confrontation à la souffrance d'autrui",
         data: initData,
         subTitle:
-          "Dans le cadre de leur activité professionnelle, les salariés sont-ils amenés à devoir traiter la situation de personnes en souffrance (physique, psychologique ou sociale) ?",
+          "Les salariés sont-ils amenés à devoir traiter des situations de personnes en souffrance (physique, psychologique ou sociale) ?",
         details:
-          "Toute confrontation à la souffrance de tiers est coûteuse psychiquement pour les salariés. Certaines situations de travail peuvent en accentuer la charge émotionnelle : manque de moyens pour venir en aide aux personnes en difficulté, absence d’issue face à leurs problèmes... Cela peut profondément ébranler les salariés et réduire leur investissement dans leur travail."
+          "Les salariés peuvent devoir faire face régulièrement à des situations de mal-être de la part de tiers (public, usagers, clients, patients…) qu’ils ont à gérer."
       },
       {
-        name: "La maitrise des émotions (faire bonne figure)",
+        name: "Maîtrise des émotions",
         data: initData,
         subTitle:
-          "Dans leur travail, les salariés se doivent-ils de « faire bonne figure » en toutes circonstances ?",
+          "Les salariés doivent-ils  contrôler leurs émotions pour « faire bonne ﬁgure » en toutes circonstances ? ",
         details:
-          "Devoir adopter une attitude bienveillante et disponible envers les autres constitue une exigence à laquelle les salariés peuvent être contraints, par exemple dans certains métiers en contact avec le public. Plus généralement, il peut aussi leur être demandé de manifester de l’enthousiasme et de l’allant pour leur travail vis-à-vis de l’entourage professionnel. Cela peut avoir des conséquences sur la santé mentale des salariés lorsqu’ils sont amenés à « prendre sur eux » pour ne pas montrer leurs véritables émotions ou bien leurs ressentis du moment."
+          "Les salariés en contact avec des tiers (public, usagers, clients, patients…) peuvent être amenés à régulièrement « prendre sur eux » pour ne pas montrer leurs véritables émotions ou ressentis."
       }
     ]
   },
@@ -234,28 +235,29 @@ const form = [
     name: "Autonomie au travail",
     subTopics: [
       {
-        name: "L'autonomie dans la tâche",
+        name: "Autonomie dans la tâche",
         data: initData,
         subTitle:
-          "Les salariés ont-ils des marges de manœuvre dans la manière de réaliser leur travail dès lors que les objectifs sont atteints ?",
+          "Les salariés ont-ils suffisamment de marge de manœuvre pour réaliser leur travail ?",
         details:
-          "Les marges de manœuvre dans le travail relèvent des possibilités d’action dont les salariés disposent pour choisir la manière d’organiser et de réaliser leur travail ainsi que les procédés employés (choix des gestes, des techniques, des outils...). Plus ces marges sont grandes, plus l’autonomie des salariés dans leur travail peut être importante. Sans ou avec peu d’autonomie, les salariés sont contraints dans l’exécution de leur travail, sans possibilité d’en influencer le déroulement et de prendre des initiatives. Les salariés peuvent dès lors se désinvestir d’un travail dénué d’intérêt."
+          "L’autonomie permet aux salariés de bénéficier d’une certaine liberté d’action et d’organisation dans la réalisation de leur activité de travail."
       },
       {
-        name: "L'autonomie temporelle",
+        name: "Autonomie temporelle",
         data: initData,
         subTitle:
-          "Les salariés peuvent-ils interrompre momentanément leur travail quand ils en ressentent le besoin ?",
-        details:
-          "La possibilité de choisir les moments de pause donne également une indication du niveau d’autonomie dont les salariés bénéficient dans le travail. Les pauses de courte durée peuvent être l’occasion de récupération ou de partage de moments de convivialité, qui restaurent la capacité de travail et favorisent la qualité des relations sociales dans l’entreprise. Les pauses favorisent également les échanges informels sur le travail."
+          "Les salariés peuvent-ils interrompre momentanément leur travail quand ils en ressentent le besoin",
+        details: `La possibilité de choisir ses moments de pause est un indicateur du niveau d’autonomie dont les salariés bénéﬁcient. 
+          Les pauses peuvent être l’occasion de temps de récupération, de partage sur le travail et/ou de convivialité. 
+          `
       },
       {
-        name: "L'utilisation et le développement des compétences",
+        name: "Utilisation et développement des compétences",
         data: initData,
         subTitle:
-          "Les salariés peuvent-ils utiliser leurs compétences professionnelles et en développer de nouvelles ?",
+          "Les salariés peuvent-ils utiliser leurs compétences professionnelles et en développer de nouvelles ?",
         details:
-          "Il s’agit ici de déterminer si les tâches et missions confiées aux salariés leur permettent, d’une part, de mettre pleinement en œuvre leurs compétences et, d’autre part, leur donnent l’occasion d’en développer d’autres. Ne pas avoir la possibilité d’utiliser dans le travail ses connaissances et ses savoir-faire, ou encore ne pas avoir de perspective d’accroître son potentiel (par des formations, par exemple) place les salariés dans une situation de dévalorisation progressive de leur qualification professionnelle. Elle peut engendrer une dépréciation de soi et de ses capacités, et conduire à un désengagement dans le travail."
+          "Il s’agit de déterminer si les missions conﬁées permettent aux salariés de mettre pleinement en œuvre leurs compétences (savoir-faire, savoir-être) et leur donnent l’occasion d’en développer de nouvelles. "
       }
     ]
   },
@@ -263,36 +265,33 @@ const form = [
     name: "Rapports sociaux au travail",
     subTopics: [
       {
-        name: "Le soutien de la part des collègues",
+        name: "Soutien de la part des collègues",
         data: initData,
-        subTitle:
-          "Les relations entre collègues sont-elles bonnes (confiance, entraide, convivialité au sein des équipes) ?",
+        subTitle: "Les relations entre collègues sont-elles bonnes ?",
         details:
-          "La qualité des relations avec les collègues et l’intégration dans un collectif de travail influent sur le bien-être et la santé au travail. Les possibilités d’entraide et de coopération facilitent l’accomplissement des tâches. Elles sont en particulier une ressource pour les salariés lorsqu’ils se trouvent face à des situations imprévues, complexes ou difficiles à gérer. Selon les contextes, le collectif de travail peut jouer un rôle d’intégration sociale, en favorisant les solidarités et les moments de convivialité. À l’inverse, il peut être le cadre de tensions, de rivalités ou de concurrence, devenant dès lors un facteur de risque pour la santé mentale des salariés."
+          "La qualité des relations de travail entre collègues et l’intégration dans un collectif (conﬁance, entraide, convivialité au sein des équipes) inﬂuent sur le bien-être et l’efficacité individuelle et collective."
       },
       {
-        name: "Le soutien de la part des supérieurs hiérarchiques",
+        name: "Soutien de la part de la hiérarchie",
         data: initData,
-        subTitle:
-          "Les salariés reçoivent-ils un soutien de la part de l’encadrement ?",
+        subTitle: "Les salariés reçoivent-ils du soutien managérial ?",
         details:
-          "Au-delà de la qualité des relations entretenues avec la hiérarchie, il est question ici de la disponibilité, des capacités d’écoute et d’action dont fait preuve l’encadrement face aux sollicitations des salariés (par exemple, discuter d’un problème technique, régler des difficultés imprévues, arbitrer des intérêts divergents, modérer des conflits...). L’absence de soutien d’un supérieur peut créer un sentiment d’isolement, de frustration, de lassitude ou d’injustice chez les salariés."
+          "Il est question ici de la disponibilité, des capacités d’écoute et d’action de la hiérarchie face aux besoins/demandes des salariés (discuter d’un problème technique, régler des difﬁcultés imprévues, arbitrer, réguler les conﬂits…)."
       },
       {
-        name: "Les violences internes au travail",
+        name: "Violence interne au travail",
         data: initData,
         subTitle:
-          "Règne-t-il un climat de courtoisie et de respect mutuel entre les salariés de l’entreprise (absence de propos ou d’attitudes blessantes, discriminatoires...) ?",
+          "Règne-t-il un climat de respect et de courtoisie mutuels entre les salariés ?",
         details:
-          "La violence interne est relative à l’ensemble des attitudes, comportements, actes hostiles qui se manifestent sur le lieu de travail entre les salariés de l’entreprise, quels que soient leurs niveaux hiérarchiques. Il peut s’agir d’atteintes dégradantes, de comportements méprisants, discriminatoires, voire de harcèlement moral ou sexuel. Cette violence, quelle qu’en soit sa forme, est symptomatique d’une dégradation des relations sociales dans l’entreprise. Elle peut porter atteinte à la santé physique et mentale des salariés."
+          "La violence interne est relative à l’ensemble des incivilités, comportements, propos, agissements hostiles ou irrespectueux (sexisme, discrimination…) entre collègues et/ou avec la hiérarchie."
       },
       {
-        name: "La reconnaissance dans le travail",
+        name: "Reconnaissance du travail",
         data: initData,
-        subTitle:
-          "Les salariés reçoivent-ils des marques de reconnaissance de leur travail de la part de l’entreprise ?",
+        subTitle: "Les salariés reçoivent-ils des marques de reconnaissance ?",
         details:
-          "La reconnaissance de la valeur du travail réalisé, des compétences ou encore des performances est essentielle à la construction d’une identité professionnelle positive. Cette reconnaissance peut se manifester au travers de la rémunération, du statut, des perspectives de carrière proposées par l’entreprise. Elle peut être d’ordre plus pratique (attribution de moyens pour réaliser son travail dans de bonnes conditions...) ou symbolique (éloges, distinction...). Le manque de reconnaissance du travail par l’entreprise peut entraîner une perte d’estime de soi et conduire à un désinvestissement du salarié dans son activité professionnelle. Il a également des effets sur sa santé mentale et physique."
+          "La reconnaissance des efforts et du résultat peut être symbolique (félicitations, éloges, feedback constructifs, soutien, remerciements…), de carrière (évolutions professionnelles, développement des compétences, moyens mis à disposition pour réaliser le travail…), financière (primes, augmentations, promotions…)."
       }
     ]
   },
@@ -300,20 +299,20 @@ const form = [
     name: "Conflits de valeurs",
     subTopics: [
       {
-        name: "La qualité empêchée",
+        name: "Qualité empêchée",
         data: initData,
         subTitle:
-          "Les salariés considèrent-ils qu’ils font un travail de qualité ?",
+          "Les salariés ont-ils le sentiment de faire un travail de qualité ?",
         details:
-          "Pouvoir tirer de la fierté du travail qu’on réalise, du soin qu’on peut y apporter... contribue à une image valorisante de son activité professionnelle et de sa contribution personnelle. A contrario, être contraint de faire un travail bâclé ou de qualité médiocre, faute de moyens ou de délais suffisants, a des effets sur la santé mentale des salariés et sur le climat de travail. Il en est de même lorsque l’on est amené à faire un travail qui est en désaccord avec ses valeurs professionnelles."
+          "La perception pour les salariés de pouvoir exercer leur activité conformément à leur conception d’un travail bien fait (délais de réalisation, moyens adaptés et suffisants…)."
       },
       {
-        name: "L'utilité du travail",
+        name: "Utilité du travail",
         data: initData,
         subTitle:
-          "Les salariés estiment-ils en général que leur travail est reconnu comme utile ?",
+          "Les salariés estiment-ils que leur travail est reconnu comme utile ?",
         details:
-          "L’utilité du travail fait référence à la contribution significative du salarié à la mission qui lui est confiée par l’entreprise. Généralement, les salariés jugent leur travail utile lorsqu’il sert concrètement les résultats de l’entreprise ou bénéficie à d’autres acteurs (clients, usagers, patients...). La reconnaissance de cette contribution est un élément important du jugement d’utilité porté par les salariés sur leur propre travail."
+          "Il s’agit du sentiment de contribuer significativement, par son activité, à un ensemble plus large et de servir concrètement les résultats de l’organisation ou d’en faire bénéﬁcier d’autres acteurs (public, clients, usagers, patients, collègues…). S’ajoute à cela la notion de complétude : possibilité de constater soi-même la finalité et la réussite de son travail."
       }
     ]
   },
@@ -321,20 +320,20 @@ const form = [
     name: "Insécurité de l'emploi et du travail",
     subTopics: [
       {
-        name: "L'insécurité/la sécurité socio-économique",
+        name: "Insécurité de la situation de travail",
         data: initData,
         subTitle:
-          "Les salariés sont-ils confrontés à des incertitudes quant au maintien de leur activité dans les prochains mois ?",
+          "Les salariés sont-ils confrontés à des incertitudes quant au maintien de leur activité dans les prochains mois ?",
         details:
-          "Ces incertitudes peuvent provoquer la peur de perdre son emploi, la crainte de voir baisser son revenu et de ne pas bénéficier d’un déroulement « favorable » de sa carrière (absence de promotion, temps partiel subi...)."
+          "Ces incertitudes peuvent se manifester par la peur de perdre son emploi, la crainte de voir baisser son revenu et de ne pas bénéﬁcier d’un déroulement de carrière « favorable » (absence de promotion, temps partiel subi…)."
       },
       {
-        name: "La conduite du changement",
+        name: "Conduite du changement",
         data: initData,
         subTitle:
           "Les changements sont-ils suffisamment anticipés, accompagnés, et clairement expliqués aux salariés ?",
         details:
-          "De manière générale, les situations de changement (stratégique, organisationnel, technologique...) sont génératrices de risques de surcharge (temps d’apprentissage et d’assimilation des changements), de remise en cause des compétences et d’atteinte au sens donné au travail."
+          "Tout changement (stratégique, organisationnel, technologique...) représente une situation d'efforts et donc potentiellement de tensions : temps d'apprentissage et d'assimilation des changements, remise en cause des compétences, atteinte possible du sens donné au travail et du sentiment de 'bien travailler'"
       }
     ]
   }
@@ -354,110 +353,110 @@ export default class ContentSurvey extends Component {
           name: "Intensité et complexité du travail",
           subTopics: [
             {
-              name: "Les contraintes de rythmes de travail",
+              name: "Contraintes de rythmes",
               data: initData,
               subTitle:
-                "Les salariés sont-ils soumis à des contraintes de rythmes élevés ?",
+                "Les salariés sont-ils soumis à des contraintes de rythme élevées ?",
               details:
-                "Le rythme de travail peut être imposé par des contraintes internes à l’entreprise (cadence d’une machine, normes de production, dépendance vis-à-vis du travail de collègues en amont ou en aval...) ou externes (demande des clients nécessitant une réponse immédiate...). Ces contraintes de rythmes, lorsqu’elles sont élevées, exigent des salariés une réactivité et une disponibilité quasi-permanente qui sont sources de stress."
+                "Le rythme de travail peut être imposé par des contraintes internes à l’organisation (normes de performance, exigences des interlocuteurs en interne…) ou externes (demande des clients nécessitant une réponse immédiate…)."
             },
             {
-              name: "La précision des objectifs de travail",
+              name: "Précision des objectifs ",
               data: initData,
               subTitle:
-                "Les objectifs des salariés sont-ils clairement définis ?",
+                "Les objectifs des salariés sont-ils clairement déﬁnis ?",
               details:
-                "Les objectifs de travail fixés par l’entreprise guident les salariés dans la réalisation de leurs tâches. Ils peuvent être quantitatifs (par exemple, le nombre de ventes à réaliser dans le mois) ou qualitatifs (par exemple, donner des réponses satisfaisantes aux demandes des clients). Lorsque ces objectifs sont imprécis, flous, voire inexistants, les salariés manquent de repères sur ce qu’on attend réellement de leur travail. Dès lors, des décalages peuvent se créer entre les objectifs que les salariés peuvent eux-mêmes se fixer et les objectifs de l’entreprise."
-            },
-            {
-              name:
-                "L'adéquation des objectifs de travail avec les moyens alloués et les responsabilités exercées",
-              data: initData,
-              subTitle:
-                "Les objectifs fixés sont-ils compatibles avec les moyens et responsabilités alloués aux salariés pour les atteindre?",
-              details:
-                "Les objectifs de travail peuvent être clairement définis sans toutefois s’avérer réalistes au regard des exigences du travail et des ressources mises à disposition des salariés (moyens humains, techniques, responsabilités effectives...). Lorsque les objectifs ne sont pas en adéquation avec les moyens, les risques sont plus élevés de voir les salariés en difficulté (fatigue, saturation, débordement, baisse de performance) et insatisfaits."
-            },
-            {
-              name: "La compatibilité des instructions de travail entre elles",
-              data: initData,
-              subTitle:
-                "Les salariés reçoivent-ils des instructions, des ordres ou demandes qui peuvent être contradictoires entre eux ?",
-              details:
-                "Les contradictions peuvent provenir de consignes différentes données par les uns et les autres (encadrement/fonctionnel, direction de l’entreprise/ clientèle...). Elles peuvent également être dues à des instructions, ordres, demandes antagonistes : par exemple, faire de la qualité rapidement, satisfaire les attentes personnalisées des clients dans un temps préétabli... La nécessité d’arbitrer entre ces contradictions complique le travail et constitue une charge mentale supplémentaire pour les salariés."
-            },
-            {
-              name: "La modalité d'organisation de la polyvalence",
-              data: initData,
-              subTitle:
-                "Les salariés sont-ils amenés à changer de tâches, de postes ou de fonctions à l’improviste pour répondre aux contraintes du moment ?",
-              details:
-                "La polyvalence est une forme d’organisation du travail qui consiste à affecter plusieurs activités différentes à un salarié. Elle peut devenir problématique lorsqu’elle est subie, c’est-à-dire quand les remplacements se font au « pied levé », dans l’urgence et sans préparation. Elle est d’autant plus pénalisante quand les salariés ne sont pas formés pour exercer ces différentes activités. Au-delà des risques d’erreur ou d’accident, la polyvalence subie peut être considérée comme dévalorisante par les salariés et constituer une perte de sens du métier."
-            },
-            {
-              name: "Les interruptions perturbatrices au cours du travail",
-              data: initData,
-              subTitle:
-                "Les salariés sont-ils fréquemment interrompus au cours de leur travail par des tâches non prévues ?",
-              details:
-                "Les interruptions inopinées obligent les salariés à mettre entre parenthèses leur tâche principale pour en traiter d’autre(s). Elles « morcèlent » le travail, perturbent son bon déroulement et sont source de charge mentale. Elles peuvent générer des erreurs mais aussi être mal vécues dans la mesure où les salariés ont l’impression de faire un travail de mauvaise qualité et de ne jamais pouvoir terminer ce qu’ils ont entrepris."
+                "Les objectifs fixés doivent être clairs et réalistes pour permettre aux salariés de disposer de critères d’atteinte, mesurables quantitativement et qualitativement (par opposition avec des objectifs ﬂous, irréalistes, voire inexistants).  "
             },
             {
               name:
-                "Les niveaux d'attention et de vigilance requis dans le travail",
+                "Adéquation des objectifs avec les moyens et les responsabilités de chacun",
               data: initData,
               subTitle:
-                "Les salariés exercent-ils des activités qui nécessitent une attention soutenue ou une vigilance permanente ?",
+                "Les objectifs ﬁxés sont-ils compatibles avec les moyens et responsabilités alloués aux salariés pour les atteindre ?",
+              details: `Il s’agit ici d’évaluer si les objectifs définis sont compatibles avec les marges de manœuvre dont disposent les salariés et la réalité quotidienne du travail. 
+                Les objectifs peuvent être clairement déﬁnis mais irréalistes au regard des exigences du travail et des ressources matérielles, techniques et humaines mises à disposition des salariés. 
+                `
+            },
+            {
+              name: "La compatibilité des instructions entre elles",
+              data: initData,
+              subTitle:
+                "Les salariés reçoivent-ils des instructions ou demandes contradictoires ?",
               details:
-                "Maintenir un niveau élevé d’attention ou rester vigilant pendant de longues périodes est particulièrement difficile pour l’organisme. Selon les tâches, par exemple de surveillance ou de contrôle, cela peut occasionner chez les salariés de la fatigue, des baisses d’attention, mais aussi la crainte de commettre des erreurs ou des oublis dans leur travail."
+                "Les demandes contradictoires peuvent provenir de sollicitations antagonistes émanant des différents acteurs (hiérarchique/fonctionnel, direction/clientèle…), par exemple : combiner qualité sans défaut et rapidité d’exécution. "
+            },
+            {
+              name: "Modalités d’organisation de la polyvalence",
+              data: initData,
+              subTitle:
+                "Les salariés sont-ils amenés à changer de tâches, de postes ou de fonctions à l’improviste pour répondre aux contraintes du moment ?",
+              details: `La polyvalence est une forme d’organisation du travail qui consiste à affecter plusieurs activités différentes à un salarié. 
+                Elle peut devenir problématique lorsqu’elle est subie, c’est-à-dire quand sa nécessité n’est pas comprise/accompagnée ou s’exerce au détriment de la qualité.
+                `
+            },
+            {
+              name: "Interruptions perturbatrices",
+              data: initData,
+              subTitle:
+                "Les salariés sont-ils fréquemment interrompus par des tâches non prévues ?",
+              details:
+                "Les interruptions imprévues conduisent les salariés à suspendre régulièrement leur travail en cours, les obligeant ensuite à se reconcentrer sur leur tâche de départ. "
+            },
+            {
+              name: "Niveaux d’attention et de vigilance requis",
+              data: initData,
+              subTitle:
+                "Les salariés exercent-ils des activités qui nécessitent une attention soutenue ou une vigilance permanente ?",
+              details:
+                "Un niveau élevé d’attention ou de vigilance maintenu pendant de longues périodes peut s’avérer d’autant plus difﬁcile (risque de fatigue mentale pouvant conduire à des erreurs) lorsqu’il est impossible d’organiser des temps de pause. "
             }
           ]
         },
         {
-          name: "Horaires de travail",
+          name: "Temps de travail",
           subTopics: [
             {
-              name: "La durée hebdomadaire du travail",
+              name: "Durée hebdomadaire du travail",
               data: initData,
               subTitle:
-                "Arrive-t-il que les salariés travaillent plus de 45 heures par semaine ?",
+                "Les salariés travaillent-ils de manière excessive sans période de moindre charge ?",
               details:
-                "Au-delà d’une certaine limite, la durée hebdomadaire du travail s’avère dommageable pour la santé, quelle que soit la satisfaction qu’éprouve le salarié dans son travail. D’après les connaissances scientifiques actuelles, il serait raisonnable de ne pas dépasser 45 heures de travail par semaine."
+                "Les horaires de travail peuvent être excessifs de manière continue."
             },
             {
-              name: "Le travail en horaires atypiques",
+              name: "Travail en horaires atypiques",
               data: initData,
               subTitle:
-                "Les salariés sont-ils soumis à des horaires de nuit, alternants ou décalés ?",
+                "Les salariés sont-ils soumis à des horaires de nuit, alternants ou décalés ?",
               details:
-                "Certains types d’horaires de travail ont des répercussions sur la santé physique et mentale des salariés. C’est par exemple les cas du travail de nuit ou du travail en horaires alternants (3x8, 2x12...), des horaires décalés (particulièrement le soir et le week-end), des horaires fractionnés (11h-15h puis 18h-21h, par exemple) ou du travail sur appel (absence d’horaire pré-établi)."
-            },
-            {
-              name:
-                "L'extension de la disponibilité en dehors des horaires de travail",
-              data: initData,
-              subTitle:
-                "Les salariés sont-ils contactés en dehors des horaires de travail pour des raisons professionnelles ?",
-              details:
-                "La disponibilité demandée aux salariés peut s’étendre au-delà de leurs horaires de travail (week-end, congés...). Elle limite les possibilités de récupération physique et mentale. De plus, elle empiète sur la vie personnelle des salariés."
+                "Il s’agit par exemple du travail le soir, le week-end, de nuit ou encore du travail posté."
             },
             {
               name:
-                "La prévisibilité des horaires de travail et anticipation de leur changement",
+                "Extension de la disponibilité en dehors des horaires de travail",
               data: initData,
               subTitle:
-                "Les salariés connaissent-ils suffisamment à l’avance leurs horaires de travail ou les changements éventuels de leur planning de travail ?",
+                "Les salariés sont-ils sollicités en dehors des horaires de travail pour des raisons professionnelles ?",
               details:
-                "L’incertitude envers les horaires de travail à effectuer, le caractère inopiné des changements dans les plannings horaires... ne facilitent pas l’organisation de la vie personnelle. Ils rendent difficile toute prévision des activités extraprofessionnelles et obligent à des adaptations souvent coûteuses pour les salariés, par exemple s’ils ont à charge de jeunes enfants."
+                "La disponibilité attendue des salariés peut s’étendre au-delà de leurs horaires habituels de travail (soirs, week-end ou congés…)."
             },
             {
               name:
-                "La conciliation entre vie professionnelle et vie personnelle",
+                "Prévisibilité des horaires de travail et l’anticipation de leur changement",
               data: initData,
               subTitle:
-                "L’entreprise permet-elle aux salariés de concilier vie professionnelle et vie personnelle ?",
+                "Les salariés peuvent-ils anticiper sufﬁsamment à l’avance leurs horaires de travail ?",
               details:
-                "La conciliation peut être facilitée dans l’entreprise par la négociation d’accords, par exemple en matière d’aménagement des horaires de travail, ou par la possibilité d’arrangements informels accordés selon les besoins des salariés. Ces commodités peuvent les aider à remplir des obligations extraprofessionnelles (familiales, médicales, administratives...)."
+                "L’incertitude sur les horaires de travail à effectuer complique l’organisation du travail et de la vie personnelle."
+            },
+            {
+              name: "Conciliation entre vie professionnelle et vie personnelle",
+              data: initData,
+              subTitle:
+                "L’organisation du travail permet-elle aux salariés de concilier vie professionnelle et vie personnelle ?",
+              details:
+                "L’équilibre des temps de vie peut être facilité par la négociation d’accords individuels (aménagements des horaires, possibilité d’arrangements informels) et collectifs (charte d’utilisation des outils numériques, droit à la déconnexion)."
             }
           ]
         },
@@ -465,28 +464,28 @@ export default class ContentSurvey extends Component {
           name: "Exigences émotionnelles",
           subTopics: [
             {
-              name: "Les tensions avec le public",
+              name: "Tensions avec le public",
               data: initData,
               subTitle:
-                "Les salariés sont-ils confrontés à des situations de tension (avec des clients, usagers, patients...) dont ils se plaignent ?",
+                "Les salariés sont-ils confrontés à des situations de tension avec des tiers dont ils se plaignent ?",
               details:
-                "La mauvaise qualité de service, des délais d’attente jugés trop longs... peuvent susciter le mécontentement du public et créer des tensions avec les salariés (altercations verbales et/ou physiques...). Ces heurts sont susceptibles d’avoir des répercussions sur le travail des salariés (interruption ponctuelle de l’activité, augmentation des erreurs, démobilisation professionnelle, dégradation du climat de travail, des relations professionnelles...)."
+                "La perception d’une mauvaise qualité de service, peut susciter le mécontentement du public, des usagers, des clients, des patients… et exposer les salariés à des tensions (violences verbales et/ou physiques…)."
             },
             {
-              name: "La confrontation à la souffrance d'autrui",
+              name: "Confrontation à la souffrance d'autrui",
               data: initData,
               subTitle:
-                "Dans le cadre de leur activité professionnelle, les salariés sont-ils amenés à devoir traiter la situation de personnes en souffrance (physique, psychologique ou sociale) ?",
+                "Les salariés sont-ils amenés à devoir traiter des situations de personnes en souffrance (physique, psychologique ou sociale) ?",
               details:
-                "Toute confrontation à la souffrance de tiers est coûteuse psychiquement pour les salariés. Certaines situations de travail peuvent en accentuer la charge émotionnelle : manque de moyens pour venir en aide aux personnes en difficulté, absence d’issue face à leurs problèmes... Cela peut profondément ébranler les salariés et réduire leur investissement dans leur travail."
+                "Les salariés peuvent devoir faire face régulièrement à des situations de mal-être de la part de tiers (public, usagers, clients, patients…) qu’ils ont à gérer."
             },
             {
-              name: "La maitrise des émotions (faire bonne figure)",
+              name: "Maîtrise des émotions",
               data: initData,
               subTitle:
-                "Dans leur travail, les salariés se doivent-ils de « faire bonne figure » en toutes circonstances ?",
+                "Les salariés doivent-ils  contrôler leurs émotions pour « faire bonne ﬁgure » en toutes circonstances ? ",
               details:
-                "Devoir adopter une attitude bienveillante et disponible envers les autres constitue une exigence à laquelle les salariés peuvent être contraints, par exemple dans certains métiers en contact avec le public. Plus généralement, il peut aussi leur être demandé de manifester de l’enthousiasme et de l’allant pour leur travail vis-à-vis de l’entourage professionnel. Cela peut avoir des conséquences sur la santé mentale des salariés lorsqu’ils sont amenés à « prendre sur eux » pour ne pas montrer leurs véritables émotions ou bien leurs ressentis du moment."
+                "Les salariés en contact avec des tiers (public, usagers, clients, patients…) peuvent être amenés à régulièrement « prendre sur eux » pour ne pas montrer leurs véritables émotions ou ressentis."
             }
           ]
         },
@@ -494,28 +493,29 @@ export default class ContentSurvey extends Component {
           name: "Autonomie au travail",
           subTopics: [
             {
-              name: "L'autonomie dans la tâche",
+              name: "Autonomie dans la tâche",
               data: initData,
               subTitle:
-                "Les salariés ont-ils des marges de manœuvre dans la manière de réaliser leur travail dès lors que les objectifs sont atteints ?",
+                "Les salariés ont-ils suffisamment de marge de manœuvre pour réaliser leur travail ?",
               details:
-                "Les marges de manœuvre dans le travail relèvent des possibilités d’action dont les salariés disposent pour choisir la manière d’organiser et de réaliser leur travail ainsi que les procédés employés (choix des gestes, des techniques, des outils...). Plus ces marges sont grandes, plus l’autonomie des salariés dans leur travail peut être importante. Sans ou avec peu d’autonomie, les salariés sont contraints dans l’exécution de leur travail, sans possibilité d’en influencer le déroulement et de prendre des initiatives. Les salariés peuvent dès lors se désinvestir d’un travail dénué d’intérêt."
+                "L’autonomie permet aux salariés de bénéficier d’une certaine liberté d’action et d’organisation dans la réalisation de leur activité de travail."
             },
             {
-              name: "L'autonomie temporelle",
+              name: "Autonomie temporelle",
               data: initData,
               subTitle:
-                "Les salariés peuvent-ils interrompre momentanément leur travail quand ils en ressentent le besoin ?",
-              details:
-                "La possibilité de choisir les moments de pause donne également une indication du niveau d’autonomie dont les salariés bénéficient dans le travail. Les pauses de courte durée peuvent être l’occasion de récupération ou de partage de moments de convivialité, qui restaurent la capacité de travail et favorisent la qualité des relations sociales dans l’entreprise. Les pauses favorisent également les échanges informels sur le travail."
+                "Les salariés peuvent-ils interrompre momentanément leur travail quand ils en ressentent le besoin",
+              details: `La possibilité de choisir ses moments de pause est un indicateur du niveau d’autonomie dont les salariés bénéﬁcient. 
+                Les pauses peuvent être l’occasion de temps de récupération, de partage sur le travail et/ou de convivialité. 
+                `
             },
             {
-              name: "L'utilisation et le développement des compétences",
+              name: "Utilisation et développement des compétences",
               data: initData,
               subTitle:
-                "Les salariés peuvent-ils utiliser leurs compétences professionnelles et en développer de nouvelles ?",
+                "Les salariés peuvent-ils utiliser leurs compétences professionnelles et en développer de nouvelles ?",
               details:
-                "Il s’agit ici de déterminer si les tâches et missions confiées aux salariés leur permettent, d’une part, de mettre pleinement en œuvre leurs compétences et, d’autre part, leur donnent l’occasion d’en développer d’autres. Ne pas avoir la possibilité d’utiliser dans le travail ses connaissances et ses savoir-faire, ou encore ne pas avoir de perspective d’accroître son potentiel (par des formations, par exemple) place les salariés dans une situation de dévalorisation progressive de leur qualification professionnelle. Elle peut engendrer une dépréciation de soi et de ses capacités, et conduire à un désengagement dans le travail."
+                "Il s’agit de déterminer si les missions conﬁées permettent aux salariés de mettre pleinement en œuvre leurs compétences (savoir-faire, savoir-être) et leur donnent l’occasion d’en développer de nouvelles. "
             }
           ]
         },
@@ -523,36 +523,34 @@ export default class ContentSurvey extends Component {
           name: "Rapports sociaux au travail",
           subTopics: [
             {
-              name: "Le soutien de la part des collègues",
+              name: "Soutien de la part des collègues",
               data: initData,
-              subTitle:
-                "Les relations entre collègues sont-elles bonnes (confiance, entraide, convivialité au sein des équipes) ?",
+              subTitle: "Les relations entre collègues sont-elles bonnes ?",
               details:
-                "La qualité des relations avec les collègues et l’intégration dans un collectif de travail influent sur le bien-être et la santé au travail. Les possibilités d’entraide et de coopération facilitent l’accomplissement des tâches. Elles sont en particulier une ressource pour les salariés lorsqu’ils se trouvent face à des situations imprévues, complexes ou difficiles à gérer. Selon les contextes, le collectif de travail peut jouer un rôle d’intégration sociale, en favorisant les solidarités et les moments de convivialité. À l’inverse, il peut être le cadre de tensions, de rivalités ou de concurrence, devenant dès lors un facteur de risque pour la santé mentale des salariés."
+                "La qualité des relations de travail entre collègues et l’intégration dans un collectif (conﬁance, entraide, convivialité au sein des équipes) inﬂuent sur le bien-être et l’efficacité individuelle et collective."
             },
             {
-              name: "Le soutien de la part des supérieurs hiérarchiques",
+              name: "Soutien de la part de la hiérarchie",
               data: initData,
-              subTitle:
-                "Les salariés reçoivent-ils un soutien de la part de l’encadrement ?",
+              subTitle: "Les salariés reçoivent-ils du soutien managérial ?",
               details:
-                "Au-delà de la qualité des relations entretenues avec la hiérarchie, il est question ici de la disponibilité, des capacités d’écoute et d’action dont fait preuve l’encadrement face aux sollicitations des salariés (par exemple, discuter d’un problème technique, régler des difficultés imprévues, arbitrer des intérêts divergents, modérer des conflits...). L’absence de soutien d’un supérieur peut créer un sentiment d’isolement, de frustration, de lassitude ou d’injustice chez les salariés."
+                "Il est question ici de la disponibilité, des capacités d’écoute et d’action de la hiérarchie face aux besoins/demandes des salariés (discuter d’un problème technique, régler des difﬁcultés imprévues, arbitrer, réguler les conﬂits…)."
             },
             {
-              name: "Les violences internes au travail",
+              name: "Violence interne au travail",
               data: initData,
               subTitle:
-                "Règne-t-il un climat de courtoisie et de respect mutuel entre les salariés de l’entreprise (absence de propos ou d’attitudes blessantes, discriminatoires...) ?",
+                "Règne-t-il un climat de respect et de courtoisie mutuels entre les salariés ?",
               details:
-                "La violence interne est relative à l’ensemble des attitudes, comportements, actes hostiles qui se manifestent sur le lieu de travail entre les salariés de l’entreprise, quels que soient leurs niveaux hiérarchiques. Il peut s’agir d’atteintes dégradantes, de comportements méprisants, discriminatoires, voire de harcèlement moral ou sexuel. Cette violence, quelle qu’en soit sa forme, est symptomatique d’une dégradation des relations sociales dans l’entreprise. Elle peut porter atteinte à la santé physique et mentale des salariés."
+                "La violence interne est relative à l’ensemble des incivilités, comportements, propos, agissements hostiles ou irrespectueux (sexisme, discrimination…) entre collègues et/ou avec la hiérarchie."
             },
             {
-              name: "La reconnaissance dans le travail",
+              name: "Reconnaissance du travail",
               data: initData,
               subTitle:
-                "Les salariés reçoivent-ils des marques de reconnaissance de leur travail de la part de l’entreprise ?",
+                "Les salariés reçoivent-ils des marques de reconnaissance ?",
               details:
-                "La reconnaissance de la valeur du travail réalisé, des compétences ou encore des performances est essentielle à la construction d’une identité professionnelle positive. Cette reconnaissance peut se manifester au travers de la rémunération, du statut, des perspectives de carrière proposées par l’entreprise. Elle peut être d’ordre plus pratique (attribution de moyens pour réaliser son travail dans de bonnes conditions...) ou symbolique (éloges, distinction...). Le manque de reconnaissance du travail par l’entreprise peut entraîner une perte d’estime de soi et conduire à un désinvestissement du salarié dans son activité professionnelle. Il a également des effets sur sa santé mentale et physique."
+                "La reconnaissance des efforts et du résultat peut être symbolique (félicitations, éloges, feedback constructifs, soutien, remerciements…), de carrière (évolutions professionnelles, développement des compétences, moyens mis à disposition pour réaliser le travail…), financière (primes, augmentations, promotions…)."
             }
           ]
         },
@@ -560,20 +558,20 @@ export default class ContentSurvey extends Component {
           name: "Conflits de valeurs",
           subTopics: [
             {
-              name: "La qualité empêchée",
+              name: "Qualité empêchée",
               data: initData,
               subTitle:
-                "Les salariés considèrent-ils qu’ils font un travail de qualité ?",
+                "Les salariés ont-ils le sentiment de faire un travail de qualité ?",
               details:
-                "Pouvoir tirer de la fierté du travail qu’on réalise, du soin qu’on peut y apporter... contribue à une image valorisante de son activité professionnelle et de sa contribution personnelle. A contrario, être contraint de faire un travail bâclé ou de qualité médiocre, faute de moyens ou de délais suffisants, a des effets sur la santé mentale des salariés et sur le climat de travail. Il en est de même lorsque l’on est amené à faire un travail qui est en désaccord avec ses valeurs professionnelles."
+                "La perception pour les salariés de pouvoir exercer leur activité conformément à leur conception d’un travail bien fait (délais de réalisation, moyens adaptés et suffisants…)."
             },
             {
-              name: "L'utilité du travail",
+              name: "Utilité du travail",
               data: initData,
               subTitle:
-                "Les salariés estiment-ils en général que leur travail est reconnu comme utile ?",
+                "Les salariés estiment-ils que leur travail est reconnu comme utile ?",
               details:
-                "L’utilité du travail fait référence à la contribution significative du salarié à la mission qui lui est confiée par l’entreprise. Généralement, les salariés jugent leur travail utile lorsqu’il sert concrètement les résultats de l’entreprise ou bénéficie à d’autres acteurs (clients, usagers, patients...). La reconnaissance de cette contribution est un élément important du jugement d’utilité porté par les salariés sur leur propre travail."
+                "Il s’agit du sentiment de contribuer significativement, par son activité, à un ensemble plus large et de servir concrètement les résultats de l’organisation ou d’en faire bénéﬁcier d’autres acteurs (public, clients, usagers, patients, collègues…). S’ajoute à cela la notion de complétude : possibilité de constater soi-même la finalité et la réussite de son travail."
             }
           ]
         },
@@ -581,20 +579,20 @@ export default class ContentSurvey extends Component {
           name: "Insécurité de l'emploi et du travail",
           subTopics: [
             {
-              name: "L'insécurité/la sécurité socio-économique",
+              name: "Insécurité de la situation de travail",
               data: initData,
               subTitle:
-                "Les salariés sont-ils confrontés à des incertitudes quant au maintien de leur activité dans les prochains mois ?",
+                "Les salariés sont-ils confrontés à des incertitudes quant au maintien de leur activité dans les prochains mois ?",
               details:
-                "Ces incertitudes peuvent provoquer la peur de perdre son emploi, la crainte de voir baisser son revenu et de ne pas bénéficier d’un déroulement « favorable » de sa carrière (absence de promotion, temps partiel subi...)."
+                "Ces incertitudes peuvent se manifester par la peur de perdre son emploi, la crainte de voir baisser son revenu et de ne pas bénéﬁcier d’un déroulement de carrière « favorable » (absence de promotion, temps partiel subi…)."
             },
             {
-              name: "La conduite du changement",
+              name: "Conduite du changement",
               data: initData,
               subTitle:
                 "Les changements sont-ils suffisamment anticipés, accompagnés, et clairement expliqués aux salariés ?",
               details:
-                "De manière générale, les situations de changement (stratégique, organisationnel, technologique...) sont génératrices de risques de surcharge (temps d’apprentissage et d’assimilation des changements), de remise en cause des compétences et d’atteinte au sens donné au travail."
+                "Tout changement (stratégique, organisationnel, technologique...) représente une situation d'efforts et donc potentiellement de tensions : temps d'apprentissage et d'assimilation des changements, remise en cause des compétences, atteinte possible du sens donné au travail et du sentiment de 'bien travailler'"
             }
           ]
         }
@@ -648,7 +646,7 @@ export default class ContentSurvey extends Component {
   };
 
   changeAction = (i, j, name, value, k) => {
-    console.log(name, value)
+    console.log(name, value);
     var { topics } = this.state;
     topics[i].subTopics[j].data.actions[k] = {
       ...topics[i].subTopics[j].data.actions[k],
@@ -722,20 +720,20 @@ export default class ContentSurvey extends Component {
   };
 
   newAction = (i, j) => {
-    const topics = this.state.topics
-    console.log(topics[i].subTopics[j].data)
+    const topics = this.state.topics;
+    console.log(topics[i].subTopics[j].data);
     topics[i].subTopics[j].data.actions.push({
       name: "",
       alreadyExisting: "",
       new: "",
       emergency: -1,
       timeLimit: "",
-      inCharge: "",
-    })
-    this.setState({topics})
-    this.save()
-    console.log(this.state.topics[i].subTopics[j].data.actions)
-  }
+      inCharge: ""
+    });
+    this.setState({ topics });
+    this.save();
+    console.log(this.state.topics[i].subTopics[j].data.actions);
+  };
 
   render() {
     const {
