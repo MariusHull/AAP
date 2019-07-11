@@ -606,12 +606,6 @@ export default class ContentSurvey extends Component {
     axios.defaults.headers.common["Authorization"] =
       "JWT " + localStorage.getItem("jwtToken");
     axios.get(`${url}/api/companies/${this.props.id}`).then(r => {
-      console.log(
-        r.data.sites[this.props.siteIndex].populations[
-          this.props.populationIndex
-        ],
-        this.props.populationIndex
-      );
       this.setState({
         sites: r.data.sites,
         topics:
@@ -619,19 +613,16 @@ export default class ContentSurvey extends Component {
             this.props.populationIndex
           ].topics
       });
-      console.log(r.data);
     });
   }
 
   ChangeState = (i, j) => {
-    console.log(i, j);
     const { selected } = this.state;
     if (selected && selected[0] === i && selected[1] === j) {
       this.setState({ selected: undefined });
     } else {
       this.setState({ selected: [i, j] });
     }
-    console.log(this.state.selected);
   };
 
   handleItemClick = (e, i) => {
@@ -648,7 +639,6 @@ export default class ContentSurvey extends Component {
   };
 
   changeAction = (i, j, name, value, k) => {
-    console.log(name, value)
     var { topics } = this.state;
     topics[i].subTopics[j].data.actions[k] = {
       ...topics[i].subTopics[j].data.actions[k],
@@ -675,24 +665,13 @@ export default class ContentSurvey extends Component {
             r.data.sites[this.props.siteIndex].populations[
               this.props.populationIndex
             ].topics,
-          justsaved: true,
           saved: true,
-          displaySave: false
         });
       });
   };
 
   next = () => {
     const { selected, topics, activeItem } = this.state;
-    console.log(
-      topics[selected[0]].subTopics.length,
-      selected[1],
-      selected[1] === topics[selected[0]].length - 1
-    );
-    console.log(
-      typeof topics[selected[0]].subTopics.length,
-      typeof selected[1]
-    );
     if (selected[1] === topics[selected[0]].subTopics.length - 1) {
       this.setState({
         selected: [selected[0] + 1, 0],
@@ -701,7 +680,6 @@ export default class ContentSurvey extends Component {
     } else {
       this.setState({ selected: [selected[0], selected[1] + 1] });
     }
-    console.log("post", this.state.selected, this.state.activeItem);
     this.save();
   };
 
@@ -741,10 +719,7 @@ export default class ContentSurvey extends Component {
     const {
       activeItem,
       selected,
-      saved,
       topics,
-      justsaved,
-      displaySave
     } = this.state;
 
     return (
@@ -796,16 +771,7 @@ export default class ContentSurvey extends Component {
             <Icon name="left arrow" />
             Précedent
           </Button>
-          <Popup
-            content="Vos modifications sont déjà enregistrées."
-            disabled={!saved}
-            trigger={
-              <Transition
-                visible={displaySave}
-                animation="scale"
-                duration={500}
-              >
-                <Button
+          <Button
                   icon
                   positive
                   labelPosition="right"
@@ -820,26 +786,6 @@ export default class ContentSurvey extends Component {
                   Enregistrer
                   <Icon name="save outline" />
                 </Button>
-              </Transition>
-            }
-          />
-
-          <Transition
-            visible={justsaved}
-            animation="scale"
-            duration={1000}
-            onShow={() => this.setState({ justsaved: false })}
-            onHide={() => this.setState({ displaySave: true })}
-          >
-            <Message
-              positive
-              style={{ height: "7vh", margin: "10px", textAlign: "center" }}
-            >
-              <Message.Header>
-                Vos modifications ont bien été enregistrées.
-              </Message.Header>
-            </Message>
-          </Transition>
 
           {selected &&
           (selected[0] < struct.length - 1 ||

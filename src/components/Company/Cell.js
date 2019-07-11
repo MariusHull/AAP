@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Container, Form, Radio, TextArea, Icon, Popup, Button, Card, Input} from 'semantic-ui-react'
+import {Container, Form, Radio, TextArea, Icon, Popup, Button, Card, Input, Select, Checkbox} from 'semantic-ui-react'
 import scss from "../../global.scss";
 
 const checkboxPresence= ["Jamais", "Parfois",	"Souvent", "Toujours"];
@@ -15,6 +15,7 @@ export default class Cell extends Component {
   }
 
   handleChangeAction = (e, {name, value}, k) => {
+    console.log(e, name, value, k)
     this.props.changeAction(this.props.i, this.props.j, name, value, k)
   }
 
@@ -90,11 +91,11 @@ export default class Cell extends Component {
                   {checkboxUrgencyLevel.map((e, k) => (
                     <Form.Field
                     style={{marginLeft:'3vw'}}
-                    key={e+String(i)+String(j)}
-                    control={Radio}
+                    key={e+String(i)+String(j)+String(l)+String(k)}
+                    control={Checkbox}
                     label={e}
                     value={k}
-                    name="emergency"
+                    name={`emergency`}
                     checked={action.emergency === k}
                     onChange={(e, d) => this.handleChangeAction(e, d, l)}
                     />
