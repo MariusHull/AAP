@@ -39,14 +39,14 @@ export default class ExportContent extends React.Component {
                 this.props.populationIndex === null
               }
             >
-              Télécharger les résultats
+              Télécharger les données sous Excel
               <Icon name="download" />
             </Button>
           }
         >
           <Modal.Header>
             <Container>
-              <div>Télécharger les résultats</div>
+              <div>Télécharger les données sous Excel</div>
 
               <Button
                 onClick={this.handleClose}

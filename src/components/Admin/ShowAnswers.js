@@ -27,7 +27,7 @@ export default class ShowAnswers extends Component {
                 this.props.populationIndex === null
               }
             >
-              Voir les réponses
+              Consulter les données
               <Icon name="eye" />
             </Button>
           }
