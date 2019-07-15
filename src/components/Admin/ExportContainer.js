@@ -1,14 +1,9 @@
 import React from "react";
-import ReactExport from "react-data-export";
 
 import { Button, Modal, Icon, Container } from "semantic-ui-react";
 import { url } from "../../config";
 import axios from "axios";
 import Export from "./Export";
-
-const ExcelFile = ReactExport.ExcelFile;
-const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 export default class ExportContent extends React.Component {
   state = { modalOpen: false };
