@@ -9,6 +9,7 @@ import {
   Message,
   Transition
 } from "semantic-ui-react";
+import ExportContent from "../Admin/ExportContainer";
 
 import { url } from "../../config";
 
@@ -615,7 +616,9 @@ export default class ContentSurvey extends Component {
         topics:
           r.data.sites[this.props.siteIndex].populations[
             this.props.populationIndex
-          ].topics
+          ].topics,
+        name: r.data.name,
+        _id: r.data._id
       });
       console.log(r.data);
     });
@@ -749,6 +752,7 @@ export default class ContentSurvey extends Component {
       justsaved,
       displaySave
     } = this.state;
+    console.log("state, props :", this.state, this.props);
 
     return (
       <Container
@@ -800,20 +804,26 @@ export default class ContentSurvey extends Component {
             Précedent
           </Button>
           <Button
-                  icon
-                  positive
-                  labelPosition="right"
-                  style={{
-                    height: "7vh",
-                    width: "15%",
-                    margin: "10px",
-                    textAlign: "center"
-                  }}
-                  onClick={this.save}
-                >
-                  Enregistrer
-                  <Icon name="save outline" />
-                </Button>
+            icon
+            positive
+            labelPosition="right"
+            style={{
+              height: "7vh",
+              width: "15%",
+              margin: "10px",
+              textAlign: "center"
+            }}
+            onClick={this.save}
+          >
+            Enregistrer
+            <Icon name="save outline" />
+          </Button>
+          <ExportContent
+            company={{ name: this.state.name, _id: this.state._id }}
+            topics={topics}
+            siteIndex={this.props.siteIndex}
+            populationIndex={this.props.populationIndex}
+          />
 
           {selected &&
           (selected[0] < struct.length - 1 ||

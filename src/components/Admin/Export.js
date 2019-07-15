@@ -197,13 +197,6 @@ export default class Export extends React.Component {
   }
 
   render() {
-    const dataSet1 = [
-      {
-        name: this.props.company.name,
-        id: this.props.company._id
-      }
-    ];
-
     const { dataSetPage1 } = this.state;
 
     const now = new Date();
