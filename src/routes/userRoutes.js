@@ -30,7 +30,7 @@ class UserRoutes extends Component {
               <Container
                 className="container"
                 style={{
-                  width: "80vw",
+                  width: "90vw",
                   marginTop: "30px",
                   background: "rgba(255,255,255,0.9)",
                   borderRadius: "3px"
@@ -42,7 +42,7 @@ class UserRoutes extends Component {
                     exact
                     component={Survey}
                   />
-                  <Route path="/user/thankyou" exact component={ThankYou} />
+                  <Route path="/user/thankyou" exact component={Sites} />
                   <Route path="/user/sites" exact component={Sites} />
                   <Route path="/" exact component={ThankYou} />
                 </div>

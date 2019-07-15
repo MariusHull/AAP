@@ -14,7 +14,7 @@ import { url } from "../../config";
 
 import axios from "axios";
 
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 
 import AccordionExampleFluid from "./AccordionTheme";
 
@@ -719,6 +719,11 @@ export default class ContentSurvey extends Component {
     this.save();
   };
 
+  finishRedirect = () => {
+    console.log(this.props);
+    window.location.replace("/user/sites");
+  };
+
   newAction = (i, j) => {
     const topics = this.state.topics;
     console.log(topics[i].subTopics[j].data);
@@ -859,20 +864,20 @@ export default class ContentSurvey extends Component {
           ) : (
             <>
               {localStorage.getItem("level") === "0" ? (
-                <Link
-                  to="/user/thankyou"
+                <Button
+                  icon
+                  labelPosition="right"
                   style={{
                     height: "7vh",
                     width: "15%",
                     margin: "10px",
                     textAlign: "center"
                   }}
+                  onClick={this.finishRedirect}
                 >
-                  <Button icon labelPosition="right">
-                    Terminer
-                    <Icon name="check" />
-                  </Button>
-                </Link>
+                  Terminer
+                  <Icon name="check" />
+                </Button>
               ) : (
                 <Button
                   icon

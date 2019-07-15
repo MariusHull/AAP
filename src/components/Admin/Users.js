@@ -156,6 +156,35 @@ export default class Users extends Component {
       });
   };
 
+  suppress = id => {
+    if (
+      !window.confirm(
+        "Êtes-vous sûr.e de vouloir supprimer cet utilisateur ? Cette action est irréversible!"
+      )
+    ) {
+      return 0;
+    }
+    if (!window.confirm("En êtes-vous vraiment certain ? ")) {
+      return 0;
+    }
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios
+      .get(`${url}/api/auth/suppress/${id}`)
+      .then(res => {
+        toast.success(res.data.msg, {
+          position: "top-center",
+          autoClose: 10000
+        });
+      })
+      .catch(error => {
+        toast.error("Une erreur inconnue est survenue (code 500).", {
+          position: "top-center",
+          autoClose: 10000
+        });
+      });
+  };
+
   render() {
     const { adminCreated, usernameReg } = this.state;
 
@@ -269,6 +298,17 @@ export default class Users extends Component {
                   >
                     Réinitialiser son mot de passe
                     <Icon name="redo" />
+                  </Button>
+                  <Button
+                    icon
+                    color="red"
+                    onClick={() => {
+                      this.suppress(user._id);
+                    }}
+                    labelPosition="right"
+                  >
+                    Supprimer cet utilisateur
+                    <Icon name="times" />
                   </Button>
                 </Card.Content>
               </Card>
