@@ -799,16 +799,7 @@ export default class ContentSurvey extends Component {
             <Icon name="left arrow" />
             Précedent
           </Button>
-          <Popup
-            content="Vos modifications sont déjà enregistrées."
-            disabled={!saved}
-            trigger={
-              <Transition
-                visible={displaySave}
-                animation="scale"
-                duration={500}
-              >
-                <Button
+          <Button
                   icon
                   positive
                   labelPosition="right"
@@ -823,26 +814,6 @@ export default class ContentSurvey extends Component {
                   Enregistrer
                   <Icon name="save outline" />
                 </Button>
-              </Transition>
-            }
-          />
-
-          <Transition
-            visible={justsaved}
-            animation="scale"
-            duration={1000}
-            onShow={() => this.setState({ justsaved: false })}
-            onHide={() => this.setState({ displaySave: true })}
-          >
-            <Message
-              positive
-              style={{ height: "7vh", margin: "10px", textAlign: "center" }}
-            >
-              <Message.Header>
-                Vos modifications ont bien été enregistrées.
-              </Message.Header>
-            </Message>
-          </Transition>
 
           {selected &&
           (selected[0] < struct.length - 1 ||
