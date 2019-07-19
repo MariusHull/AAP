@@ -51,9 +51,9 @@ export default class Cell extends Component {
             onChange={this.handleChange}
           />
           <Form.Group inline widths="equal">
-            <label>Presence</label>
+            <label>Fréquence</label>
             <Popup
-              content="Présence du risque dans l'activité."
+              content="Fréquence du facteur de risque."
               trigger={
                 <Icon
                   name="question circle outline"
@@ -77,7 +77,7 @@ export default class Cell extends Component {
           <Form.Group inline widths="equal">
             <label>Intensité</label>
             <Popup
-              content="Gravité du facteur de risque dans l'activité."
+              content="Intensité du facteur de risque."
               trigger={
                 <Icon
                   name="question circle outline"
@@ -99,17 +99,7 @@ export default class Cell extends Component {
             ))}
           </Form.Group>
           <Form.Group inline widths="equal">
-            <label>Actions</label>
-            <Popup
-              content="Ajoutez vos actions et complétez leurs caractéristiques."
-              trigger={
-                <Icon
-                  name="question circle outline"
-                  size="large"
-                  style={{ margin: "0 30px 0 0" }}
-                />
-              }
-            />
+            <label>Vos actions correctives et leurs caractéristiques</label>
           </Form.Group>
           {subTopic.data.actions &&
             subTopic.data.actions.map((action, l) => (
@@ -117,7 +107,7 @@ export default class Cell extends Component {
                 <Card.Content>
                   <Card.Meta>
                     <Form.Group inline>
-                      <label>{`Action ${l + 1}: `}</label>
+                      <label>{`Action ${l + 1} : `}</label>
                       <Form.Field
                         control={TextArea}
                         id="form-textarea-control-opinion"
@@ -150,7 +140,7 @@ export default class Cell extends Component {
                       <Form.Field
                         id="form-textarea-control-opinion"
                         control={TextArea}
-                        label="Action déjà existante"
+                        label="Action(s) déjà existante(s)"
                         value={action.alreadyExisting}
                         name="alreadyExisting"
                         placeholder="Description"
@@ -160,7 +150,7 @@ export default class Cell extends Component {
                       <Form.Field
                         id="form-textarea-control-opinion"
                         control={TextArea}
-                        label="Action retenue"
+                        label="Action(s) retenue(s)"
                         value={action.new}
                         name="new"
                         placeholder="Description"
@@ -180,7 +170,7 @@ export default class Cell extends Component {
                       <Form.Field
                         id="form-textarea-control-opinion"
                         control={TextArea}
-                        label="Personnes en charge"
+                        label="Personne(s) en charge"
                         value={action.inCharge}
                         name="inCharge"
                         placeholder="..."
