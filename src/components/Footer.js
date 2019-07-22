@@ -19,7 +19,7 @@ export default class Footer extends Component {
       >
         <p style={{ color: "#888", margin: "0px" }}>
           {" "}
-          RGPD compliant | D’après le modèle de Document Unique des risques
+          RGPD compliant | D’après le modèle de Document Unique d'évaluation des risques
           psychosociaux (RPS) proposé par l'{" "}
           <a href="http://www.inrs.fr/"> INRS </a>{" "}
         </p>

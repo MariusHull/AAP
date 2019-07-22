@@ -11,6 +11,8 @@ import {
 } from "semantic-ui-react";
 import ExportContent from "../Admin/ExportContainer";
 
+import { ToastContainer, toast } from "react-toastify";
+
 import { url } from "../../config";
 
 import axios from "axios";
@@ -811,9 +813,15 @@ export default class ContentSurvey extends Component {
               height: "7vh",
               width: "15%",
               margin: "10px",
-              textAlign: "center"
+              textAlign: "center", backgroundColor: "rgba(46, 66, 80, 0.9)"
             }}
-            onClick={this.save}
+            onClick={() => {toast.info(
+              "Vos modifications ont bien été enregistrées",
+              {
+                position: "top-center",
+                autoClose: 10000
+              }
+            ); this.save(); }}
           >
             Enregistrer
             <Icon name="save outline" />
@@ -879,6 +887,16 @@ export default class ContentSurvey extends Component {
             </>
           )}
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </Container>
     );
   }

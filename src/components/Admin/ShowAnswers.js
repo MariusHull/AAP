@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Modal, Icon, Container } from "semantic-ui-react";
+import "../../App.css"
 
 import ContentSurvey from "../Company/ContentSurvey";
 
@@ -16,7 +17,8 @@ export default class ShowAnswers extends Component {
         <Modal
           open={this.state.modalOpen}
           onClose={this.handleClose}
-          size={"large"}
+          centered={true}
+          size={"fullscreen"}
           trigger={
             <Button
               onClick={this.handleOpen}
@@ -47,7 +49,7 @@ export default class ShowAnswers extends Component {
           </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <div style={{ width: "78vw" }}>
+              <div style={{ width: "88vw" }}>
                 <ContentSurvey
                   id={this.props.company._id}
                   siteIndex={this.props.siteIndex}

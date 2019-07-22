@@ -19,6 +19,11 @@
   color: white;
 }
 
+.ui.fullscreen.modal.transition.visible.active {
+
+  width: 100%!important
+}
+
 .App-link {
   color: #61dafb;
 }

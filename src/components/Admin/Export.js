@@ -1,5 +1,5 @@
 import React from "react";
-import ReactExport from "../../react-data-export";
+import ReactExport from "react-data-export";
 import { Button, Icon } from "semantic-ui-react";
 import { url } from "../../config";
 import axios from "axios";
@@ -208,7 +208,7 @@ export default class Export extends React.Component {
       <ExcelFile
         filename={title}
         element={
-          <Button icon positive labelPosition="right">
+          <Button class="fluid ui button" icon positive labelPosition="right">
             Télécharger au format xslx
             <Icon name="download" />
           </Button>

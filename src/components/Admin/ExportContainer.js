@@ -34,7 +34,7 @@ export default class ExportContent extends React.Component {
                 this.props.populationIndex === null
               }
             >
-              Télécharger les données sous Excel
+              Télécharger sous Excel
               <Icon name="download" />
             </Button>
           }
@@ -54,8 +54,9 @@ export default class ExportContent extends React.Component {
           </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <div style={{ width: "8vw" }}>
+              <div style={{textAlign: "center"}}>
                 <Export
+                  style={{textAlign: "center"}}
                   company={this.props.company}
                   topics={this.state.topics}
                   siteIndex={this.props.siteIndex}
