@@ -48,9 +48,14 @@ export default class Admin extends Component {
       <>
         <Container>
         <h2>Vos utilisateurs </h2>
+        <div style={{maxHeight: "75vh",
+              width: "100%",
+              padding: "10px",
+              overflow: "scroll",
+              overflowX: "hidden"}} >
           {this.state.users.length> 0 ? (this.state.users.map(user => (
             <Company companyId={user.companyId} key={user._id} />
-          ))) : (<div> <br/><br/> <p> Vous n'avez pas encore d'utilisateurs à votre actif. Pour en créer un, rendez vous sur l'onglet "Gestion utilisateurs"</p></div>)}
+          ))) : (<div> <br/><br/> <p> Vous n'avez pas encore d'utilisateurs à votre actif. Pour en créer un, rendez vous sur l'onglet "Gestion utilisateurs"</p></div>)}</div>
         </Container>
       </>
     );

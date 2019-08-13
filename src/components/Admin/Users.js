@@ -276,7 +276,10 @@ export default class Users extends Component {
               </form>
             </Grid.Column>
           </Segment>
-          <Segment className="container">
+          <Segment style={{maxHeight: "calc(65vh - 327px)",
+              overflow: "scroll",
+              overflowX: "hidden"}}
+          className="container">
             <h2> Mes utilisateurs </h2>
             {this.state.users.map(user => (
               <Card fluid style={{ margin: `${scss.margin_large} 0px` }}>
