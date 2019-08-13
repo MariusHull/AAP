@@ -4,7 +4,10 @@ import {
   Segment,
   Container,
   Icon,
+  Form,
+  Modal,
   Menu,
+  Header,
   Popup,
   Message,
   Transition
@@ -349,8 +352,10 @@ export default class ContentSurvey extends Component {
       activeItem: 0,
       selected: undefined,
       saved: true,
+      factorName: "",
       justsaved: false,
       displaySave: true,
+      modalOpen: false,
       topics: [
         {
           name: "Intensité et complexité du travail",
@@ -637,6 +642,12 @@ export default class ContentSurvey extends Component {
     console.log(this.state.selected);
   };
 
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false, factorName: "" });
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
+
   handleItemClick = (e, i) => {
     this.setState({ activeItem: i });
   };
@@ -745,6 +756,27 @@ export default class ContentSurvey extends Component {
     console.log(this.state.topics[i].subTopics[j].data.actions);
   };
 
+  newFactor = () => {
+    const topics = this.state.topics;
+    const { factorName, activeItem } = this.state;
+    console.log("Active item : ", activeItem)
+    console.log("topic modified : ", topics[activeItem]);
+    topics[activeItem].subTopics.push({
+      name: factorName,
+      data: {
+        situationsExamples: "",
+        presence: -1,
+        intensity: -1,
+        actions: [],
+        comment: ""
+      }
+    });
+    this.setState({ topics, factorName: "" });
+    this.save();
+    this.handleClose();
+    console.log("New topic : ", this.state.topics[activeItem]);
+  };
+
   render() {
     const {
       activeItem,
@@ -752,7 +784,8 @@ export default class ContentSurvey extends Component {
       saved,
       topics,
       justsaved,
-      displaySave
+      displaySave,
+      factorName,
     } = this.state;
     console.log("state, props :", this.state, this.props);
 
@@ -767,7 +800,7 @@ export default class ContentSurvey extends Component {
                 key={e.name}
                 active={activeItem === i}
                 onClick={e => this.handleItemClick(e, i)}
-                style={{ width: "14.28%", textAlign: "center" }}
+                style={{ width: "12.5%", textAlign: "center" }}
               >
                 {e.name}
               </Menu.Item>
@@ -787,6 +820,39 @@ export default class ContentSurvey extends Component {
               form={form}
               newAction={this.newAction}
             />
+            <Modal
+                  trigger={
+                    <Button
+              primary
+              style = {{ backgroundColor: "#52768F" }}
+              icon
+              fluid
+              onClick={() => this.setState({ modalOpen: true })}
+            >
+              Ajouter un facteur de risque
+            </Button>
+                  }
+                  open={this.state.modalOpen}
+                  onClose={() => this.setState({ modalOpen: false, factorName: "" })}
+                  style={{ width: "30%", marginTop: "5%" }}
+                >
+                  <Header icon="edit" content="Facteur de risque personnalisé" />
+                  <Modal.Content>
+                  <h5>Vous pouvez ajouter un nouveau facteur de risque personnalisé en saisissant son nom et en cliquant sur "Créer".</h5>
+                    <Form>
+                      <Form.Group>
+                        <Form.Input
+                          placeholder="Nom du facteur"
+                          name="factorName"
+                          value={factorName}
+                          onChange={this.handleChange}
+                        />
+                        <Form.Button content="Créer" onClick={() => this.newFactor()} />
+                      </Form.Group>
+                    </Form>
+                  </Modal.Content>
+                </Modal>
+            
           </Segment>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -799,7 +865,7 @@ export default class ContentSurvey extends Component {
               margin: "10px",
               textAlign: "center"
             }}
-            disabled={selected && selected[0] === 0 && selected[1] === 0}
+            disabled={!selected || (selected && selected[0] === 0 && selected[1] === 0)}
             onClick={this.previous}
           >
             <Icon name="left arrow" />
@@ -813,7 +879,7 @@ export default class ContentSurvey extends Component {
               height: "7vh",
               width: "15%",
               margin: "10px",
-              textAlign: "center", backgroundColor: "rgba(46, 66, 80, 0.9)"
+              textAlign: "center", backgroundColor: "#52768F"
             }}
             onClick={() => {toast.info(
               "Vos modifications ont bien été enregistrées",
@@ -834,8 +900,8 @@ export default class ContentSurvey extends Component {
           />
 
           {selected &&
-          (selected[0] < struct.length - 1 ||
-            selected[1] < struct[struct.length - 1].sub_themes.length - 1) ? (
+          (selected[0] < topics.length - 1 ||
+            selected[1] < topics[topics.length - 1].subTopics.length - 1) ? (
             <Button
               icon
               labelPosition="right"

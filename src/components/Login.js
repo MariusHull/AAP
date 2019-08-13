@@ -53,9 +53,9 @@ export default class Login extends Component {
           localStorage.setItem("companyId", res.data.companyId);
           this.setState({ message: "" });
           if (res.data.level >= 2) {
-            this.props.history.push("/admin");
+            this.props.history.push("/admin/home");
           } else if (res.data.level >= 1) {
-            this.props.history.push("/users");
+            this.props.history.push("/admin/users");
           } else if (res.data.level === 0) {
             this.props.history.push("/user/sites");
           } else {

@@ -27,7 +27,7 @@ export default class ExportContent extends React.Component {
               labelPosition="right"
               style={{
                 margin: "10px",
-                textAlign: "center"
+                textAlign: "center", backgroundColor: "#A1C687"
               }}
               disabled={
                 this.props.siteIndex === null ||

@@ -108,6 +108,7 @@ export default class Company extends Component {
                 <Form.Select
                   fluid
                   label="Population"
+                  name="selectedPopulation"
                   onChange={this.handleChangePop}
                   options={this.getPopulations()}
                   placeholder="Population"

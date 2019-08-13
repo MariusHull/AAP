@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { url } from "../../config";
 import NavBar from "../NavBar";
 import Background from "../../assets/Bureau_38.jpg";
+import ShowAnswers from "../Admin/ShowAnswers";
 
 export default class Sites extends Component {
   constructor(props) {
@@ -26,17 +27,24 @@ export default class Sites extends Component {
       sites: [],
       siteName: "",
       populationName: "",
+      populationName2: "",
       modalOpenSite: false,
       modalOpenPopulation: false,
       name: "",
       logo: null,
-      selectedSite: undefined
+      selectedSite: undefined,
+      modalOpen: false
     };
   }
 
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false });
+
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  handleSubmit = type => {
+  handleSubmit = (type, site, pop) => {
+    console.log(`hanlding : ${site} ${pop}`)
     if (type === "site") {
       const { siteName, sites } = this.state;
       console.log(siteName);
@@ -56,7 +64,7 @@ export default class Sites extends Component {
           console.log(this.state.sites);
         });
       this.setState({ modalOpenSite: false, siteName: "" });
-    } else {
+    } else if (type === "population" && this.state.populationName !== "") {
       const { populationName } = this.state;
       const populations = this.state.sites[this.state.selectedSite].populations;
       console.log(populationName);
@@ -64,7 +72,7 @@ export default class Sites extends Component {
         "JWT " + localStorage.getItem("jwtToken");
       axios
         .post(
-          `${url}/api/companies/population/${localStorage.getItem(
+          `${url}/api/companies/populationscratch/${localStorage.getItem(
             "companyId"
           )}`,
           { populationName, siteId: this.state.selectedSite }
@@ -76,6 +84,26 @@ export default class Sites extends Component {
           console.log(this.state.populations);
         });
       this.setState({ modalOpenPopulation: false, populationName: "" });
+    } else if (type === "population2" && this.state.populationName2 !== "") {
+      const { populationName2 } = this.state;
+      const populations = this.state.sites[this.state.selectedSite].populations;
+      console.log(populationName2);
+      axios.defaults.headers.common["Authorization"] =
+        "JWT " + localStorage.getItem("jwtToken");
+      axios
+        .post(
+          `${url}/api/companies/populationfrom/${localStorage.getItem(
+            "companyId"
+          )}`,
+          { populationName2: populationName2, siteId: this.state.selectedSite, siteIndex: site, popIndex: pop }
+        )
+        .then(r => {
+          console.log(r.data);
+          populations.push(r.data);
+          this.setState({ populations });
+          console.log(this.state.populations);
+        });
+      this.setState({ modalOpenPopulation: false, populationName2: "" });
     }
   };
 
@@ -113,7 +141,7 @@ export default class Sites extends Component {
   }
 
   render() {
-    var { siteName, selectedSite, populationName } = this.state;
+    var { sites, siteName, selectedSite, populationName, populationName2 } = this.state;
 
     return (
       <>
@@ -156,7 +184,7 @@ export default class Sites extends Component {
             columns={4}
             centered
             style={{
-              maxHeight: "calc(100vh - 327px)",
+              maxHeight: "calc(95vh - 327px)",
               overflow: "scroll",
               overflowX: "hidden"
             }}
@@ -182,6 +210,7 @@ export default class Sites extends Component {
                       primary
                       fluid
                       icon
+                      style = {{ backgroundColor: "#52768F" }}
                       onClick={() => this.setState({ modalOpenSite: true })}
                     >
                       <Icon name="add" />
@@ -193,7 +222,7 @@ export default class Sites extends Component {
                 >
                   <Header icon="edit" content="Nouveau Site" />
                   <Modal.Content>
-                    <Form onSubmit={() => this.handleSubmit("site")}>
+                    <Form onSubmit={() => this.handleSubmit("site", 0, 0)}>
                       <Form.Group>
                         <Form.Input
                           placeholder="Name"
@@ -208,7 +237,7 @@ export default class Sites extends Component {
                 </Modal>
               </Container>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column style={{paddingBottom: "20px"}}>
               {selectedSite !== undefined ? (
                 <Container style={{ width: "500px" }}>
                   {this.state.sites[selectedSite].populations.map((e, i) => (
@@ -226,6 +255,7 @@ export default class Sites extends Component {
                         primary
                         icon
                         fluid
+                        style = {{ backgroundColor: "#52768F"}}
                         onClick={() =>
                           this.setState({ modalOpenPopulation: true })
                         }
@@ -241,10 +271,12 @@ export default class Sites extends Component {
                   >
                     <Header icon="edit" content="Nouvelle population" />
                     <Modal.Content>
-                      <Form onSubmit={() => this.handleSubmit("population")}>
+                    <h3>Créer une nouvelle population  : </h3>
+                    <h5>Saisissez le nom de la population à créer, puis cliquez "Créer"</h5>
+                      <Form onSubmit={() => this.handleSubmit("population", 0, 0)}>
                         <Form.Group>
                           <Form.Input
-                            placeholder="Name"
+                            placeholder="Nom de la population"
                             name="populationName"
                             value={populationName}
                             onChange={this.handleChange}
@@ -252,6 +284,23 @@ export default class Sites extends Component {
                           <Form.Button content="Créer" />
                         </Form.Group>
                       </Form>
+                      <h3>Créer une population à partir d'une population déjà existante : </h3>
+                      <h5>Saisissez le nom de la population à créer, puis cliquez sur le nom de la population que vous souhaitez copier</h5>
+
+
+                          <Form.Input
+                            placeholder="Nom de la population"
+                            name="populationName2"
+                            value={populationName2}
+                            onChange={this.handleChange}
+                          />
+                          {sites && sites.map((site, index) => (
+                            <div> {site.populations && site.populations.map((pop, subindex) => (
+                              <div style={{paddingTop: "10px"}}> <Form.Button content={`${site.name} - ${pop.name}`} onClick={() => this.handleSubmit("population2", index, subindex)} /> </div>
+                            ))}</div>
+                          ))}
+
+                      
                     </Modal.Content>
                   </Modal>
                 </Container>

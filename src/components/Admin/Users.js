@@ -190,7 +190,6 @@ export default class Users extends Component {
 
     return (
       <>
-        <NavBar logout={this.logout} />
         <br />
         <Container>
           <Segment className="container">

@@ -8,8 +8,10 @@ import Background from "../assets/Bureau_38.jpg";
 import NavBar from "../components/NavBar";
 import ThankYou from "../components/Company/ThankYou";
 import Settings from "../components/Settings";
+import Users from "../components/Admin/Users";
+import Admin from "../components/Admin/Admin";
 
-class UserRoutes extends Component {
+class AdminRoutes extends Component {
   render() {
     return (
       <Router>
@@ -37,15 +39,10 @@ class UserRoutes extends Component {
                   borderRadius: "3px"
                 }}
               >
-                <div style={{ marginBottom: "25px" }}>
-                <Route
-                    path="/user/survey/:indexSite,:indexPopulation"
-                    exact
-                    component={Survey}
-                  />
-                  <Route path="/user/thankyou" exact component={Sites} />
-                  <Route path="/user/sites" exact component={Sites} />
-                  <Route path="/" exact component={ThankYou} />
+                <div style={{ paddingTop: "25px", marginBottom: "25px" }}>
+                <Route path="/admin/users" exact component={Users} />
+                <Route path="/admin/home" exact component={Admin} />
+                <Route path="/admin/settings" exact component={Settings} />
                 </div>
               </Container>
               
@@ -57,4 +54,4 @@ class UserRoutes extends Component {
   }
 }
 
-export default UserRoutes;
+export default AdminRoutes;

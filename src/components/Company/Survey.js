@@ -18,7 +18,7 @@ export default class Survey extends Component {
   render() {
     return (
       <Container
-        style={{ width: "100%", marginTop: "-30px", paddingTop: "20px" }}
+        style={{ width: "100%", marginTop: "-30px", paddingTop: "20px", height: "91vh" }}
       >
         <ContentSurvey
           id={localStorage.getItem("companyId")}

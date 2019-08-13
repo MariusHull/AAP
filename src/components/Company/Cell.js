@@ -187,6 +187,7 @@ export default class Cell extends Component {
               primary
               icon
               fluid
+              style = {{ backgroundColor: "#52768F" }}
               onClick={() => this.props.newAction(i, j)}
             >
               Ajouter une action

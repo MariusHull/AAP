@@ -49,7 +49,7 @@ export default class ShowAnswers extends Component {
           </Modal.Header>
           <Modal.Content image>
             <Modal.Description>
-              <div style={{ width: "88vw" }}>
+              <div style={{ width: "88vw", height: "85vh", margin: "auto" }}>
                 <ContentSurvey
                   id={this.props.company._id}
                   siteIndex={this.props.siteIndex}

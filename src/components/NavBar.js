@@ -15,7 +15,7 @@ export default class NavBar extends Component {
   logout = () => {
     if (window.confirm("Vous allez vous déconnecter, en êtes-vous sûr(e) ?")) {
       localStorage.clear();
-      window.location.reload();
+      window.location.replace("/");
     }
   };
 
@@ -53,7 +53,7 @@ export default class NavBar extends Component {
                     )}
                     {localStorage.getItem("level") >= 2 && (
                       <>
-                        <Link className="item" to="/admin">
+                        <Link className="item" to="/admin/home">
                           Compte administrateur
                         </Link>
                         <div className="ui divider" />
@@ -61,7 +61,7 @@ export default class NavBar extends Component {
                     )}
                     {localStorage.getItem("level") >= 1 && (
                       <>
-                        <Link className="item" to="/users">
+                        <Link className="item" to="/admin/users">
                           Gestion utilisateurs
                         </Link>
                       </>

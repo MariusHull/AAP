@@ -46,11 +46,11 @@ export default class Admin extends Component {
   render() {
     return (
       <>
-        <NavBar logout={this.logout} />
         <Container>
-          {this.state.users.map(user => (
+        <h2>Vos utilisateurs </h2>
+          {this.state.users.length> 0 ? (this.state.users.map(user => (
             <Company companyId={user.companyId} key={user._id} />
-          ))}
+          ))) : (<div> <br/><br/> <p> Vous n'avez pas encore d'utilisateurs à votre actif. Pour en créer un, rendez vous sur l'onglet "Gestion utilisateurs"</p></div>)}
         </Container>
       </>
     );

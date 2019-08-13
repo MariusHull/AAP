@@ -208,7 +208,7 @@ export default class Export extends React.Component {
       <ExcelFile
         filename={title}
         element={
-          <Button class="fluid ui button" icon positive labelPosition="right">
+          <Button class="fluid ui button" icon positive labelPosition="right" style={{backgroundColor: "#A1C687"}}>
             Télécharger au format xslx
             <Icon name="download" />
           </Button>
