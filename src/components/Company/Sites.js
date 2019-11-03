@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { css } from 'glamor';
 import {
   Container,
   Card,
@@ -127,7 +128,8 @@ export default class Sites extends Component {
             "Vous n'avez pas changé votre mot de passe depuis deux mois. Pour plus de sécurité, il est conseillé de le mettre à jour (via l'onglet Réglage du compte dans le menu).",
             {
               position: "top-center",
-              autoClose: 10000
+              autoClose: 15000,
+              className: "aablue"
             }
           );
         }
@@ -195,7 +197,7 @@ export default class Sites extends Component {
                   <Segment
                     inverted={i === selectedSite}
                     fluid
-                    color={i === selectedSite && "blue"}
+                    className={i === selectedSite && "aablue"}
                     onClick={() => {
                       this.setState({ selectedSite: i });
                       console.log(i);
@@ -307,6 +309,7 @@ export default class Sites extends Component {
               ) : (
                 <Message
                   info
+                  className="aabluetr"
                   header={"Aucun site sélectionné"}
                   content={
                     "Veuillez sélectionner un site pour accéder à la population"

@@ -674,6 +674,7 @@ export default class ContentSurvey extends Component {
   save = () => {
     // const siteIndex = this.props.siteIndex
     const { sites, topics } = this.state;
+    console.log(`DEBUG : \n ${sites} \n ${topics} \n ${this.props.siteIndex} \n ${this.props.populationIndex}`)
     sites[this.props.siteIndex].populations[
       this.props.populationIndex
     ].topics = topics;
@@ -737,7 +738,8 @@ export default class ContentSurvey extends Component {
 
   finishRedirect = () => {
     console.log(this.props);
-    window.location.replace("/user/sites");
+    if (localStorage.getItem("level")==0) {window.location.replace("/user/sites");} 
+    else {window.location.replace("/admin/home");}
   };
 
   newAction = (i, j) => {
@@ -885,7 +887,8 @@ export default class ContentSurvey extends Component {
               "Vos modifications ont bien été enregistrées",
               {
                 position: "top-center",
-                autoClose: 10000
+                autoClose: 10000,
+                className: "aablue"
               }
             ); this.save(); }}
           >
@@ -918,7 +921,6 @@ export default class ContentSurvey extends Component {
             </Button>
           ) : (
             <>
-              {localStorage.getItem("level") === "0" ? (
                 <Button
                   icon
                   labelPosition="right"
@@ -933,23 +935,6 @@ export default class ContentSurvey extends Component {
                   Terminer
                   <Icon name="check" />
                 </Button>
-              ) : (
-                <Button
-                  icon
-                  disabled
-                  labelPosition="right"
-                  style={{
-                    height: "7vh",
-                    width: "15%",
-                    margin: "10px",
-                    textAlign: "center"
-                  }}
-                  onClick={this.next}
-                >
-                  Suivant
-                  <Icon name="right arrow" />
-                </Button>
-              )}
             </>
           )}
         </div>

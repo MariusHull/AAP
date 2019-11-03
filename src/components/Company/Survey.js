@@ -6,22 +6,26 @@ import ContentSurvey from "./ContentSurvey";
 export default class Survey extends Component {
   componentDidMount = () => {
     if (
-      !(localStorage.getItem("jwtToken") && localStorage.getItem("level") < 1)
+      !localStorage.getItem("jwtToken")
     ) {
-      this.props.history.push("/");
-    }
-    if (!localStorage.getItem("jwtToken")) {
       this.props.history.push("/");
     }
   };
 
   render() {
+    let id;
+    if (localStorage.getItem("companyId") == "undefined") {
+      id = this.props.match.params.id
+    } else {
+      id = localStorage.getItem("companyId")
+    }
+    console.log(id)
     return (
       <Container
         style={{ width: "100%", marginTop: "-30px", paddingTop: "20px", height: "91vh" }}
       >
         <ContentSurvey
-          id={localStorage.getItem("companyId")}
+          id={id}
           siteIndex={this.props.match.params.indexSite}
           populationIndex={this.props.match.params.indexPopulation}
         />

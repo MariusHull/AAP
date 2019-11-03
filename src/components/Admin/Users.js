@@ -48,7 +48,7 @@ export default class Users extends Component {
       .then(users => {
         var id = localStorage.getItem("id");
         this.setState({
-          users: users.data.filter(user => user.createdBy === id)
+          users: users.data.filter(user => user.createdBy === id|| user._id === id)
         });
       })
       .catch(error => {
@@ -261,7 +261,7 @@ export default class Users extends Component {
                   required
                 /> */}
 
-                <Message info>
+                <Message info className="aabluetr">
                   <Message.Header>Mot de passe</Message.Header>
                   <p>
                     Par défaut, le mot de passe est le nom de l'entreprise.
@@ -270,7 +270,7 @@ export default class Users extends Component {
                   </p>
                 </Message>
                 <br />
-                <button className="ui button" type="submit">
+                <button className="ui button aablue" type="submit">
                   Créer cet utilisateur
                 </button>
               </form>

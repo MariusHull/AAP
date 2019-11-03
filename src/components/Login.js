@@ -67,7 +67,8 @@ export default class Login extends Component {
               "Cet utilisateur n'a pas de status. Merci de contacter l'administrateur en précisant ce problème.",
               {
                 position: "top-center",
-                autoClose: 10000
+                autoClose: 10000,
+                className: "aablue"
               }
             );
           }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, Icon, Container } from "semantic-ui-react";
 import "../../App.css"
+import { Link } from "react-router-dom";
 
 import ContentSurvey from "../Company/ContentSurvey";
 
@@ -10,6 +11,11 @@ export default class ShowAnswers extends Component {
   handleOpen = () => this.setState({ modalOpen: true });
 
   handleClose = () => this.setState({ modalOpen: false });
+
+  redirect = (id, site, pop) => {
+    console.log(id)
+    window.location.href =  `/admin/survey/${id}/${site},${pop}`;
+  }
 
   render() {
     return (
@@ -21,7 +27,8 @@ export default class ShowAnswers extends Component {
           size={"fullscreen"}
           trigger={
             <Button
-              onClick={this.handleOpen}
+              // onClick={this.handleOpen}
+              onClick={() => this.redirect(this.props.company._id, this.props.siteIndex, this.props.populationIndex)}
               icon
               labelPosition="right"
               disabled={
@@ -41,16 +48,20 @@ export default class ShowAnswers extends Component {
               <Button
                 onClick={this.handleClose}
                 primary
+                className="aablue"
                 style={{ position: "absolute", right: "10px", top: "15px" }}
               >
                 Revenir à la page principale <Icon name="right chevron" />
               </Button>
             </Container>
           </Modal.Header>
-          <Modal.Content image>
+          <Modal.Content
+          className="modalrep"
+          image>
             <Modal.Description>
               <div style={{ width: "88vw", height: "85vh", margin: "auto" }}>
                 <ContentSurvey
+                  className="modalrep"
                   id={this.props.company._id}
                   siteIndex={this.props.siteIndex}
                   populationIndex={this.props.populationIndex}

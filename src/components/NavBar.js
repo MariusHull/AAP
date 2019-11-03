@@ -29,13 +29,39 @@ export default class NavBar extends Component {
           })`
         }}
       >
-        <Link to="/">
+        {localStorage.getItem("jwtToken") &&
+          localStorage.getItem("User") &&
+          localStorage.getItem("level") && 
+          localStorage.getItem("level") === "0" && (
+        <Link to="/user/sites">
           <img
             src={logo}
             alt="Logo Alter Alliance"
             style={{ margin: `10px`, height: "30px" }}
           />
-        </Link>
+        </Link>)}
+        {localStorage.getItem("jwtToken") &&
+          localStorage.getItem("User") &&
+          localStorage.getItem("level") && 
+          localStorage.getItem("level") === "1" && (
+        <Link to="/admin/users">
+          <img
+            src={logo}
+            alt="Logo Alter Alliance"
+            style={{ margin: `10px`, height: "30px" }}
+          />
+        </Link>)}
+        {localStorage.getItem("jwtToken") &&
+          localStorage.getItem("User") &&
+          localStorage.getItem("level") && 
+          localStorage.getItem("level") === "2" && (
+        <Link to="/admin/home">
+          <img
+            src={logo}
+            alt="Logo Alter Alliance"
+            style={{ margin: `10px`, height: "30px" }}
+          />
+        </Link>)}
 
         {localStorage.getItem("jwtToken") &&
           localStorage.getItem("User") &&
@@ -55,6 +81,14 @@ export default class NavBar extends Component {
                       <>
                         <Link className="item" to="/admin/home">
                           Compte administrateur
+                        </Link>
+                        <div className="ui divider" />
+                      </>
+                    )}
+                    {localStorage.getItem("level") == 1 && (
+                      <>
+                        <Link className="item" to="/admin/home">
+                          Accès aux comptes
                         </Link>
                         <div className="ui divider" />
                       </>

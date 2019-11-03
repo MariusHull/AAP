@@ -101,6 +101,7 @@ export default class Company extends Component {
                   fluid
                   label="Site"
                   name="selectedSite"
+                  className="largesel"
                   onChange={this.handleChange}
                   options={this.getSites()}
                   placeholder="Site"
@@ -109,6 +110,7 @@ export default class Company extends Component {
                   fluid
                   label="Population"
                   name="selectedPopulation"
+                  className="largesel"
                   onChange={this.handleChangePop}
                   options={this.getPopulations()}
                   placeholder="Population"

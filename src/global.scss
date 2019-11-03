@@ -2,6 +2,8 @@ $margin-large: 20px;
 
 $blue: #2e4250;
 $blue-light: rgb(107, 186, 241);
+$aa-blue: rgb(82, 118, 143);
+$aa-blue-tr: rgba(82, 118, 143, 0.3);
 
 :export {
   margin_large: $margin-large;
@@ -13,4 +15,23 @@ h1.title {
   margin: 20px;
   padding-top: 20px;
   text-align: center;
+}
+
+.aablue {
+  background: $aa-blue !important;
+  color: white !important;
+}
+
+.aabluetr {
+  background: $aa-blue-tr !important;
+  color: $aa-blue !important;
+  box-shadow: 0 0 0 1px $aa-blue !important;
+}
+
+.modalrep {
+  background: rgba(255, 0, 0, 0.164) !important;
+}
+
+.largesel {
+  width: 250px;
 }

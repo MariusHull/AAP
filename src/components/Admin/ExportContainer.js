@@ -46,6 +46,7 @@ export default class ExportContent extends React.Component {
               <Button
                 onClick={this.handleClose}
                 primary
+                className="aablue"
                 style={{ position: "absolute", right: "10px", top: "15px" }}
               >
                 <Icon name="x icon" />

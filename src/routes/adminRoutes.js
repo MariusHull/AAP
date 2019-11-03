@@ -40,6 +40,11 @@ class AdminRoutes extends Component {
                 }}
               >
                 <div style={{ paddingTop: "25px", marginBottom: "25px" }}>
+                <Route
+                    path="/admin/survey/:id/:indexSite,:indexPopulation"
+                    exact
+                    component={Survey}
+                  />
                 <Route path="/admin/users" exact component={Users} />
                 <Route path="/admin/home" exact component={Admin} />
                 <Route path="/admin/settings" exact component={Settings} />

@@ -158,6 +158,7 @@ export default class Settings extends Component {
               <Button
                 icon
                 color="blue"
+                className="aablue"
                 onClick={this.onSubmitPassword}
                 labelPosition="right"
               >
