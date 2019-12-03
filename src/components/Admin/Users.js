@@ -124,6 +124,8 @@ export default class Users extends Component {
             position: "top-center",
             autoClose: 10000
           });
+          this.loadPage();
+          
         }
       });
   };
@@ -171,11 +173,14 @@ export default class Users extends Component {
       "JWT " + localStorage.getItem("jwtToken");
     axios
       .get(`${url}/api/auth/suppress/${id}`)
+      
       .then(res => {
         toast.success(res.data.msg, {
           position: "top-center",
           autoClose: 10000
         });
+        this.loadPage();
+        
       })
       .catch(error => {
         toast.error("Une erreur inconnue est survenue (code 500).", {
@@ -191,6 +196,13 @@ export default class Users extends Component {
     return (
       <>
         <br />
+        <div style={{maxHeight: "75vh",
+              width: "100%",
+              'min-height': "200px",
+              padding: "10px",
+              overflow: "scroll",
+              overflowX: "hidden"
+              }} >
         <Container>
           <Segment className="container">
             <Grid.Column>
@@ -276,9 +288,7 @@ export default class Users extends Component {
               </form>
             </Grid.Column>
           </Segment>
-          <Segment style={{maxHeight: "calc(65vh - 327px)",
-              overflow: "scroll",
-              overflowX: "hidden"}}
+          <Segment 
           className="container">
             <h2> Mes utilisateurs </h2>
             {this.state.users.map(user => (
@@ -327,6 +337,7 @@ export default class Users extends Component {
             pauseOnHover
           />
         </Container>
+        </div>
       </>
     );
   }

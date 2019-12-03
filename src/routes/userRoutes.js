@@ -31,7 +31,7 @@ class UserRoutes extends Component {
                 className="container"
                 style={{
                   width: "90vw",
-                  height: "calc(95vh - 95px)",
+                  height: "auto",
                   marginTop: "40px",
                   background: "rgba(255,255,255,0.9)",
                   borderRadius: "3px"

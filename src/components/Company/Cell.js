@@ -34,6 +34,10 @@ export default class Cell extends Component {
     this.props.changeAction(this.props.i, this.props.j, name, value, k);
   };
 
+  handleDeleteAction = (k) => {
+    this.props.changeDeleteAction(this.props.i, this.props.j, k);
+  }
+
   render() {
     const { topics, i, j } = this.props;
     const subTopic = topics[i].subTopics[j];
@@ -107,7 +111,7 @@ export default class Cell extends Component {
                 <Card.Content>
                   <Card.Meta>
                     <Form.Group inline>
-                      <label>{`Action ${l + 1} : `}</label>
+                      <label style={{ width: "50px" }}>{`Action ${l + 1}`}</label>
                       <Form.Field
                         control={TextArea}
                         id="form-textarea-control-opinion"
@@ -118,6 +122,12 @@ export default class Cell extends Component {
                         style={{ height: "41px" }}
                         width={14}
                       />
+                      <button 
+                        className="negative ui button" 
+                        style={{ height: "38px", width: "auto", padding : "8px" }}
+                        onClick={() => this.handleDeleteAction(l)}>
+                      <i class="disabled close icon" style={{ margin: "0px"}}></i>
+                      </button>
                     </Form.Group>
                     <Form.Group inline>
                       <label>Degré d'urgence de l'action</label>

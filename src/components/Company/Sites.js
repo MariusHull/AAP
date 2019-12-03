@@ -142,19 +142,68 @@ export default class Sites extends Component {
       });
   }
 
+  deleteSite = (i) => {
+    const { sites } = this.state;
+    console.log("SITE", i)
+    if (window.confirm("Êtes-vous sûr(e) de vouloir supprimer ce site ? La suppression sera irreversible.")) {
+      sites.splice(i,1);
+      this.save();
+    }
+  }
+
+  deletePop = (i, j) => {
+    const { sites } = this.state;
+    console.log("POP", i, j)
+    if (window.confirm("Êtes-vous sûr(e) de vouloir supprimer ce site ? La suppression sera irreversible.")) {
+      sites[i].populations.splice(j,1);
+      this.save();
+    }
+  }
+
+
+  save = () => {
+    // const siteIndex = this.props.siteIndex
+    const { sites } = this.state;
+    console.log(`DEBUG : \n ${sites}`)
+    axios.defaults.headers.common["Authorization"] =
+      "JWT " + localStorage.getItem("jwtToken");
+    axios
+      .post(`${url}/api/companies/save/${localStorage.getItem("companyId")}`, {
+        sites
+      })
+      .then(r => {
+        this.setState({ selectedSite: undefined });
+        toast.info(
+          "Vos modifications ont bien été enregistrées",
+          {
+            position: "top-center",
+            autoClose: 10000,
+            className: "aablue"
+          }
+        );
+      });
+  };
+
   render() {
     var { sites, siteName, selectedSite, populationName, populationName2 } = this.state;
 
     return (
       <>
+      <div style={{maxHeight: "75vh",
+              width: "100%",
+              'min-height': "200px",
+              padding: "10px",
+              overflow: "scroll",
+              overflowX: "hidden"
+              }} >
         <Grid divided="vertically">
           <Grid.Row columns={1} centered>
             <Grid.Column centered>
-              <Container style={{ width: "200px", marginTop: "20px" }}>
+              <Container className="centerer" style={{ width: "200px", marginTop: "20px" }}>
                 <img
                   src={`${url}/api/companies/image/${this.state.name}`}
                   alt="Logo Entreprise"
-                  style={{ width: "200px" }}
+                  style={{ width: "auto", maxHeight: "150px" }}
                 />
               </Container>
             </Grid.Column>
@@ -187,8 +236,6 @@ export default class Sites extends Component {
             centered
             style={{
               maxHeight: "calc(95vh - 327px)",
-              overflow: "scroll",
-              overflowX: "hidden"
             }}
           >
             <Grid.Column>
@@ -197,13 +244,20 @@ export default class Sites extends Component {
                   <Segment
                     inverted={i === selectedSite}
                     fluid
-                    className={i === selectedSite && "aablue"}
+                    className={i === selectedSite ? "flexed aablue" : "flexed"}
                     onClick={() => {
                       this.setState({ selectedSite: i });
                       console.log(i);
                     }}
+                    style={{ padding: "5px", paddingLeft: "10px"}}
                   >
                     {e.name}
+                    <button 
+                      className="negative ui button" 
+                      style={{ height: "30px", width: "auto", padding : "5px", margin: "5px" }}
+                      onClick={() => this.deleteSite(i)}>
+                    <i class="disabled close icon" style={{ margin: "0px"}}></i>
+                    </button>
                   </Segment>
                 ))}
                 <Modal
@@ -242,13 +296,19 @@ export default class Sites extends Component {
             <Grid.Column style={{paddingBottom: "20px"}}>
               {selectedSite !== undefined ? (
                 <Container style={{ width: "500px" }}>
-                  {this.state.sites[selectedSite].populations.map((e, i) => (
-                    <Segment fluid centered>
-                      <Link to={`/user/survey/${selectedSite},${i}`}>
+                  {this.state.sites[selectedSite] && this.state.sites[selectedSite].populations.map((e, i) => (
+                    <Segment fluid centered className="flexed" style={{ padding: "5px", paddingLeft: "10px"}}>
+                      <Link to={`/user/survey/${selectedSite},${i}`} style={{ width: "80%" }}>
                         <Container style={{ color: "#000" }}>
                           {e.name}
                         </Container>
                       </Link>
+                      <button 
+                      className="negative ui button" 
+                      style={{ height: "30px", width: "auto", padding : "5px", margin: "5px" }}
+                      onClick={() => this.deletePop(selectedSite, i)}>
+                    <i class="disabled close icon" style={{ margin: "0px"}}></i>
+                    </button>
                     </Segment>
                   ))}
                   <Modal
@@ -298,7 +358,7 @@ export default class Sites extends Component {
                           />
                           {sites && sites.map((site, index) => (
                             <div> {site.populations && site.populations.map((pop, subindex) => (
-                              <div style={{paddingTop: "10px"}}> <Form.Button content={`${site.name} - ${pop.name}`} onClick={() => this.handleSubmit("population2", index, subindex)} /> </div>
+                              <div style={{paddingTop: "10px"}}> <Form.Button content={`${site.name} - ${pop.name}`} onClick={() => this.handleSubmit("population2", index, subindex)} /></div>
                             ))}</div>
                           ))}
 
@@ -329,6 +389,7 @@ export default class Sites extends Component {
           draggable
           pauseOnHover
         />
+        </div>
       </>
     );
   }

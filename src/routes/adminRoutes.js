@@ -23,7 +23,7 @@ class AdminRoutes extends Component {
               style={{
                 width: "100%",
                 height: "calc(100vh - 95px)",
-                position: "absolute",
+                position: "fixed",
                 top: "53px",
                 backgroundImage: `url(${Background})`,
                 backgroundSize: "cover"
@@ -33,13 +33,14 @@ class AdminRoutes extends Component {
                 className="container"
                 style={{
                   width: "90vw",
-                  height: "calc(95vh - 95px)",
+                  height: "auto",
                   marginTop: "40px",
+                  marginBottom: "40px",
                   background: "rgba(255,255,255,0.9)",
                   borderRadius: "3px"
                 }}
               >
-                <div style={{ paddingTop: "25px", marginBottom: "25px" }}>
+                <div style={{ paddingTop: "25px", marginBottom: "40px" }}>
                 <Route
                     path="/admin/survey/:id/:indexSite,:indexPopulation"
                     exact

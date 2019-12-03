@@ -28,6 +28,37 @@ h1.title {
   box-shadow: 0 0 0 1px $aa-blue !important;
 }
 
+.aaloader {
+  color: $aa-blue !important;
+  height: 100px;
+  width: auto !important;
+}
+
+.overflower {
+  overflow: "scroll";
+}
+
+.flexed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.centerer {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui.loader:after {
+  border-color: $aa-blue transparent transparent !important;
+  // border-color: #767676 transparent transparent;
+    border-top-color: $aa-blue !important;
+  //   border-right-color: transparent;
+  //   border-bottom-color: transparent;
+  //   border-left-color: transparent;
+}
+
 .modalrep {
   background: rgba(255, 0, 0, 0.164) !important;
 }

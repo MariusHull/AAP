@@ -671,6 +671,31 @@ export default class ContentSurvey extends Component {
     this.setState({ saved: false, topics });
   };
 
+  changeDeleteAction = (i, j, k) => {
+    if (window.confirm("Êtes-vous sûr(e) de vouloir supprimer cette action ? La suppression sera irreversible.")) {
+      var { topics } = this.state;
+      topics[i].subTopics[j].data.actions.splice(k,1);
+      this.setState({ saved: false, topics });
+      this.save();
+    }
+  };
+
+  changeDeleteFactor = (i, j) => {
+    if (window.confirm("Êtes-vous sûr(e) de vouloir supprimer ce facteur de risque ? La suppression sera irreversible.")) {
+      var { topics } = this.state;
+      topics[i].subTopics.splice(j,1);
+      this.setState({ saved: false, topics });
+      this.save();
+    }
+  };
+
+  changeNameFactor = (i, j, name) => {
+      var { topics } = this.state;
+      topics[i].subTopics[j].name = name;
+      this.setState({ saved: false, topics });
+      this.save();
+  };
+
   save = () => {
     // const siteIndex = this.props.siteIndex
     const { sites, topics } = this.state;
@@ -694,6 +719,14 @@ export default class ContentSurvey extends Component {
           saved: true,
           displaySave: false
         });
+        toast.info(
+          "Vos modifications ont bien été enregistrées",
+          {
+            position: "top-center",
+            autoClose: 10000,
+            className: "aablue"
+          }
+        ); 
       });
   };
 
@@ -819,6 +852,9 @@ export default class ContentSurvey extends Component {
               selected={selected}
               change={this.change}
               changeAction={this.changeAction}
+              changeDeleteAction={this.changeDeleteAction}
+              changeDeleteFactor={this.changeDeleteFactor}
+              changeNameFactor={this.changeNameFactor}
               form={form}
               newAction={this.newAction}
             />
@@ -883,14 +919,7 @@ export default class ContentSurvey extends Component {
               margin: "10px",
               textAlign: "center", backgroundColor: "#52768F"
             }}
-            onClick={() => {toast.info(
-              "Vos modifications ont bien été enregistrées",
-              {
-                position: "top-center",
-                autoClose: 10000,
-                className: "aablue"
-              }
-            ); this.save(); }}
+            onClick={() => {this.save();}}
           >
             Enregistrer
             <Icon name="save outline" />
