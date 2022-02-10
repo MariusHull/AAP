@@ -6,7 +6,7 @@
     "axios": "^0.18.1",
     "glamor": "^2.20.40",
     "jwt-decode": "^2.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-data-export": "^0.5.0",
     "react-dom": "^16.8.6",
